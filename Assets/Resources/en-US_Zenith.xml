@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+  <string name="gameData.stageSelect.Zenith">CRYOSTATION</string>
+  <string name="gameData.stagePreview.Zenith">A classic three platform stage</string>
+  <string name="gameData.stageLoading.Zenith1">Cryostation sits in an asteroid field in Xana's home star system.</string>
+  <string name="gameData.stageLoading.Zenith2">Utilize Cryostation's three platforms to avoid projectiles during combat.</string>
+  <string name="gameData.stageLoading.Zenith3">The asteroids near Cryostation are mined for spectra and other resources.</string>
+  <string name="gameData.stageLoading.Zenith4">Cryostation was built using Gifkin mining technology.</string>
+  <string name="gameData.stageLoading.Zenith5">Cryostation was built by an ancient civilization.</string>
+  
+</resources>

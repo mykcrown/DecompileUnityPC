@@ -1,0 +1,28 @@
+﻿using System;
+using Beebyte.Obfuscator;
+
+// Token: 0x0200099B RID: 2459
+[Skip]
+public enum LoginValidationState
+{
+	// Token: 0x04002CBB RID: 11451
+	OK,
+	// Token: 0x04002CBC RID: 11452
+	TOO_SHORT,
+	// Token: 0x04002CBD RID: 11453
+	INVALID_CHARACTERS,
+	// Token: 0x04002CBE RID: 11454
+	INVALID_EMAIL,
+	// Token: 0x04002CBF RID: 11455
+	PW_NEED_CAPITAL,
+	// Token: 0x04002CC0 RID: 11456
+	PW_LENGTH,
+	// Token: 0x04002CC1 RID: 11457
+	PW_NEED_SYMBOL,
+	// Token: 0x04002CC2 RID: 11458
+	PW_NEED_NUMBER,
+	// Token: 0x04002CC3 RID: 11459
+	PW_NO_SPACES,
+	// Token: 0x04002CC4 RID: 11460
+	MUST_ACCEPT_TERMS
+}

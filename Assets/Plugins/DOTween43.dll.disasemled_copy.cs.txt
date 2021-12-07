@@ -1,0 +1,289 @@
+// Decompile from assembly: DOTween43.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: DOTween43.dll
+
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using System;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+
+namespace DG.Tweening
+{
+	public static class ShortcutExtensions43
+	{
+		private sealed class __c__DisplayClass2_0
+		{
+			public SpriteRenderer target;
+
+			internal Color _DOColor_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOColor_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass3_0
+		{
+			public SpriteRenderer target;
+
+			internal Color _DOFade_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOFade_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass5_0
+		{
+			public Rigidbody2D target;
+
+			internal Vector2 _DOMove_b__0()
+			{
+				return this.target.position;
+			}
+		}
+
+		private sealed class __c__DisplayClass6_0
+		{
+			public Rigidbody2D target;
+
+			internal Vector2 _DOMoveX_b__0()
+			{
+				return this.target.position;
+			}
+		}
+
+		private sealed class __c__DisplayClass7_0
+		{
+			public Rigidbody2D target;
+
+			internal Vector2 _DOMoveY_b__0()
+			{
+				return this.target.position;
+			}
+		}
+
+		private sealed class __c__DisplayClass8_0
+		{
+			public Rigidbody2D target;
+
+			internal float _DORotate_b__0()
+			{
+				return this.target.rotation;
+			}
+		}
+
+		private sealed class __c__DisplayClass9_0
+		{
+			public Rigidbody2D target;
+
+			public bool offsetYSet;
+
+			public float offsetY;
+
+			public Sequence s;
+
+			public Vector2 endValue;
+
+			public float startPosY;
+
+			internal Vector2 _DOJump_b__0()
+			{
+				return this.target.position;
+			}
+
+			internal void _DOJump_b__1(Vector2 x)
+			{
+				this.target.position = x;
+			}
+
+			internal void _DOJump_b__2()
+			{
+				if (!this.offsetYSet)
+				{
+					this.offsetYSet = true;
+					this.offsetY = (this.s.isRelative ? this.endValue.y : (this.endValue.y - this.startPosY));
+				}
+				Vector2 position = this.target.position;
+				position.y += DOVirtual.EasedValue(0f, this.offsetY, this.s.ElapsedDirectionalPercentage(), Ease.OutQuad);
+				this.target.position = position;
+			}
+
+			internal Vector2 _DOJump_b__3()
+			{
+				return this.target.position;
+			}
+
+			internal void _DOJump_b__4(Vector2 x)
+			{
+				this.target.position = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass10_0
+		{
+			public Color to;
+
+			public SpriteRenderer target;
+
+			internal Color _DOBlendableColor_b__0()
+			{
+				return this.to;
+			}
+
+			internal void _DOBlendableColor_b__1(Color x)
+			{
+				Color b = x - this.to;
+				this.to = x;
+				this.target.color += b;
+			}
+		}
+
+		public static Sequence DOGradientColor(this Material target, Gradient gradient, float duration)
+		{
+			Sequence sequence = DOTween.Sequence();
+			GradientColorKey[] colorKeys = gradient.colorKeys;
+			int num = colorKeys.Length;
+			for (int i = 0; i < num; i++)
+			{
+				GradientColorKey gradientColorKey = colorKeys[i];
+				if (i == 0 && gradientColorKey.time <= 0f)
+				{
+					target.color = gradientColorKey.color;
+				}
+				else
+				{
+					float duration2 = (i == num - 1) ? (duration - sequence.Duration(false)) : (duration * ((i == 0) ? gradientColorKey.time : (gradientColorKey.time - colorKeys[i - 1].time)));
+					sequence.Append(target.DOColor(gradientColorKey.color, duration2).SetEase(Ease.Linear));
+				}
+			}
+			return sequence;
+		}
+
+		public static Sequence DOGradientColor(this Material target, Gradient gradient, string property, float duration)
+		{
+			Sequence sequence = DOTween.Sequence();
+			GradientColorKey[] colorKeys = gradient.colorKeys;
+			int num = colorKeys.Length;
+			for (int i = 0; i < num; i++)
+			{
+				GradientColorKey gradientColorKey = colorKeys[i];
+				if (i == 0 && gradientColorKey.time <= 0f)
+				{
+					target.color = gradientColorKey.color;
+				}
+				else
+				{
+					float duration2 = (i == num - 1) ? (duration - sequence.Duration(false)) : (duration * ((i == 0) ? gradientColorKey.time : (gradientColorKey.time - colorKeys[i - 1].time)));
+					sequence.Append(target.DOColor(gradientColorKey.color, property, duration2).SetEase(Ease.Linear));
+				}
+			}
+			return sequence;
+		}
+
+		public static Tweener DOColor(this SpriteRenderer target, Color endValue, float duration)
+		{
+			ShortcutExtensions43.__c__DisplayClass2_0 __c__DisplayClass2_ = new ShortcutExtensions43.__c__DisplayClass2_0();
+			__c__DisplayClass2_.target = target;
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass2_._DOColor_b__0), new DOSetter<Color>(__c__DisplayClass2_._DOColor_b__1), endValue, duration).SetTarget(__c__DisplayClass2_.target);
+		}
+
+		public static Tweener DOFade(this SpriteRenderer target, float endValue, float duration)
+		{
+			ShortcutExtensions43.__c__DisplayClass3_0 __c__DisplayClass3_ = new ShortcutExtensions43.__c__DisplayClass3_0();
+			__c__DisplayClass3_.target = target;
+			return DOTween.ToAlpha(new DOGetter<Color>(__c__DisplayClass3_._DOFade_b__0), new DOSetter<Color>(__c__DisplayClass3_._DOFade_b__1), endValue, duration).SetTarget(__c__DisplayClass3_.target);
+		}
+
+		public static Sequence DOGradientColor(this SpriteRenderer target, Gradient gradient, float duration)
+		{
+			Sequence sequence = DOTween.Sequence();
+			GradientColorKey[] colorKeys = gradient.colorKeys;
+			int num = colorKeys.Length;
+			for (int i = 0; i < num; i++)
+			{
+				GradientColorKey gradientColorKey = colorKeys[i];
+				if (i == 0 && gradientColorKey.time <= 0f)
+				{
+					target.color = gradientColorKey.color;
+				}
+				else
+				{
+					float duration2 = (i == num - 1) ? (duration - sequence.Duration(false)) : (duration * ((i == 0) ? gradientColorKey.time : (gradientColorKey.time - colorKeys[i - 1].time)));
+					sequence.Append(target.DOColor(gradientColorKey.color, duration2).SetEase(Ease.Linear));
+				}
+			}
+			return sequence;
+		}
+
+		public static Tweener DOMove(this Rigidbody2D target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions43.__c__DisplayClass5_0 __c__DisplayClass5_ = new ShortcutExtensions43.__c__DisplayClass5_0();
+			__c__DisplayClass5_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass5_._DOMove_b__0), new DOSetter<Vector2>(__c__DisplayClass5_.target.MovePosition), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass5_.target);
+		}
+
+		public static Tweener DOMoveX(this Rigidbody2D target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions43.__c__DisplayClass6_0 __c__DisplayClass6_ = new ShortcutExtensions43.__c__DisplayClass6_0();
+			__c__DisplayClass6_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass6_._DOMoveX_b__0), new DOSetter<Vector2>(__c__DisplayClass6_.target.MovePosition), new Vector2(endValue, 0f), duration).SetOptions(AxisConstraint.X, snapping).SetTarget(__c__DisplayClass6_.target);
+		}
+
+		public static Tweener DOMoveY(this Rigidbody2D target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions43.__c__DisplayClass7_0 __c__DisplayClass7_ = new ShortcutExtensions43.__c__DisplayClass7_0();
+			__c__DisplayClass7_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass7_._DOMoveY_b__0), new DOSetter<Vector2>(__c__DisplayClass7_.target.MovePosition), new Vector2(0f, endValue), duration).SetOptions(AxisConstraint.Y, snapping).SetTarget(__c__DisplayClass7_.target);
+		}
+
+		public static Tweener DORotate(this Rigidbody2D target, float endValue, float duration)
+		{
+			ShortcutExtensions43.__c__DisplayClass8_0 __c__DisplayClass8_ = new ShortcutExtensions43.__c__DisplayClass8_0();
+			__c__DisplayClass8_.target = target;
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass8_._DORotate_b__0), new DOSetter<float>(__c__DisplayClass8_.target.MoveRotation), endValue, duration).SetTarget(__c__DisplayClass8_.target);
+		}
+
+		public static Sequence DOJump(this Rigidbody2D target, Vector2 endValue, float jumpPower, int numJumps, float duration, bool snapping = false)
+		{
+			ShortcutExtensions43.__c__DisplayClass9_0 __c__DisplayClass9_ = new ShortcutExtensions43.__c__DisplayClass9_0();
+			__c__DisplayClass9_.target = target;
+			__c__DisplayClass9_.endValue = endValue;
+			if (numJumps < 1)
+			{
+				numJumps = 1;
+			}
+			__c__DisplayClass9_.startPosY = __c__DisplayClass9_.target.position.y;
+			__c__DisplayClass9_.offsetY = -1f;
+			__c__DisplayClass9_.offsetYSet = false;
+			__c__DisplayClass9_.s = DOTween.Sequence();
+			__c__DisplayClass9_.s.Append(DOTween.To(new DOGetter<Vector2>(__c__DisplayClass9_._DOJump_b__0), new DOSetter<Vector2>(__c__DisplayClass9_._DOJump_b__1), new Vector2(__c__DisplayClass9_.endValue.x, 0f), duration).SetOptions(AxisConstraint.X, snapping).SetEase(Ease.Linear).OnUpdate(new TweenCallback(__c__DisplayClass9_._DOJump_b__2))).Join(DOTween.To(new DOGetter<Vector2>(__c__DisplayClass9_._DOJump_b__3), new DOSetter<Vector2>(__c__DisplayClass9_._DOJump_b__4), new Vector2(0f, jumpPower), duration / (float)(numJumps * 2)).SetOptions(AxisConstraint.Y, snapping).SetEase(Ease.OutQuad).SetLoops(numJumps * 2, LoopType.Yoyo).SetRelative<Tweener>()).SetTarget(__c__DisplayClass9_.target).SetEase(DOTween.defaultEaseType);
+			return __c__DisplayClass9_.s;
+		}
+
+		public static Tweener DOBlendableColor(this SpriteRenderer target, Color endValue, float duration)
+		{
+			ShortcutExtensions43.__c__DisplayClass10_0 __c__DisplayClass10_ = new ShortcutExtensions43.__c__DisplayClass10_0();
+			__c__DisplayClass10_.target = target;
+			endValue -= __c__DisplayClass10_.target.color;
+			__c__DisplayClass10_.to = new Color(0f, 0f, 0f, 0f);
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass10_._DOBlendableColor_b__0), new DOSetter<Color>(__c__DisplayClass10_._DOBlendableColor_b__1), endValue, duration).Blendable<Color, Color, ColorOptions>().SetTarget(__c__DisplayClass10_.target);
+		}
+	}
+}
+

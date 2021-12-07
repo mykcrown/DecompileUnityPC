@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+  <string name ="gameData.progression.character.0">NOVICE</string>
+  <string name ="gameData.progression.character.1">BEGINNER</string>
+  <string name ="gameData.progression.character.2">INTERMEDIATE</string>
+  <string name ="gameData.progression.character.3">ADVANCED</string>
+  <string name ="gameData.progression.character.4">EXPERT</string>
+  <string name ="gameData.progression.character.5">MASTER</string>
+  <string name ="gameData.progression.character.6">GRAND MASTER</string>
+  
+</resources>

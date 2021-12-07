@@ -1,0 +1,5 @@
+Hey!
+Don't remove this; it prevents Unity from interacting poorly with this folder when it is empty.
+
+Thanks!
+-Alex

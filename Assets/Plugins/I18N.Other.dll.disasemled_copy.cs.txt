@@ -1,0 +1,5794 @@
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+internal static class Consts
+{
+	public const string MonoVersion = "2.6.5.0";
+
+	public const string MonoCompany = "MONO development team";
+
+	public const string MonoProduct = "MONO Common language infrastructure";
+
+	public const string MonoCopyright = "(c) various MONO Authors";
+
+	public const string FxVersion = "2.0.5.0";
+
+	public const string VsVersion = "9.0.0.0";
+
+	public const string FxFileVersion = "3.0.40818.0";
+
+	public const string VsFileVersion = "9.0.50727.42";
+
+	public const string AssemblyI18N = "I18N, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMicrosoft_VisualStudio = "Microsoft.VisualStudio, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMicrosoft_VisualStudio_Web = "Microsoft.VisualStudio.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMicrosoft_VSDesigner = "Microsoft.VSDesigner, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMono_Http = "Mono.Http, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Posix = "Mono.Posix, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Security = "Mono.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Messaging_RabbitMQ = "Mono.Messaging.RabbitMQ, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyCorlib = "mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem = "System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Data = "System.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Design = "System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_DirectoryServices = "System.DirectoryServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Drawing = "System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Drawing_Design = "System.Drawing.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Messaging = "System.Messaging, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Security = "System.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_ServiceProcess = "System.ServiceProcess, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Web = "System.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Windows_Forms = "System.Windows.Forms, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Core = "System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP1251 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'Ђ',
+			'Ѓ',
+			'‚',
+			'ѓ',
+			'„',
+			'…',
+			'†',
+			'‡',
+			'€',
+			'‰',
+			'Љ',
+			'‹',
+			'Њ',
+			'Ќ',
+			'Ћ',
+			'Џ',
+			'ђ',
+			'‘',
+			'’',
+			'“',
+			'”',
+			'•',
+			'–',
+			'—',
+			'\u0098',
+			'™',
+			'љ',
+			'›',
+			'њ',
+			'ќ',
+			'ћ',
+			'џ',
+			'\u00a0',
+			'Ў',
+			'ў',
+			'Ј',
+			'¤',
+			'Ґ',
+			'¦',
+			'§',
+			'Ё',
+			'©',
+			'Є',
+			'«',
+			'¬',
+			'­',
+			'®',
+			'Ї',
+			'°',
+			'±',
+			'І',
+			'і',
+			'ґ',
+			'µ',
+			'¶',
+			'·',
+			'ё',
+			'№',
+			'є',
+			'»',
+			'ј',
+			'Ѕ',
+			'ѕ',
+			'ї',
+			'А',
+			'Б',
+			'В',
+			'Г',
+			'Д',
+			'Е',
+			'Ж',
+			'З',
+			'И',
+			'Й',
+			'К',
+			'Л',
+			'М',
+			'Н',
+			'О',
+			'П',
+			'Р',
+			'С',
+			'Т',
+			'У',
+			'Ф',
+			'Х',
+			'Ц',
+			'Ч',
+			'Ш',
+			'Щ',
+			'Ъ',
+			'Ы',
+			'Ь',
+			'Э',
+			'Ю',
+			'Я',
+			'а',
+			'б',
+			'в',
+			'г',
+			'д',
+			'е',
+			'ж',
+			'з',
+			'и',
+			'й',
+			'к',
+			'л',
+			'м',
+			'н',
+			'о',
+			'п',
+			'р',
+			'с',
+			'т',
+			'у',
+			'ф',
+			'х',
+			'ц',
+			'ч',
+			'ш',
+			'щ',
+			'ъ',
+			'ы',
+			'ь',
+			'э',
+			'ю',
+			'я'
+		};
+
+		public CP1251() : base(1251, CP1251.ToChars, "Cyrillic (Windows)", "koi8-r", "windows-1251", "windows-1251", true, true, true, true, 1251)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 128)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 1025:
+						num3 = 168;
+						goto IL_604;
+					case 1026:
+						num3 = 128;
+						goto IL_604;
+					case 1027:
+						num3 = 129;
+						goto IL_604;
+					case 1028:
+						num3 = 170;
+						goto IL_604;
+					case 1029:
+						num3 = 189;
+						goto IL_604;
+					case 1030:
+						num3 = 178;
+						goto IL_604;
+					case 1031:
+						num3 = 175;
+						goto IL_604;
+					case 1032:
+						num3 = 163;
+						goto IL_604;
+					case 1033:
+						num3 = 138;
+						goto IL_604;
+					case 1034:
+						num3 = 140;
+						goto IL_604;
+					case 1035:
+						num3 = 142;
+						goto IL_604;
+					case 1036:
+						num3 = 141;
+						goto IL_604;
+					case 1037:
+					case 1104:
+					case 1117:
+					case 1120:
+					case 1121:
+					case 1122:
+					case 1123:
+					case 1124:
+					case 1125:
+					case 1126:
+					case 1127:
+					case 1128:
+					case 1129:
+					case 1130:
+					case 1131:
+					case 1132:
+					case 1133:
+					case 1134:
+					case 1135:
+					case 1136:
+					case 1137:
+					case 1138:
+					case 1139:
+					case 1140:
+					case 1141:
+					case 1142:
+					case 1143:
+					case 1144:
+					case 1145:
+					case 1146:
+					case 1147:
+					case 1148:
+					case 1149:
+					case 1150:
+					case 1151:
+					case 1152:
+					case 1153:
+					case 1154:
+					case 1155:
+					case 1156:
+					case 1157:
+					case 1158:
+					case 1159:
+					case 1160:
+					case 1161:
+					case 1162:
+					case 1163:
+					case 1164:
+					case 1165:
+					case 1166:
+					case 1167:
+						IL_275:
+						switch (num4)
+						{
+						case 160:
+						case 164:
+						case 166:
+						case 167:
+						case 169:
+						case 171:
+						case 172:
+						case 173:
+						case 174:
+						case 176:
+						case 177:
+						case 181:
+						case 182:
+						case 183:
+						case 187:
+							goto IL_3A8;
+						case 161:
+						case 162:
+						case 163:
+						case 165:
+						case 168:
+						case 170:
+						case 175:
+						case 178:
+						case 179:
+						case 180:
+						case 184:
+						case 185:
+						case 186:
+							IL_2F2:
+							switch (num4)
+							{
+							case 8211:
+								num3 = 150;
+								goto IL_604;
+							case 8212:
+								num3 = 151;
+								goto IL_604;
+							case 8213:
+							case 8214:
+							case 8215:
+							case 8219:
+							case 8223:
+							case 8227:
+							case 8228:
+							case 8229:
+								IL_34F:
+								if (num4 == 8249)
+								{
+									num3 = 139;
+									goto IL_604;
+								}
+								if (num4 == 8250)
+								{
+									num3 = 155;
+									goto IL_604;
+								}
+								if (num4 == 152)
+								{
+									goto IL_3A8;
+								}
+								if (num4 == 8240)
+								{
+									num3 = 137;
+									goto IL_604;
+								}
+								if (num4 == 8364)
+								{
+									num3 = 136;
+									goto IL_604;
+								}
+								if (num4 == 8470)
+								{
+									num3 = 185;
+									goto IL_604;
+								}
+								if (num4 != 8482)
+								{
+									if (num3 >= 65281 && num3 <= 65374)
+									{
+										num3 -= 65248;
+									}
+									else
+									{
+										base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+									}
+									goto IL_604;
+								}
+								num3 = 153;
+								goto IL_604;
+							case 8216:
+								num3 = 145;
+								goto IL_604;
+							case 8217:
+								num3 = 146;
+								goto IL_604;
+							case 8218:
+								num3 = 130;
+								goto IL_604;
+							case 8220:
+								num3 = 147;
+								goto IL_604;
+							case 8221:
+								num3 = 148;
+								goto IL_604;
+							case 8222:
+								num3 = 132;
+								goto IL_604;
+							case 8224:
+								num3 = 134;
+								goto IL_604;
+							case 8225:
+								num3 = 135;
+								goto IL_604;
+							case 8226:
+								num3 = 149;
+								goto IL_604;
+							case 8230:
+								num3 = 133;
+								goto IL_604;
+							}
+							goto IL_34F;
+						}
+						goto IL_2F2;
+						IL_3A8:
+						goto IL_604;
+					case 1038:
+						num3 = 161;
+						goto IL_604;
+					case 1039:
+						num3 = 143;
+						goto IL_604;
+					case 1040:
+					case 1041:
+					case 1042:
+					case 1043:
+					case 1044:
+					case 1045:
+					case 1046:
+					case 1047:
+					case 1048:
+					case 1049:
+					case 1050:
+					case 1051:
+					case 1052:
+					case 1053:
+					case 1054:
+					case 1055:
+					case 1056:
+					case 1057:
+					case 1058:
+					case 1059:
+					case 1060:
+					case 1061:
+					case 1062:
+					case 1063:
+					case 1064:
+					case 1065:
+					case 1066:
+					case 1067:
+					case 1068:
+					case 1069:
+					case 1070:
+					case 1071:
+					case 1072:
+					case 1073:
+					case 1074:
+					case 1075:
+					case 1076:
+					case 1077:
+					case 1078:
+					case 1079:
+					case 1080:
+					case 1081:
+					case 1082:
+					case 1083:
+					case 1084:
+					case 1085:
+					case 1086:
+					case 1087:
+					case 1088:
+					case 1089:
+					case 1090:
+					case 1091:
+					case 1092:
+					case 1093:
+					case 1094:
+					case 1095:
+					case 1096:
+					case 1097:
+					case 1098:
+					case 1099:
+					case 1100:
+					case 1101:
+					case 1102:
+					case 1103:
+						num3 -= 848;
+						goto IL_604;
+					case 1105:
+						num3 = 184;
+						goto IL_604;
+					case 1106:
+						num3 = 144;
+						goto IL_604;
+					case 1107:
+						num3 = 131;
+						goto IL_604;
+					case 1108:
+						num3 = 186;
+						goto IL_604;
+					case 1109:
+						num3 = 190;
+						goto IL_604;
+					case 1110:
+						num3 = 179;
+						goto IL_604;
+					case 1111:
+						num3 = 191;
+						goto IL_604;
+					case 1112:
+						num3 = 188;
+						goto IL_604;
+					case 1113:
+						num3 = 154;
+						goto IL_604;
+					case 1114:
+						num3 = 156;
+						goto IL_604;
+					case 1115:
+						num3 = 158;
+						goto IL_604;
+					case 1116:
+						num3 = 157;
+						goto IL_604;
+					case 1118:
+						num3 = 162;
+						goto IL_604;
+					case 1119:
+						num3 = 159;
+						goto IL_604;
+					case 1168:
+						num3 = 165;
+						goto IL_604;
+					case 1169:
+						num3 = 180;
+						goto IL_604;
+					}
+					goto IL_275;
+				}
+				IL_604:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCwindows_1251 : CP1251
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP1257 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'€',
+			'\u0081',
+			'‚',
+			'\u0083',
+			'„',
+			'…',
+			'†',
+			'‡',
+			'\u0088',
+			'‰',
+			'\u008a',
+			'‹',
+			'\u008c',
+			'¨',
+			'ˇ',
+			'¸',
+			'\u0090',
+			'‘',
+			'’',
+			'“',
+			'”',
+			'•',
+			'–',
+			'—',
+			'\u0098',
+			'™',
+			'\u009a',
+			'›',
+			'\u009c',
+			'¯',
+			'˛',
+			'\u009f',
+			'\u00a0',
+			'?',
+			'¢',
+			'£',
+			'¤',
+			'?',
+			'¦',
+			'§',
+			'Ø',
+			'©',
+			'Ŗ',
+			'«',
+			'¬',
+			'­',
+			'®',
+			'Æ',
+			'°',
+			'±',
+			'²',
+			'³',
+			'´',
+			'µ',
+			'¶',
+			'·',
+			'ø',
+			'¹',
+			'ŗ',
+			'»',
+			'¼',
+			'½',
+			'¾',
+			'æ',
+			'Ą',
+			'Į',
+			'Ā',
+			'Ć',
+			'Ä',
+			'Å',
+			'Ę',
+			'Ē',
+			'Č',
+			'É',
+			'Ź',
+			'Ė',
+			'Ģ',
+			'Ķ',
+			'Ī',
+			'Ļ',
+			'Š',
+			'Ń',
+			'Ņ',
+			'Ó',
+			'Ō',
+			'Õ',
+			'Ö',
+			'×',
+			'Ų',
+			'Ł',
+			'Ś',
+			'Ū',
+			'Ü',
+			'Ż',
+			'Ž',
+			'ß',
+			'ą',
+			'į',
+			'ā',
+			'ć',
+			'ä',
+			'å',
+			'ę',
+			'ē',
+			'č',
+			'é',
+			'ź',
+			'ė',
+			'ģ',
+			'ķ',
+			'ī',
+			'ļ',
+			'š',
+			'ń',
+			'ņ',
+			'ó',
+			'ō',
+			'õ',
+			'ö',
+			'÷',
+			'ų',
+			'ł',
+			'ś',
+			'ū',
+			'ü',
+			'ż',
+			'ž',
+			'˙'
+		};
+
+		public CP1257() : base(1257, CP1257.ToChars, "Baltic (Windows)", "iso-8859-4", "windows-1257", "windows-1257", true, true, true, true, 1257)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 128)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 152:
+					case 154:
+					case 156:
+					case 159:
+					case 160:
+					case 162:
+					case 163:
+					case 164:
+					case 166:
+					case 167:
+					case 169:
+					case 171:
+					case 172:
+					case 173:
+					case 174:
+					case 176:
+					case 177:
+					case 178:
+					case 179:
+					case 180:
+					case 181:
+					case 182:
+					case 183:
+					case 185:
+					case 187:
+					case 188:
+					case 189:
+					case 190:
+					case 196:
+					case 197:
+					case 201:
+					case 211:
+					case 213:
+					case 214:
+					case 215:
+					case 220:
+					case 223:
+					case 228:
+					case 229:
+					case 233:
+					case 243:
+					case 245:
+					case 246:
+					case 247:
+					case 252:
+						goto IL_482;
+					case 153:
+					case 155:
+					case 157:
+					case 158:
+					case 161:
+					case 165:
+					case 170:
+					case 186:
+					case 191:
+					case 192:
+					case 193:
+					case 194:
+					case 195:
+					case 199:
+					case 200:
+					case 202:
+					case 203:
+					case 204:
+					case 205:
+					case 206:
+					case 207:
+					case 208:
+					case 209:
+					case 210:
+					case 212:
+					case 217:
+					case 218:
+					case 219:
+					case 221:
+					case 222:
+					case 224:
+					case 225:
+					case 226:
+					case 227:
+					case 231:
+					case 232:
+					case 234:
+					case 235:
+					case 236:
+					case 237:
+					case 238:
+					case 239:
+					case 240:
+					case 241:
+					case 242:
+					case 244:
+					case 249:
+					case 250:
+					case 251:
+					case 253:
+					case 254:
+					case 255:
+					case 258:
+					case 259:
+					case 264:
+					case 265:
+					case 266:
+					case 267:
+					case 270:
+					case 271:
+					case 272:
+					case 273:
+					case 276:
+					case 277:
+						IL_239:
+						switch (num4)
+						{
+						case 310:
+							num3 = 205;
+							goto IL_7FA;
+						case 311:
+							num3 = 237;
+							goto IL_7FA;
+						case 312:
+						case 313:
+						case 314:
+						case 317:
+						case 318:
+						case 319:
+						case 320:
+						case 327:
+						case 328:
+						case 329:
+						case 330:
+						case 331:
+							IL_2A6:
+							switch (num4)
+							{
+							case 8211:
+								num3 = 150;
+								goto IL_7FA;
+							case 8212:
+								num3 = 151;
+								goto IL_7FA;
+							case 8213:
+							case 8214:
+							case 8215:
+							case 8219:
+							case 8223:
+							case 8227:
+							case 8228:
+							case 8229:
+								IL_303:
+								switch (num4)
+								{
+								case 370:
+									num3 = 216;
+									goto IL_7FA;
+								case 371:
+									num3 = 248;
+									goto IL_7FA;
+								case 372:
+								case 373:
+								case 374:
+								case 375:
+								case 376:
+									IL_344:
+									switch (num4)
+									{
+									case 342:
+										num3 = 170;
+										goto IL_7FA;
+									case 343:
+										num3 = 186;
+										goto IL_7FA;
+									case 344:
+									case 345:
+									case 348:
+									case 349:
+									case 350:
+									case 351:
+										IL_381:
+										switch (num4)
+										{
+										case 298:
+											num3 = 206;
+											goto IL_7FA;
+										case 299:
+											num3 = 238;
+											goto IL_7FA;
+										case 300:
+										case 301:
+											IL_3A6:
+											switch (num4)
+											{
+											case 136:
+											case 138:
+											case 140:
+												goto IL_482;
+											case 137:
+											case 139:
+												IL_3C7:
+												switch (num4)
+												{
+												case 129:
+												case 131:
+													goto IL_482;
+												case 130:
+													IL_3E0:
+													switch (num4)
+													{
+													case 729:
+														num3 = 255;
+														goto IL_7FA;
+													case 730:
+														IL_3F9:
+														if (num4 == 290)
+														{
+															num3 = 204;
+															goto IL_7FA;
+														}
+														if (num4 == 291)
+														{
+															num3 = 236;
+															goto IL_7FA;
+														}
+														if (num4 == 362)
+														{
+															num3 = 219;
+															goto IL_7FA;
+														}
+														if (num4 == 363)
+														{
+															num3 = 251;
+															goto IL_7FA;
+														}
+														if (num4 == 8249)
+														{
+															num3 = 139;
+															goto IL_7FA;
+														}
+														if (num4 == 8250)
+														{
+															num3 = 155;
+															goto IL_7FA;
+														}
+														if (num4 == 144)
+														{
+															goto IL_482;
+														}
+														if (num4 == 711)
+														{
+															num3 = 142;
+															goto IL_7FA;
+														}
+														if (num4 == 8240)
+														{
+															num3 = 137;
+															goto IL_7FA;
+														}
+														if (num4 == 8364)
+														{
+															num3 = 128;
+															goto IL_7FA;
+														}
+														if (num4 != 8482)
+														{
+															if (num3 >= 65281 && num3 <= 65374)
+															{
+																num3 -= 65248;
+															}
+															else
+															{
+																base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+															}
+															goto IL_7FA;
+														}
+														num3 = 153;
+														goto IL_7FA;
+													case 731:
+														num3 = 158;
+														goto IL_7FA;
+													}
+													goto IL_3F9;
+												}
+												goto IL_3E0;
+											}
+											goto IL_3C7;
+										case 302:
+											num3 = 193;
+											goto IL_7FA;
+										case 303:
+											num3 = 225;
+											goto IL_7FA;
+										}
+										goto IL_3A6;
+									case 346:
+										num3 = 218;
+										goto IL_7FA;
+									case 347:
+										num3 = 250;
+										goto IL_7FA;
+									case 352:
+										num3 = 208;
+										goto IL_7FA;
+									case 353:
+										num3 = 240;
+										goto IL_7FA;
+									}
+									goto IL_381;
+								case 377:
+									num3 = 202;
+									goto IL_7FA;
+								case 378:
+									num3 = 234;
+									goto IL_7FA;
+								case 379:
+									num3 = 221;
+									goto IL_7FA;
+								case 380:
+									num3 = 253;
+									goto IL_7FA;
+								case 381:
+									num3 = 222;
+									goto IL_7FA;
+								case 382:
+									num3 = 254;
+									goto IL_7FA;
+								}
+								goto IL_344;
+							case 8216:
+								num3 = 145;
+								goto IL_7FA;
+							case 8217:
+								num3 = 146;
+								goto IL_7FA;
+							case 8218:
+								num3 = 130;
+								goto IL_7FA;
+							case 8220:
+								num3 = 147;
+								goto IL_7FA;
+							case 8221:
+								num3 = 148;
+								goto IL_7FA;
+							case 8222:
+								num3 = 132;
+								goto IL_7FA;
+							case 8224:
+								num3 = 134;
+								goto IL_7FA;
+							case 8225:
+								num3 = 135;
+								goto IL_7FA;
+							case 8226:
+								num3 = 149;
+								goto IL_7FA;
+							case 8230:
+								num3 = 133;
+								goto IL_7FA;
+							}
+							goto IL_303;
+						case 315:
+							num3 = 207;
+							goto IL_7FA;
+						case 316:
+							num3 = 239;
+							goto IL_7FA;
+						case 321:
+							num3 = 217;
+							goto IL_7FA;
+						case 322:
+							num3 = 249;
+							goto IL_7FA;
+						case 323:
+							num3 = 209;
+							goto IL_7FA;
+						case 324:
+							num3 = 241;
+							goto IL_7FA;
+						case 325:
+							num3 = 210;
+							goto IL_7FA;
+						case 326:
+							num3 = 242;
+							goto IL_7FA;
+						case 332:
+							num3 = 212;
+							goto IL_7FA;
+						case 333:
+							num3 = 244;
+							goto IL_7FA;
+						}
+						goto IL_2A6;
+					case 168:
+						num3 = 141;
+						goto IL_7FA;
+					case 175:
+						num3 = 157;
+						goto IL_7FA;
+					case 184:
+						num3 = 143;
+						goto IL_7FA;
+					case 198:
+						num3 = 175;
+						goto IL_7FA;
+					case 216:
+						num3 = 168;
+						goto IL_7FA;
+					case 230:
+						num3 = 191;
+						goto IL_7FA;
+					case 248:
+						num3 = 184;
+						goto IL_7FA;
+					case 256:
+						num3 = 194;
+						goto IL_7FA;
+					case 257:
+						num3 = 226;
+						goto IL_7FA;
+					case 260:
+						num3 = 192;
+						goto IL_7FA;
+					case 261:
+						num3 = 224;
+						goto IL_7FA;
+					case 262:
+						num3 = 195;
+						goto IL_7FA;
+					case 263:
+						num3 = 227;
+						goto IL_7FA;
+					case 268:
+						num3 = 200;
+						goto IL_7FA;
+					case 269:
+						num3 = 232;
+						goto IL_7FA;
+					case 274:
+						num3 = 199;
+						goto IL_7FA;
+					case 275:
+						num3 = 231;
+						goto IL_7FA;
+					case 278:
+						num3 = 203;
+						goto IL_7FA;
+					case 279:
+						num3 = 235;
+						goto IL_7FA;
+					case 280:
+						num3 = 198;
+						goto IL_7FA;
+					case 281:
+						num3 = 230;
+						goto IL_7FA;
+					}
+					goto IL_239;
+					IL_482:;
+				}
+				IL_7FA:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCwindows_1257 : CP1257
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP1258 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'€',
+			'\u0081',
+			'‚',
+			'ƒ',
+			'„',
+			'…',
+			'†',
+			'‡',
+			'ˆ',
+			'‰',
+			'\u008a',
+			'‹',
+			'Œ',
+			'\u008d',
+			'\u008e',
+			'\u008f',
+			'\u0090',
+			'‘',
+			'’',
+			'“',
+			'”',
+			'•',
+			'–',
+			'—',
+			'˜',
+			'™',
+			'\u009a',
+			'›',
+			'œ',
+			'\u009d',
+			'\u009e',
+			'Ÿ',
+			'\u00a0',
+			'¡',
+			'¢',
+			'£',
+			'¤',
+			'¥',
+			'¦',
+			'§',
+			'¨',
+			'©',
+			'ª',
+			'«',
+			'¬',
+			'­',
+			'®',
+			'¯',
+			'°',
+			'±',
+			'²',
+			'³',
+			'´',
+			'µ',
+			'¶',
+			'·',
+			'¸',
+			'¹',
+			'º',
+			'»',
+			'¼',
+			'½',
+			'¾',
+			'¿',
+			'À',
+			'Á',
+			'Â',
+			'Ă',
+			'Ä',
+			'Å',
+			'Æ',
+			'Ç',
+			'È',
+			'É',
+			'Ê',
+			'Ë',
+			'̀',
+			'Í',
+			'Î',
+			'Ï',
+			'Đ',
+			'Ñ',
+			'̉',
+			'Ó',
+			'Ô',
+			'Ơ',
+			'Ö',
+			'×',
+			'Ø',
+			'Ù',
+			'Ú',
+			'Û',
+			'Ü',
+			'Ư',
+			'̃',
+			'ß',
+			'à',
+			'á',
+			'â',
+			'ă',
+			'ä',
+			'å',
+			'æ',
+			'ç',
+			'è',
+			'é',
+			'ê',
+			'ë',
+			'́',
+			'í',
+			'î',
+			'ï',
+			'đ',
+			'ñ',
+			'̣',
+			'ó',
+			'ô',
+			'ơ',
+			'ö',
+			'÷',
+			'ø',
+			'ù',
+			'ú',
+			'û',
+			'ü',
+			'ư',
+			'₫',
+			'ÿ'
+		};
+
+		public CP1258() : base(1258, CP1258.ToChars, "Vietnamese (Windows)", "windows-1258", "windows-1258", "windows-1258", true, true, true, true, 1258)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 128)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 129:
+					case 138:
+					case 141:
+					case 142:
+					case 143:
+					case 144:
+					case 154:
+					case 157:
+					case 158:
+					case 160:
+					case 161:
+					case 162:
+					case 163:
+					case 164:
+					case 165:
+					case 166:
+					case 167:
+					case 168:
+					case 169:
+					case 170:
+					case 171:
+					case 172:
+					case 173:
+					case 174:
+					case 175:
+					case 176:
+					case 177:
+					case 178:
+					case 179:
+					case 180:
+					case 181:
+					case 182:
+					case 183:
+					case 184:
+					case 185:
+					case 186:
+					case 187:
+					case 188:
+					case 189:
+					case 190:
+					case 191:
+					case 192:
+					case 193:
+					case 194:
+					case 196:
+					case 197:
+					case 198:
+					case 199:
+					case 200:
+					case 201:
+					case 202:
+					case 203:
+					case 205:
+					case 206:
+					case 207:
+					case 209:
+					case 211:
+					case 212:
+					case 214:
+					case 215:
+					case 216:
+					case 217:
+					case 218:
+					case 219:
+					case 220:
+					case 223:
+					case 224:
+					case 225:
+					case 226:
+					case 228:
+					case 229:
+					case 230:
+					case 231:
+					case 232:
+					case 233:
+					case 234:
+					case 235:
+					case 237:
+					case 238:
+					case 239:
+					case 241:
+					case 243:
+					case 244:
+					case 246:
+					case 247:
+					case 248:
+					case 249:
+					case 250:
+					case 251:
+					case 252:
+					case 255:
+						goto IL_5A2;
+					case 130:
+					case 131:
+					case 132:
+					case 133:
+					case 134:
+					case 135:
+					case 136:
+					case 137:
+					case 139:
+					case 140:
+					case 145:
+					case 146:
+					case 147:
+					case 148:
+					case 149:
+					case 150:
+					case 151:
+					case 152:
+					case 153:
+					case 155:
+					case 156:
+					case 159:
+					case 195:
+					case 204:
+					case 208:
+					case 210:
+					case 213:
+					case 221:
+					case 222:
+					case 227:
+					case 236:
+					case 240:
+					case 242:
+					case 245:
+					case 253:
+					case 254:
+					case 256:
+					case 257:
+					case 260:
+					case 261:
+					case 262:
+					case 263:
+					case 264:
+					case 265:
+					case 266:
+					case 267:
+					case 268:
+					case 269:
+					case 270:
+					case 271:
+						IL_275:
+						switch (num4)
+						{
+						case 8211:
+							num3 = 150;
+							goto IL_5A2;
+						case 8212:
+							num3 = 151;
+							goto IL_5A2;
+						case 8213:
+						case 8214:
+						case 8215:
+						case 8219:
+						case 8223:
+						case 8227:
+						case 8228:
+						case 8229:
+							IL_2D2:
+							switch (num4)
+							{
+							case 768:
+								num3 = 204;
+								goto IL_5A2;
+							case 769:
+								num3 = 236;
+								goto IL_5A2;
+							case 770:
+								IL_2EF:
+								if (num4 == 338)
+								{
+									num3 = 140;
+									goto IL_5A2;
+								}
+								if (num4 == 339)
+								{
+									num3 = 156;
+									goto IL_5A2;
+								}
+								if (num4 == 416)
+								{
+									num3 = 213;
+									goto IL_5A2;
+								}
+								if (num4 == 417)
+								{
+									num3 = 245;
+									goto IL_5A2;
+								}
+								if (num4 == 431)
+								{
+									num3 = 221;
+									goto IL_5A2;
+								}
+								if (num4 == 432)
+								{
+									num3 = 253;
+									goto IL_5A2;
+								}
+								if (num4 == 8249)
+								{
+									num3 = 139;
+									goto IL_5A2;
+								}
+								if (num4 == 8250)
+								{
+									num3 = 155;
+									goto IL_5A2;
+								}
+								if (num4 == 8363)
+								{
+									num3 = 254;
+									goto IL_5A2;
+								}
+								if (num4 == 8364)
+								{
+									num3 = 128;
+									goto IL_5A2;
+								}
+								if (num4 == 376)
+								{
+									num3 = 159;
+									goto IL_5A2;
+								}
+								if (num4 == 402)
+								{
+									num3 = 131;
+									goto IL_5A2;
+								}
+								if (num4 == 710)
+								{
+									num3 = 136;
+									goto IL_5A2;
+								}
+								if (num4 == 732)
+								{
+									num3 = 152;
+									goto IL_5A2;
+								}
+								if (num4 == 777)
+								{
+									num3 = 210;
+									goto IL_5A2;
+								}
+								if (num4 == 803)
+								{
+									num3 = 242;
+									goto IL_5A2;
+								}
+								if (num4 == 8240)
+								{
+									num3 = 137;
+									goto IL_5A2;
+								}
+								if (num4 != 8482)
+								{
+									if (num3 >= 65281 && num3 <= 65374)
+									{
+										num3 -= 65248;
+									}
+									else
+									{
+										base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+									}
+									goto IL_5A2;
+								}
+								num3 = 153;
+								goto IL_5A2;
+							case 771:
+								num3 = 222;
+								goto IL_5A2;
+							}
+							goto IL_2EF;
+						case 8216:
+							num3 = 145;
+							goto IL_5A2;
+						case 8217:
+							num3 = 146;
+							goto IL_5A2;
+						case 8218:
+							num3 = 130;
+							goto IL_5A2;
+						case 8220:
+							num3 = 147;
+							goto IL_5A2;
+						case 8221:
+							num3 = 148;
+							goto IL_5A2;
+						case 8222:
+							num3 = 132;
+							goto IL_5A2;
+						case 8224:
+							num3 = 134;
+							goto IL_5A2;
+						case 8225:
+							num3 = 135;
+							goto IL_5A2;
+						case 8226:
+							num3 = 149;
+							goto IL_5A2;
+						case 8230:
+							num3 = 133;
+							goto IL_5A2;
+						}
+						goto IL_2D2;
+					case 258:
+						num3 = 195;
+						goto IL_5A2;
+					case 259:
+						num3 = 227;
+						goto IL_5A2;
+					case 272:
+						num3 = 208;
+						goto IL_5A2;
+					case 273:
+						num3 = 240;
+						goto IL_5A2;
+					}
+					goto IL_275;
+				}
+				IL_5A2:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCwindows_1258 : CP1258
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP20866 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'─',
+			'│',
+			'┌',
+			'┐',
+			'└',
+			'┘',
+			'├',
+			'┤',
+			'┬',
+			'┴',
+			'┼',
+			'▀',
+			'▄',
+			'█',
+			'▌',
+			'▐',
+			'░',
+			'▒',
+			'▓',
+			'⌠',
+			'■',
+			'∙',
+			'√',
+			'≈',
+			'≤',
+			'≥',
+			'\u00a0',
+			'⌡',
+			'°',
+			'²',
+			'·',
+			'÷',
+			'═',
+			'║',
+			'╒',
+			'ё',
+			'╓',
+			'╔',
+			'╕',
+			'╖',
+			'╗',
+			'╘',
+			'╙',
+			'╚',
+			'╛',
+			'╜',
+			'╝',
+			'╞',
+			'╟',
+			'╠',
+			'╡',
+			'Ё',
+			'╢',
+			'╣',
+			'╤',
+			'╥',
+			'╦',
+			'╧',
+			'╨',
+			'╩',
+			'╪',
+			'╫',
+			'╬',
+			'©',
+			'ю',
+			'а',
+			'б',
+			'ц',
+			'д',
+			'е',
+			'ф',
+			'г',
+			'х',
+			'и',
+			'й',
+			'к',
+			'л',
+			'м',
+			'н',
+			'о',
+			'п',
+			'я',
+			'р',
+			'с',
+			'т',
+			'у',
+			'ж',
+			'в',
+			'ь',
+			'ы',
+			'з',
+			'ш',
+			'э',
+			'щ',
+			'ч',
+			'ъ',
+			'Ю',
+			'А',
+			'Б',
+			'Ц',
+			'Д',
+			'Е',
+			'Ф',
+			'Г',
+			'Х',
+			'И',
+			'Й',
+			'К',
+			'Л',
+			'М',
+			'Н',
+			'О',
+			'П',
+			'Я',
+			'Р',
+			'С',
+			'Т',
+			'У',
+			'Ж',
+			'В',
+			'Ь',
+			'Ы',
+			'З',
+			'Ш',
+			'Э',
+			'Щ',
+			'Ч',
+			'Ъ'
+		};
+
+		public CP20866() : base(20866, CP20866.ToChars, "Cyrillic (KOI8-R)", "koi8-r", "koi8-r", "koi8-r", true, true, true, true, 1251)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 128)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 1025:
+						num3 = 179;
+						goto IL_7B6;
+					case 1026:
+					case 1027:
+					case 1028:
+					case 1029:
+					case 1030:
+					case 1031:
+					case 1032:
+					case 1033:
+					case 1034:
+					case 1035:
+					case 1036:
+					case 1037:
+					case 1038:
+					case 1039:
+					case 1104:
+						IL_175:
+						switch (num4)
+						{
+						case 9552:
+							num3 = 160;
+							goto IL_7B6;
+						case 9553:
+							num3 = 161;
+							goto IL_7B6;
+						case 9554:
+							num3 = 162;
+							goto IL_7B6;
+						case 9555:
+						case 9556:
+						case 9557:
+						case 9558:
+						case 9559:
+						case 9560:
+						case 9561:
+						case 9562:
+						case 9563:
+						case 9564:
+						case 9565:
+						case 9566:
+						case 9567:
+						case 9568:
+						case 9569:
+							num3 -= 9391;
+							goto IL_7B6;
+						case 9570:
+						case 9571:
+						case 9572:
+						case 9573:
+						case 9574:
+						case 9575:
+						case 9576:
+						case 9577:
+						case 9578:
+						case 9579:
+						case 9580:
+							num3 -= 9390;
+							goto IL_7B6;
+						case 9581:
+						case 9582:
+						case 9583:
+						case 9584:
+						case 9585:
+						case 9586:
+						case 9587:
+						case 9588:
+						case 9589:
+						case 9590:
+						case 9591:
+						case 9592:
+						case 9593:
+						case 9594:
+						case 9595:
+						case 9596:
+						case 9597:
+						case 9598:
+						case 9599:
+						case 9601:
+						case 9602:
+						case 9603:
+						case 9605:
+						case 9606:
+						case 9607:
+						case 9609:
+						case 9610:
+						case 9611:
+						case 9613:
+						case 9614:
+						case 9615:
+							IL_292:
+							switch (num4)
+							{
+							case 176:
+								num3 = 156;
+								goto IL_7B6;
+							case 177:
+								IL_2AB:
+								switch (num4)
+								{
+								case 9472:
+									num3 = 128;
+									goto IL_7B6;
+								case 9473:
+									IL_2C4:
+									if (num4 == 8729)
+									{
+										num3 = 149;
+										goto IL_7B6;
+									}
+									if (num4 == 8730)
+									{
+										num3 = 150;
+										goto IL_7B6;
+									}
+									if (num4 == 8804)
+									{
+										num3 = 152;
+										goto IL_7B6;
+									}
+									if (num4 == 8805)
+									{
+										num3 = 153;
+										goto IL_7B6;
+									}
+									if (num4 == 8992)
+									{
+										num3 = 147;
+										goto IL_7B6;
+									}
+									if (num4 == 8993)
+									{
+										num3 = 155;
+										goto IL_7B6;
+									}
+									if (num4 == 160)
+									{
+										num3 = 154;
+										goto IL_7B6;
+									}
+									if (num4 == 169)
+									{
+										num3 = 191;
+										goto IL_7B6;
+									}
+									if (num4 == 183)
+									{
+										num3 = 158;
+										goto IL_7B6;
+									}
+									if (num4 == 247)
+									{
+										num3 = 159;
+										goto IL_7B6;
+									}
+									if (num4 == 8776)
+									{
+										num3 = 151;
+										goto IL_7B6;
+									}
+									if (num4 == 9484)
+									{
+										num3 = 130;
+										goto IL_7B6;
+									}
+									if (num4 == 9488)
+									{
+										num3 = 131;
+										goto IL_7B6;
+									}
+									if (num4 == 9492)
+									{
+										num3 = 132;
+										goto IL_7B6;
+									}
+									if (num4 == 9496)
+									{
+										num3 = 133;
+										goto IL_7B6;
+									}
+									if (num4 == 9500)
+									{
+										num3 = 134;
+										goto IL_7B6;
+									}
+									if (num4 == 9508)
+									{
+										num3 = 135;
+										goto IL_7B6;
+									}
+									if (num4 == 9516)
+									{
+										num3 = 136;
+										goto IL_7B6;
+									}
+									if (num4 == 9524)
+									{
+										num3 = 137;
+										goto IL_7B6;
+									}
+									if (num4 == 9532)
+									{
+										num3 = 138;
+										goto IL_7B6;
+									}
+									if (num4 == 9632)
+									{
+										num3 = 148;
+										goto IL_7B6;
+									}
+									if (num4 == 65512)
+									{
+										num3 = 129;
+										goto IL_7B6;
+									}
+									if (num4 != 65517)
+									{
+										if (num3 >= 65281 && num3 <= 65374)
+										{
+											num3 -= 65248;
+										}
+										else
+										{
+											base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+										}
+										goto IL_7B6;
+									}
+									num3 = 148;
+									goto IL_7B6;
+								case 9474:
+									num3 = 129;
+									goto IL_7B6;
+								}
+								goto IL_2C4;
+							case 178:
+								num3 = 157;
+								goto IL_7B6;
+							}
+							goto IL_2AB;
+						case 9600:
+							num3 = 139;
+							goto IL_7B6;
+						case 9604:
+							num3 = 140;
+							goto IL_7B6;
+						case 9608:
+							num3 = 141;
+							goto IL_7B6;
+						case 9612:
+							num3 = 142;
+							goto IL_7B6;
+						case 9616:
+						case 9617:
+						case 9618:
+						case 9619:
+							num3 -= 9473;
+							goto IL_7B6;
+						}
+						goto IL_292;
+					case 1040:
+						num3 = 225;
+						goto IL_7B6;
+					case 1041:
+						num3 = 226;
+						goto IL_7B6;
+					case 1042:
+						num3 = 247;
+						goto IL_7B6;
+					case 1043:
+						num3 = 231;
+						goto IL_7B6;
+					case 1044:
+						num3 = 228;
+						goto IL_7B6;
+					case 1045:
+						num3 = 229;
+						goto IL_7B6;
+					case 1046:
+						num3 = 246;
+						goto IL_7B6;
+					case 1047:
+						num3 = 250;
+						goto IL_7B6;
+					case 1048:
+					case 1049:
+					case 1050:
+					case 1051:
+					case 1052:
+					case 1053:
+					case 1054:
+					case 1055:
+						num3 -= 815;
+						goto IL_7B6;
+					case 1056:
+					case 1057:
+					case 1058:
+					case 1059:
+						num3 -= 814;
+						goto IL_7B6;
+					case 1060:
+						num3 = 230;
+						goto IL_7B6;
+					case 1061:
+						num3 = 232;
+						goto IL_7B6;
+					case 1062:
+						num3 = 227;
+						goto IL_7B6;
+					case 1063:
+						num3 = 254;
+						goto IL_7B6;
+					case 1064:
+						num3 = 251;
+						goto IL_7B6;
+					case 1065:
+						num3 = 253;
+						goto IL_7B6;
+					case 1066:
+						num3 = 255;
+						goto IL_7B6;
+					case 1067:
+						num3 = 249;
+						goto IL_7B6;
+					case 1068:
+						num3 = 248;
+						goto IL_7B6;
+					case 1069:
+						num3 = 252;
+						goto IL_7B6;
+					case 1070:
+						num3 = 224;
+						goto IL_7B6;
+					case 1071:
+						num3 = 241;
+						goto IL_7B6;
+					case 1072:
+						num3 = 193;
+						goto IL_7B6;
+					case 1073:
+						num3 = 194;
+						goto IL_7B6;
+					case 1074:
+						num3 = 215;
+						goto IL_7B6;
+					case 1075:
+						num3 = 199;
+						goto IL_7B6;
+					case 1076:
+						num3 = 196;
+						goto IL_7B6;
+					case 1077:
+						num3 = 197;
+						goto IL_7B6;
+					case 1078:
+						num3 = 214;
+						goto IL_7B6;
+					case 1079:
+						num3 = 218;
+						goto IL_7B6;
+					case 1080:
+					case 1081:
+					case 1082:
+					case 1083:
+					case 1084:
+					case 1085:
+					case 1086:
+					case 1087:
+						num3 -= 879;
+						goto IL_7B6;
+					case 1088:
+					case 1089:
+					case 1090:
+					case 1091:
+						num3 -= 878;
+						goto IL_7B6;
+					case 1092:
+						num3 = 198;
+						goto IL_7B6;
+					case 1093:
+						num3 = 200;
+						goto IL_7B6;
+					case 1094:
+						num3 = 195;
+						goto IL_7B6;
+					case 1095:
+						num3 = 222;
+						goto IL_7B6;
+					case 1096:
+						num3 = 219;
+						goto IL_7B6;
+					case 1097:
+						num3 = 221;
+						goto IL_7B6;
+					case 1098:
+						num3 = 223;
+						goto IL_7B6;
+					case 1099:
+						num3 = 217;
+						goto IL_7B6;
+					case 1100:
+						num3 = 216;
+						goto IL_7B6;
+					case 1101:
+						num3 = 220;
+						goto IL_7B6;
+					case 1102:
+						num3 = 192;
+						goto IL_7B6;
+					case 1103:
+						num3 = 209;
+						goto IL_7B6;
+					case 1105:
+						num3 = 163;
+						goto IL_7B6;
+					}
+					goto IL_175;
+				}
+				IL_7B6:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCkoi8_r : CP20866
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP21866 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'─',
+			'│',
+			'┌',
+			'┐',
+			'└',
+			'┘',
+			'├',
+			'┤',
+			'┬',
+			'┴',
+			'┼',
+			'▀',
+			'▄',
+			'█',
+			'▌',
+			'▐',
+			'░',
+			'▒',
+			'▓',
+			'⌠',
+			'■',
+			'∙',
+			'√',
+			'≈',
+			'≤',
+			'≥',
+			'\u00a0',
+			'⌡',
+			'°',
+			'²',
+			'·',
+			'÷',
+			'═',
+			'║',
+			'╒',
+			'ё',
+			'є',
+			'╔',
+			'і',
+			'ї',
+			'╗',
+			'╘',
+			'╙',
+			'╚',
+			'╛',
+			'ґ',
+			'╝',
+			'╞',
+			'╟',
+			'╠',
+			'╡',
+			'Ё',
+			'Є',
+			'╣',
+			'І',
+			'Ї',
+			'╦',
+			'╧',
+			'╨',
+			'╩',
+			'╪',
+			'Ґ',
+			'╬',
+			'©',
+			'ю',
+			'а',
+			'б',
+			'ц',
+			'д',
+			'е',
+			'ф',
+			'г',
+			'х',
+			'и',
+			'й',
+			'к',
+			'л',
+			'м',
+			'н',
+			'о',
+			'п',
+			'я',
+			'р',
+			'с',
+			'т',
+			'у',
+			'ж',
+			'в',
+			'ь',
+			'ы',
+			'з',
+			'ш',
+			'э',
+			'щ',
+			'ч',
+			'ъ',
+			'Ю',
+			'А',
+			'Б',
+			'Ц',
+			'Д',
+			'Е',
+			'Ф',
+			'Г',
+			'Х',
+			'И',
+			'Й',
+			'К',
+			'Л',
+			'М',
+			'Н',
+			'О',
+			'П',
+			'Я',
+			'Р',
+			'С',
+			'Т',
+			'У',
+			'Ж',
+			'В',
+			'Ь',
+			'Ы',
+			'З',
+			'Ш',
+			'Э',
+			'Щ',
+			'Ч',
+			'Ъ'
+		};
+
+		public CP21866() : base(21866, CP21866.ToChars, "Ukrainian (KOI8-U)", "koi8-u", "koi8-u", "koi8-u", true, true, true, true, 1251)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 128)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 1025:
+						num3 = 179;
+						goto IL_8C7;
+					case 1026:
+					case 1027:
+					case 1029:
+					case 1032:
+					case 1033:
+					case 1034:
+					case 1035:
+					case 1036:
+					case 1037:
+					case 1038:
+					case 1039:
+					case 1104:
+					case 1106:
+					case 1107:
+					case 1109:
+					case 1112:
+					case 1113:
+					case 1114:
+					case 1115:
+					case 1116:
+					case 1117:
+					case 1118:
+					case 1119:
+					case 1120:
+					case 1121:
+					case 1122:
+					case 1123:
+					case 1124:
+					case 1125:
+					case 1126:
+					case 1127:
+					case 1128:
+					case 1129:
+					case 1130:
+					case 1131:
+					case 1132:
+					case 1133:
+					case 1134:
+					case 1135:
+					case 1136:
+					case 1137:
+					case 1138:
+					case 1139:
+					case 1140:
+					case 1141:
+					case 1142:
+					case 1143:
+					case 1144:
+					case 1145:
+					case 1146:
+					case 1147:
+					case 1148:
+					case 1149:
+					case 1150:
+					case 1151:
+					case 1152:
+					case 1153:
+					case 1154:
+					case 1155:
+					case 1156:
+					case 1157:
+					case 1158:
+					case 1159:
+					case 1160:
+					case 1161:
+					case 1162:
+					case 1163:
+					case 1164:
+					case 1165:
+					case 1166:
+					case 1167:
+						IL_275:
+						switch (num4)
+						{
+						case 9552:
+							num3 = 160;
+							goto IL_8C7;
+						case 9553:
+							num3 = 161;
+							goto IL_8C7;
+						case 9554:
+							num3 = 162;
+							goto IL_8C7;
+						case 9555:
+						case 9557:
+						case 9558:
+						case 9564:
+						case 9570:
+						case 9572:
+						case 9573:
+						case 9579:
+							IL_2F6:
+							switch (num4)
+							{
+							case 9608:
+								num3 = 141;
+								goto IL_8C7;
+							case 9609:
+							case 9610:
+							case 9611:
+							case 9613:
+							case 9614:
+							case 9615:
+								IL_333:
+								switch (num4)
+								{
+								case 176:
+									num3 = 156;
+									goto IL_8C7;
+								case 177:
+									IL_34C:
+									switch (num4)
+									{
+									case 9472:
+										num3 = 128;
+										goto IL_8C7;
+									case 9473:
+										IL_365:
+										if (num4 == 8729)
+										{
+											num3 = 149;
+											goto IL_8C7;
+										}
+										if (num4 == 8730)
+										{
+											num3 = 150;
+											goto IL_8C7;
+										}
+										if (num4 == 8804)
+										{
+											num3 = 152;
+											goto IL_8C7;
+										}
+										if (num4 == 8805)
+										{
+											num3 = 153;
+											goto IL_8C7;
+										}
+										if (num4 == 8992)
+										{
+											num3 = 147;
+											goto IL_8C7;
+										}
+										if (num4 == 8993)
+										{
+											num3 = 155;
+											goto IL_8C7;
+										}
+										if (num4 == 160)
+										{
+											num3 = 154;
+											goto IL_8C7;
+										}
+										if (num4 == 169)
+										{
+											num3 = 191;
+											goto IL_8C7;
+										}
+										if (num4 == 183)
+										{
+											num3 = 158;
+											goto IL_8C7;
+										}
+										if (num4 == 247)
+										{
+											num3 = 159;
+											goto IL_8C7;
+										}
+										if (num4 == 8776)
+										{
+											num3 = 151;
+											goto IL_8C7;
+										}
+										if (num4 == 9484)
+										{
+											num3 = 130;
+											goto IL_8C7;
+										}
+										if (num4 == 9488)
+										{
+											num3 = 131;
+											goto IL_8C7;
+										}
+										if (num4 == 9492)
+										{
+											num3 = 132;
+											goto IL_8C7;
+										}
+										if (num4 == 9496)
+										{
+											num3 = 133;
+											goto IL_8C7;
+										}
+										if (num4 == 9500)
+										{
+											num3 = 134;
+											goto IL_8C7;
+										}
+										if (num4 == 9508)
+										{
+											num3 = 135;
+											goto IL_8C7;
+										}
+										if (num4 == 9516)
+										{
+											num3 = 136;
+											goto IL_8C7;
+										}
+										if (num4 == 9524)
+										{
+											num3 = 137;
+											goto IL_8C7;
+										}
+										if (num4 == 9532)
+										{
+											num3 = 138;
+											goto IL_8C7;
+										}
+										if (num4 == 9600)
+										{
+											num3 = 139;
+											goto IL_8C7;
+										}
+										if (num4 == 9604)
+										{
+											num3 = 140;
+											goto IL_8C7;
+										}
+										if (num4 != 9632)
+										{
+											if (num3 >= 65281 && num3 <= 65374)
+											{
+												num3 -= 65248;
+											}
+											else
+											{
+												base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+											}
+											goto IL_8C7;
+										}
+										num3 = 148;
+										goto IL_8C7;
+									case 9474:
+										num3 = 129;
+										goto IL_8C7;
+									}
+									goto IL_365;
+								case 178:
+									num3 = 157;
+									goto IL_8C7;
+								}
+								goto IL_34C;
+							case 9612:
+								num3 = 142;
+								goto IL_8C7;
+							case 9616:
+							case 9617:
+							case 9618:
+							case 9619:
+								num3 -= 9473;
+								goto IL_8C7;
+							}
+							goto IL_333;
+						case 9556:
+							num3 = 165;
+							goto IL_8C7;
+						case 9559:
+						case 9560:
+						case 9561:
+						case 9562:
+						case 9563:
+							num3 -= 9391;
+							goto IL_8C7;
+						case 9565:
+						case 9566:
+						case 9567:
+						case 9568:
+						case 9569:
+							num3 -= 9391;
+							goto IL_8C7;
+						case 9571:
+							num3 = 181;
+							goto IL_8C7;
+						case 9574:
+						case 9575:
+						case 9576:
+						case 9577:
+						case 9578:
+							num3 -= 9390;
+							goto IL_8C7;
+						case 9580:
+							num3 = 190;
+							goto IL_8C7;
+						}
+						goto IL_2F6;
+					case 1028:
+						num3 = 180;
+						goto IL_8C7;
+					case 1030:
+						num3 = 182;
+						goto IL_8C7;
+					case 1031:
+						num3 = 183;
+						goto IL_8C7;
+					case 1040:
+						num3 = 225;
+						goto IL_8C7;
+					case 1041:
+						num3 = 226;
+						goto IL_8C7;
+					case 1042:
+						num3 = 247;
+						goto IL_8C7;
+					case 1043:
+						num3 = 231;
+						goto IL_8C7;
+					case 1044:
+						num3 = 228;
+						goto IL_8C7;
+					case 1045:
+						num3 = 229;
+						goto IL_8C7;
+					case 1046:
+						num3 = 246;
+						goto IL_8C7;
+					case 1047:
+						num3 = 250;
+						goto IL_8C7;
+					case 1048:
+					case 1049:
+					case 1050:
+					case 1051:
+					case 1052:
+					case 1053:
+					case 1054:
+					case 1055:
+						num3 -= 815;
+						goto IL_8C7;
+					case 1056:
+					case 1057:
+					case 1058:
+					case 1059:
+						num3 -= 814;
+						goto IL_8C7;
+					case 1060:
+						num3 = 230;
+						goto IL_8C7;
+					case 1061:
+						num3 = 232;
+						goto IL_8C7;
+					case 1062:
+						num3 = 227;
+						goto IL_8C7;
+					case 1063:
+						num3 = 254;
+						goto IL_8C7;
+					case 1064:
+						num3 = 251;
+						goto IL_8C7;
+					case 1065:
+						num3 = 253;
+						goto IL_8C7;
+					case 1066:
+						num3 = 255;
+						goto IL_8C7;
+					case 1067:
+						num3 = 249;
+						goto IL_8C7;
+					case 1068:
+						num3 = 248;
+						goto IL_8C7;
+					case 1069:
+						num3 = 252;
+						goto IL_8C7;
+					case 1070:
+						num3 = 224;
+						goto IL_8C7;
+					case 1071:
+						num3 = 241;
+						goto IL_8C7;
+					case 1072:
+						num3 = 193;
+						goto IL_8C7;
+					case 1073:
+						num3 = 194;
+						goto IL_8C7;
+					case 1074:
+						num3 = 215;
+						goto IL_8C7;
+					case 1075:
+						num3 = 199;
+						goto IL_8C7;
+					case 1076:
+						num3 = 196;
+						goto IL_8C7;
+					case 1077:
+						num3 = 197;
+						goto IL_8C7;
+					case 1078:
+						num3 = 214;
+						goto IL_8C7;
+					case 1079:
+						num3 = 218;
+						goto IL_8C7;
+					case 1080:
+					case 1081:
+					case 1082:
+					case 1083:
+					case 1084:
+					case 1085:
+					case 1086:
+					case 1087:
+						num3 -= 879;
+						goto IL_8C7;
+					case 1088:
+					case 1089:
+					case 1090:
+					case 1091:
+						num3 -= 878;
+						goto IL_8C7;
+					case 1092:
+						num3 = 198;
+						goto IL_8C7;
+					case 1093:
+						num3 = 200;
+						goto IL_8C7;
+					case 1094:
+						num3 = 195;
+						goto IL_8C7;
+					case 1095:
+						num3 = 222;
+						goto IL_8C7;
+					case 1096:
+						num3 = 219;
+						goto IL_8C7;
+					case 1097:
+						num3 = 221;
+						goto IL_8C7;
+					case 1098:
+						num3 = 223;
+						goto IL_8C7;
+					case 1099:
+						num3 = 217;
+						goto IL_8C7;
+					case 1100:
+						num3 = 216;
+						goto IL_8C7;
+					case 1101:
+						num3 = 220;
+						goto IL_8C7;
+					case 1102:
+						num3 = 192;
+						goto IL_8C7;
+					case 1103:
+						num3 = 209;
+						goto IL_8C7;
+					case 1105:
+						num3 = 163;
+						goto IL_8C7;
+					case 1108:
+						num3 = 164;
+						goto IL_8C7;
+					case 1110:
+						num3 = 166;
+						goto IL_8C7;
+					case 1111:
+						num3 = 167;
+						goto IL_8C7;
+					case 1168:
+						num3 = 189;
+						goto IL_8C7;
+					case 1169:
+						num3 = 173;
+						goto IL_8C7;
+					}
+					goto IL_275;
+				}
+				IL_8C7:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCkoi8_u : CP21866
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP28594 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'\u0080',
+			'\u0081',
+			'\u0082',
+			'\u0083',
+			'\u0084',
+			'\u0085',
+			'\u0086',
+			'\u0087',
+			'\u0088',
+			'\u0089',
+			'\u008a',
+			'\u008b',
+			'\u008c',
+			'\u008d',
+			'\u008e',
+			'\u008f',
+			'\u0090',
+			'\u0091',
+			'\u0092',
+			'\u0093',
+			'\u0094',
+			'\u0095',
+			'\u0096',
+			'\u0097',
+			'\u0098',
+			'\u0099',
+			'\u009a',
+			'\u009b',
+			'\u009c',
+			'\u009d',
+			'\u009e',
+			'\u009f',
+			'\u00a0',
+			'Ą',
+			'ĸ',
+			'Ŗ',
+			'¤',
+			'Ĩ',
+			'Ļ',
+			'§',
+			'¨',
+			'Š',
+			'Ē',
+			'Ģ',
+			'Ŧ',
+			'­',
+			'Ž',
+			'¯',
+			'°',
+			'ą',
+			'˛',
+			'ŗ',
+			'´',
+			'ĩ',
+			'ļ',
+			'ˇ',
+			'¸',
+			'š',
+			'ē',
+			'ģ',
+			'ŧ',
+			'Ŋ',
+			'ž',
+			'ŋ',
+			'Ā',
+			'Á',
+			'Â',
+			'Ã',
+			'Ä',
+			'Å',
+			'Æ',
+			'Į',
+			'Č',
+			'É',
+			'Ę',
+			'Ë',
+			'Ė',
+			'Í',
+			'Î',
+			'Ī',
+			'Đ',
+			'Ņ',
+			'Ō',
+			'Ķ',
+			'Ô',
+			'Õ',
+			'Ö',
+			'×',
+			'Ø',
+			'Ų',
+			'Ú',
+			'Û',
+			'Ü',
+			'Ũ',
+			'Ū',
+			'ß',
+			'ā',
+			'á',
+			'â',
+			'ã',
+			'ä',
+			'å',
+			'æ',
+			'į',
+			'č',
+			'é',
+			'ę',
+			'ë',
+			'ė',
+			'í',
+			'î',
+			'ī',
+			'đ',
+			'ņ',
+			'ō',
+			'ķ',
+			'ô',
+			'õ',
+			'ö',
+			'÷',
+			'ø',
+			'ų',
+			'ú',
+			'û',
+			'ü',
+			'ũ',
+			'ū',
+			'˙'
+		};
+
+		public CP28594() : base(28594, CP28594.ToChars, "Baltic (ISO)", "iso-8859-4", "iso-8859-4", "iso-8859-4", true, true, true, true, 1257)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 161)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 193:
+					case 194:
+					case 195:
+					case 196:
+					case 197:
+					case 198:
+					case 201:
+					case 203:
+					case 205:
+					case 206:
+					case 212:
+					case 213:
+					case 214:
+					case 215:
+					case 216:
+					case 218:
+					case 219:
+					case 220:
+					case 223:
+					case 225:
+					case 226:
+					case 227:
+					case 228:
+					case 229:
+					case 230:
+					case 233:
+					case 235:
+					case 237:
+					case 238:
+					case 244:
+					case 245:
+					case 246:
+					case 247:
+					case 248:
+					case 250:
+					case 251:
+					case 252:
+						goto IL_363;
+					case 199:
+					case 200:
+					case 202:
+					case 204:
+					case 207:
+					case 208:
+					case 209:
+					case 210:
+					case 211:
+					case 217:
+					case 221:
+					case 222:
+					case 224:
+					case 231:
+					case 232:
+					case 234:
+					case 236:
+					case 239:
+					case 240:
+					case 241:
+					case 242:
+					case 243:
+					case 249:
+					case 253:
+					case 254:
+					case 255:
+					case 258:
+					case 259:
+					case 262:
+					case 263:
+					case 264:
+					case 265:
+					case 266:
+					case 267:
+					case 270:
+					case 271:
+					case 276:
+					case 277:
+					case 282:
+					case 283:
+					case 284:
+					case 285:
+					case 286:
+					case 287:
+					case 288:
+					case 289:
+					case 292:
+					case 293:
+					case 294:
+					case 295:
+					case 300:
+					case 301:
+					case 304:
+					case 305:
+					case 306:
+					case 307:
+					case 308:
+					case 309:
+					case 313:
+					case 314:
+						IL_221:
+						switch (num4)
+						{
+						case 352:
+							num3 = 169;
+							goto IL_5C8;
+						case 353:
+							num3 = 185;
+							goto IL_5C8;
+						case 354:
+						case 355:
+						case 356:
+						case 357:
+						case 364:
+						case 365:
+						case 366:
+						case 367:
+						case 368:
+						case 369:
+							IL_27E:
+							switch (num4)
+							{
+							case 325:
+								num3 = 209;
+								goto IL_5C8;
+							case 326:
+								num3 = 241;
+								goto IL_5C8;
+							case 327:
+							case 328:
+							case 329:
+								IL_2AF:
+								switch (num4)
+								{
+								case 173:
+								case 175:
+								case 176:
+								case 180:
+									goto IL_363;
+								case 174:
+								case 177:
+								case 178:
+								case 179:
+									IL_2DC:
+									switch (num4)
+									{
+									case 164:
+									case 167:
+									case 168:
+										goto IL_363;
+									case 165:
+									case 166:
+										IL_2FD:
+										switch (num4)
+										{
+										case 729:
+											num3 = 255;
+											goto IL_5C8;
+										case 730:
+											IL_316:
+											if (num4 == 342)
+											{
+												num3 = 163;
+												goto IL_5C8;
+											}
+											if (num4 == 343)
+											{
+												num3 = 179;
+												goto IL_5C8;
+											}
+											if (num4 == 381)
+											{
+												num3 = 174;
+												goto IL_5C8;
+											}
+											if (num4 == 382)
+											{
+												num3 = 190;
+												goto IL_5C8;
+											}
+											if (num4 == 184)
+											{
+												goto IL_363;
+											}
+											if (num4 != 711)
+											{
+												if (num3 >= 65281 && num3 <= 65374)
+												{
+													num3 -= 65248;
+												}
+												else
+												{
+													base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+												}
+												goto IL_5C8;
+											}
+											num3 = 183;
+											goto IL_5C8;
+										case 731:
+											num3 = 178;
+											goto IL_5C8;
+										}
+										goto IL_316;
+									}
+									goto IL_2FD;
+								}
+								goto IL_2DC;
+							case 330:
+								num3 = 189;
+								goto IL_5C8;
+							case 331:
+								num3 = 191;
+								goto IL_5C8;
+							case 332:
+								num3 = 210;
+								goto IL_5C8;
+							case 333:
+								num3 = 242;
+								goto IL_5C8;
+							}
+							goto IL_2AF;
+						case 358:
+							num3 = 172;
+							goto IL_5C8;
+						case 359:
+							num3 = 188;
+							goto IL_5C8;
+						case 360:
+							num3 = 221;
+							goto IL_5C8;
+						case 361:
+							num3 = 253;
+							goto IL_5C8;
+						case 362:
+							num3 = 222;
+							goto IL_5C8;
+						case 363:
+							num3 = 254;
+							goto IL_5C8;
+						case 370:
+							num3 = 217;
+							goto IL_5C8;
+						case 371:
+							num3 = 249;
+							goto IL_5C8;
+						}
+						goto IL_27E;
+					case 256:
+						num3 = 192;
+						goto IL_5C8;
+					case 257:
+						num3 = 224;
+						goto IL_5C8;
+					case 260:
+						num3 = 161;
+						goto IL_5C8;
+					case 261:
+						num3 = 177;
+						goto IL_5C8;
+					case 268:
+						num3 = 200;
+						goto IL_5C8;
+					case 269:
+						num3 = 232;
+						goto IL_5C8;
+					case 272:
+						num3 = 208;
+						goto IL_5C8;
+					case 273:
+						num3 = 240;
+						goto IL_5C8;
+					case 274:
+						num3 = 170;
+						goto IL_5C8;
+					case 275:
+						num3 = 186;
+						goto IL_5C8;
+					case 278:
+						num3 = 204;
+						goto IL_5C8;
+					case 279:
+						num3 = 236;
+						goto IL_5C8;
+					case 280:
+						num3 = 202;
+						goto IL_5C8;
+					case 281:
+						num3 = 234;
+						goto IL_5C8;
+					case 290:
+						num3 = 171;
+						goto IL_5C8;
+					case 291:
+						num3 = 187;
+						goto IL_5C8;
+					case 296:
+						num3 = 165;
+						goto IL_5C8;
+					case 297:
+						num3 = 181;
+						goto IL_5C8;
+					case 298:
+						num3 = 207;
+						goto IL_5C8;
+					case 299:
+						num3 = 239;
+						goto IL_5C8;
+					case 302:
+						num3 = 199;
+						goto IL_5C8;
+					case 303:
+						num3 = 231;
+						goto IL_5C8;
+					case 310:
+						num3 = 211;
+						goto IL_5C8;
+					case 311:
+						num3 = 243;
+						goto IL_5C8;
+					case 312:
+						num3 = 162;
+						goto IL_5C8;
+					case 315:
+						num3 = 166;
+						goto IL_5C8;
+					case 316:
+						num3 = 182;
+						goto IL_5C8;
+					}
+					goto IL_221;
+					IL_363:;
+				}
+				IL_5C8:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCiso_8859_4 : CP28594
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP28595 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001a',
+			'\u001b',
+			'\u001c',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u007f',
+			'\u0080',
+			'\u0081',
+			'\u0082',
+			'\u0083',
+			'\u0084',
+			'\u0085',
+			'\u0086',
+			'\u0087',
+			'\u0088',
+			'\u0089',
+			'\u008a',
+			'\u008b',
+			'\u008c',
+			'\u008d',
+			'\u008e',
+			'\u008f',
+			'\u0090',
+			'\u0091',
+			'\u0092',
+			'\u0093',
+			'\u0094',
+			'\u0095',
+			'\u0096',
+			'\u0097',
+			'\u0098',
+			'\u0099',
+			'\u009a',
+			'\u009b',
+			'\u009c',
+			'\u009d',
+			'\u009e',
+			'\u009f',
+			'\u00a0',
+			'Ё',
+			'Ђ',
+			'Ѓ',
+			'Є',
+			'Ѕ',
+			'І',
+			'Ї',
+			'Ј',
+			'Љ',
+			'Њ',
+			'Ћ',
+			'Ќ',
+			'­',
+			'Ў',
+			'Џ',
+			'А',
+			'Б',
+			'В',
+			'Г',
+			'Д',
+			'Е',
+			'Ж',
+			'З',
+			'И',
+			'Й',
+			'К',
+			'Л',
+			'М',
+			'Н',
+			'О',
+			'П',
+			'Р',
+			'С',
+			'Т',
+			'У',
+			'Ф',
+			'Х',
+			'Ц',
+			'Ч',
+			'Ш',
+			'Щ',
+			'Ъ',
+			'Ы',
+			'Ь',
+			'Э',
+			'Ю',
+			'Я',
+			'а',
+			'б',
+			'в',
+			'г',
+			'д',
+			'е',
+			'ж',
+			'з',
+			'и',
+			'й',
+			'к',
+			'л',
+			'м',
+			'н',
+			'о',
+			'п',
+			'р',
+			'с',
+			'т',
+			'у',
+			'ф',
+			'х',
+			'ц',
+			'ч',
+			'ш',
+			'щ',
+			'ъ',
+			'ы',
+			'ь',
+			'э',
+			'ю',
+			'я',
+			'№',
+			'ё',
+			'ђ',
+			'ѓ',
+			'є',
+			'ѕ',
+			'і',
+			'ї',
+			'ј',
+			'љ',
+			'њ',
+			'ћ',
+			'ќ',
+			'§',
+			'ў',
+			'џ'
+		};
+
+		public CP28595() : base(28595, CP28595.ToChars, "Cyrillic (ISO)", "iso-8859-5", "iso-8859-5", "iso-8859-5", true, true, true, true, 1251)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 161)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 1025:
+					case 1026:
+					case 1027:
+					case 1028:
+					case 1029:
+					case 1030:
+					case 1031:
+					case 1032:
+					case 1033:
+					case 1034:
+					case 1035:
+					case 1036:
+						num3 -= 864;
+						goto IL_268;
+					case 1037:
+					case 1104:
+					case 1117:
+						IL_1AD:
+						if (num4 == 167)
+						{
+							num3 = 253;
+							goto IL_268;
+						}
+						if (num4 == 173)
+						{
+							goto IL_268;
+						}
+						if (num4 != 8470)
+						{
+							if (num3 >= 65281 && num3 <= 65374)
+							{
+								num3 -= 65248;
+							}
+							else
+							{
+								base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+							}
+							goto IL_268;
+						}
+						num3 = 240;
+						goto IL_268;
+					case 1038:
+					case 1039:
+					case 1040:
+					case 1041:
+					case 1042:
+					case 1043:
+					case 1044:
+					case 1045:
+					case 1046:
+					case 1047:
+					case 1048:
+					case 1049:
+					case 1050:
+					case 1051:
+					case 1052:
+					case 1053:
+					case 1054:
+					case 1055:
+					case 1056:
+					case 1057:
+					case 1058:
+					case 1059:
+					case 1060:
+					case 1061:
+					case 1062:
+					case 1063:
+					case 1064:
+					case 1065:
+					case 1066:
+					case 1067:
+					case 1068:
+					case 1069:
+					case 1070:
+					case 1071:
+					case 1072:
+					case 1073:
+					case 1074:
+					case 1075:
+					case 1076:
+					case 1077:
+					case 1078:
+					case 1079:
+					case 1080:
+					case 1081:
+					case 1082:
+					case 1083:
+					case 1084:
+					case 1085:
+					case 1086:
+					case 1087:
+					case 1088:
+					case 1089:
+					case 1090:
+					case 1091:
+					case 1092:
+					case 1093:
+					case 1094:
+					case 1095:
+					case 1096:
+					case 1097:
+					case 1098:
+					case 1099:
+					case 1100:
+					case 1101:
+					case 1102:
+					case 1103:
+						num3 -= 864;
+						goto IL_268;
+					case 1105:
+					case 1106:
+					case 1107:
+					case 1108:
+					case 1109:
+					case 1110:
+					case 1111:
+					case 1112:
+					case 1113:
+					case 1114:
+					case 1115:
+					case 1116:
+						num3 -= 864;
+						goto IL_268;
+					case 1118:
+						num3 = 254;
+						goto IL_268;
+					case 1119:
+						num3 = 255;
+						goto IL_268;
+					}
+					goto IL_1AD;
+				}
+				IL_268:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCiso_8859_5 : CP28595
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public abstract class ISCIIEncoding : MonoEncoding
+	{
+		private int shift;
+
+		private string encodingName;
+
+		private string webName;
+
+		public override string BodyName
+		{
+			get
+			{
+				return this.webName;
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return this.encodingName;
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return this.webName;
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return this.webName;
+			}
+		}
+
+		protected ISCIIEncoding(int codePage, int shift, string encodingName, string webName) : base(codePage)
+		{
+			this.shift = shift;
+			this.encodingName = encodingName;
+			this.webName = webName;
+		}
+
+		public override int GetByteCount(char[] chars, int index, int count)
+		{
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (index < 0 || index > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || count > chars.Length - index)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			return count;
+		}
+
+		public override int GetByteCount(string s)
+		{
+			if (s == null)
+			{
+				throw new ArgumentNullException("s");
+			}
+			return s.Length;
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			int num = 0;
+			int num2 = 0;
+			char c = (char)this.shift;
+			char c2 = (char)(this.shift + 127);
+			while (count-- > 0)
+			{
+				char c3 = chars[num++];
+				if (c3 < '\u0080')
+				{
+					num2++;
+				}
+				else if (c3 >= c && c3 <= c2)
+				{
+					num2++;
+				}
+				else if (c3 >= '！' && c3 <= '～')
+				{
+					num2++;
+				}
+				else
+				{
+					num2++;
+				}
+				count--;
+			}
+			return num2;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			int num = 0;
+			int num2 = 0;
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			int num3 = num2;
+			char c = (char)this.shift;
+			char c2 = (char)(this.shift + 127);
+			while (charCount-- > 0)
+			{
+				char c3 = chars[num++];
+				if (c3 < '\u0080')
+				{
+					bytes[num3++] = (byte)c3;
+				}
+				else if (c3 >= c && c3 <= c2)
+				{
+					bytes[num3++] = (byte)(c3 - c + '\u0080');
+				}
+				else
+				{
+					if (c3 < '！' || c3 > '～')
+					{
+						base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num3, ref byteCount);
+						continue;
+					}
+					bytes[num3++] = (byte)(c3 - 'ﻠ');
+				}
+				byteCount--;
+			}
+			return num3 - num2;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (index < 0 || index > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || count > bytes.Length - index)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			return count;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (byteIndex < 0 || byteIndex > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (byteCount < 0 || byteCount > bytes.Length - byteIndex)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_Array"));
+			}
+			if (charIndex < 0 || charIndex > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (chars.Length - charIndex < byteCount)
+			{
+				throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "chars");
+			}
+			int num = byteCount;
+			int num2 = this.shift - 128;
+			while (num-- > 0)
+			{
+				int num3 = (int)bytes[byteIndex++];
+				if (num3 < 128)
+				{
+					chars[charIndex++] = (char)num3;
+				}
+				else
+				{
+					chars[charIndex++] = (char)(num3 + num2);
+				}
+			}
+			return byteCount;
+		}
+
+		public override int GetMaxByteCount(int charCount)
+		{
+			if (charCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return charCount;
+		}
+
+		public override int GetMaxCharCount(int byteCount)
+		{
+			if (byteCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return byteCount;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57002 : ISCIIEncoding
+	{
+		public CP57002() : base(57002, 2304, "ISCII Devanagari", "x-iscii-de")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57003 : ISCIIEncoding
+	{
+		public CP57003() : base(57003, 2432, "ISCII Bengali", "x-iscii-be")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57004 : ISCIIEncoding
+	{
+		public CP57004() : base(57004, 2944, "ISCII Tamil", "x-iscii-ta")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57005 : ISCIIEncoding
+	{
+		public CP57005() : base(57005, 2944, "ISCII Telugu", "x-iscii-te")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57006 : ISCIIEncoding
+	{
+		public CP57006() : base(57006, 3456, "ISCII Assamese", "x-iscii-as")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57007 : ISCIIEncoding
+	{
+		public CP57007() : base(57007, 2816, "ISCII Oriya", "x-iscii-or")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57008 : ISCIIEncoding
+	{
+		public CP57008() : base(57008, 3200, "ISCII Kannada", "x-iscii-ka")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57009 : ISCIIEncoding
+	{
+		public CP57009() : base(57009, 3328, "ISCII Malayalam", "x-iscii-ma")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57010 : ISCIIEncoding
+	{
+		public CP57010() : base(57010, 2688, "ISCII Gujarati", "x-iscii-gu")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP57011 : ISCIIEncoding
+	{
+		public CP57011() : base(57011, 2560, "ISCII Punjabi", "x-iscii-pa")
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_de : CP57002
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_be : CP57003
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_ta : CP57004
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_te : CP57005
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_as : CP57006
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_or : CP57007
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_ka : CP57008
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_ma : CP57009
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_gu : CP57010
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCx_iscii_pa : CP57011
+	{
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class CP874 : ByteEncoding
+	{
+		private static readonly char[] ToChars = new char[]
+		{
+			'\0',
+			'\u0001',
+			'\u0002',
+			'\u0003',
+			'\u0004',
+			'\u0005',
+			'\u0006',
+			'\a',
+			'\b',
+			'\t',
+			'\n',
+			'\v',
+			'\f',
+			'\r',
+			'\u000e',
+			'\u000f',
+			'\u0010',
+			'\u0011',
+			'\u0012',
+			'\u0013',
+			'\u0014',
+			'\u0015',
+			'\u0016',
+			'\u0017',
+			'\u0018',
+			'\u0019',
+			'\u001c',
+			'\u001b',
+			'\u007f',
+			'\u001d',
+			'\u001e',
+			'\u001f',
+			' ',
+			'!',
+			'"',
+			'#',
+			'$',
+			'%',
+			'&',
+			'\'',
+			'(',
+			')',
+			'*',
+			'+',
+			',',
+			'-',
+			'.',
+			'/',
+			'0',
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+			'6',
+			'7',
+			'8',
+			'9',
+			':',
+			';',
+			'<',
+			'=',
+			'>',
+			'?',
+			'@',
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+			'[',
+			'\\',
+			']',
+			'^',
+			'_',
+			'`',
+			'a',
+			'b',
+			'c',
+			'd',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			'{',
+			'|',
+			'}',
+			'~',
+			'\u001a',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'?',
+			'่',
+			'ก',
+			'ข',
+			'ฃ',
+			'ค',
+			'ฅ',
+			'ฆ',
+			'ง',
+			'จ',
+			'ฉ',
+			'ช',
+			'ซ',
+			'ฌ',
+			'ญ',
+			'ฎ',
+			'ฏ',
+			'ฐ',
+			'ฑ',
+			'ฒ',
+			'ณ',
+			'ด',
+			'ต',
+			'ถ',
+			'ท',
+			'ธ',
+			'น',
+			'บ',
+			'ป',
+			'ผ',
+			'ฝ',
+			'พ',
+			'ฟ',
+			'ภ',
+			'ม',
+			'ย',
+			'ร',
+			'ฤ',
+			'ล',
+			'ฦ',
+			'ว',
+			'ศ',
+			'ษ',
+			'ส',
+			'ห',
+			'ฬ',
+			'อ',
+			'ฮ',
+			'ฯ',
+			'ะ',
+			'ั',
+			'า',
+			'ำ',
+			'ิ',
+			'ี',
+			'ึ',
+			'ื',
+			'ุ',
+			'ู',
+			'ฺ',
+			'้',
+			'๊',
+			'๋',
+			'์',
+			'฿',
+			'เ',
+			'แ',
+			'โ',
+			'ใ',
+			'ไ',
+			'ๅ',
+			'ๆ',
+			'็',
+			'่',
+			'้',
+			'๊',
+			'๋',
+			'์',
+			'ํ',
+			'๎',
+			'๏',
+			'๐',
+			'๑',
+			'๒',
+			'๓',
+			'๔',
+			'๕',
+			'๖',
+			'๗',
+			'๘',
+			'๙',
+			'๚',
+			'๛',
+			'¢',
+			'¬',
+			'¦',
+			'\u00a0'
+		};
+
+		public CP874() : base(874, CP874.ToChars, "Thai (Windows)", "windows-874", "windows-874", "windows-874", true, true, true, true, 874)
+		{
+		}
+
+		protected unsafe override void ToBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			while (charCount > 0)
+			{
+				int num3 = (int)chars[num++];
+				if (num3 >= 26)
+				{
+					int num4 = num3;
+					switch (num4)
+					{
+					case 26:
+						num3 = 127;
+						goto IL_492;
+					case 27:
+					case 29:
+					case 30:
+					case 31:
+					case 32:
+					case 33:
+					case 34:
+					case 35:
+					case 36:
+					case 37:
+					case 38:
+					case 39:
+					case 40:
+					case 41:
+					case 42:
+					case 43:
+					case 44:
+					case 45:
+					case 46:
+					case 47:
+					case 48:
+					case 49:
+					case 50:
+					case 51:
+					case 52:
+					case 53:
+					case 54:
+					case 55:
+					case 56:
+					case 57:
+					case 58:
+					case 59:
+					case 60:
+					case 61:
+					case 62:
+					case 63:
+					case 64:
+					case 65:
+					case 66:
+					case 67:
+					case 68:
+					case 69:
+					case 70:
+					case 71:
+					case 72:
+					case 73:
+					case 74:
+					case 75:
+					case 76:
+					case 77:
+					case 78:
+					case 79:
+					case 80:
+					case 81:
+					case 82:
+					case 83:
+					case 84:
+					case 85:
+					case 86:
+					case 87:
+					case 88:
+					case 89:
+					case 90:
+					case 91:
+					case 92:
+					case 93:
+					case 94:
+					case 95:
+					case 96:
+					case 97:
+					case 98:
+					case 99:
+					case 100:
+					case 101:
+					case 102:
+					case 103:
+					case 104:
+					case 105:
+					case 106:
+					case 107:
+					case 108:
+					case 109:
+					case 110:
+					case 111:
+					case 112:
+					case 113:
+					case 114:
+					case 115:
+					case 116:
+					case 117:
+					case 118:
+					case 119:
+					case 120:
+					case 121:
+					case 122:
+					case 123:
+					case 124:
+					case 125:
+					case 126:
+						goto IL_492;
+					case 28:
+						num3 = 26;
+						goto IL_492;
+					case 127:
+						num3 = 28;
+						goto IL_492;
+					case 128:
+					case 129:
+					case 130:
+					case 131:
+					case 132:
+					case 133:
+					case 134:
+					case 135:
+					case 136:
+					case 137:
+					case 138:
+					case 139:
+					case 140:
+					case 141:
+					case 142:
+					case 143:
+					case 144:
+					case 145:
+					case 146:
+					case 147:
+					case 148:
+					case 149:
+					case 150:
+					case 151:
+					case 152:
+					case 153:
+					case 154:
+					case 155:
+					case 156:
+					case 157:
+					case 158:
+					case 159:
+					case 161:
+					case 163:
+					case 164:
+					case 165:
+					case 167:
+					case 168:
+					case 169:
+					case 170:
+					case 171:
+						IL_277:
+						switch (num4)
+						{
+						case 3585:
+						case 3586:
+						case 3587:
+						case 3588:
+						case 3589:
+						case 3590:
+						case 3591:
+						case 3592:
+						case 3593:
+						case 3594:
+						case 3595:
+						case 3596:
+						case 3597:
+						case 3598:
+						case 3599:
+						case 3600:
+						case 3601:
+						case 3602:
+						case 3603:
+						case 3604:
+						case 3605:
+						case 3606:
+						case 3607:
+						case 3608:
+						case 3609:
+						case 3610:
+						case 3611:
+						case 3612:
+						case 3613:
+						case 3614:
+						case 3615:
+						case 3616:
+						case 3617:
+						case 3618:
+						case 3619:
+						case 3620:
+						case 3621:
+						case 3622:
+						case 3623:
+						case 3624:
+						case 3625:
+						case 3626:
+						case 3627:
+						case 3628:
+						case 3629:
+						case 3630:
+						case 3631:
+						case 3632:
+						case 3633:
+						case 3634:
+						case 3635:
+						case 3636:
+						case 3637:
+						case 3638:
+						case 3639:
+						case 3640:
+						case 3641:
+						case 3642:
+							num3 -= 3424;
+							goto IL_492;
+						case 3647:
+						case 3648:
+						case 3649:
+						case 3650:
+						case 3651:
+						case 3652:
+						case 3653:
+						case 3654:
+						case 3655:
+						case 3656:
+						case 3657:
+						case 3658:
+						case 3659:
+						case 3660:
+						case 3661:
+						case 3662:
+						case 3663:
+						case 3664:
+						case 3665:
+						case 3666:
+						case 3667:
+						case 3668:
+						case 3669:
+						case 3670:
+						case 3671:
+						case 3672:
+						case 3673:
+						case 3674:
+						case 3675:
+							num3 -= 3424;
+							goto IL_492;
+						}
+						if (num3 >= 65281 && num3 <= 65374)
+						{
+							num3 -= 65248;
+						}
+						else
+						{
+							base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+						}
+						goto IL_492;
+					case 160:
+						num3 = 255;
+						goto IL_492;
+					case 162:
+						num3 = 252;
+						goto IL_492;
+					case 166:
+						num3 = 254;
+						goto IL_492;
+					case 172:
+						num3 = 253;
+						goto IL_492;
+					}
+					goto IL_277;
+				}
+				IL_492:
+				bytes[num2++] = (byte)num3;
+				charCount--;
+				byteCount--;
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.Other.dll
+
+using System;
+
+namespace I18N.Other
+{
+	[Serializable]
+	public class ENCwindows_874 : CP874
+	{
+	}
+}
+

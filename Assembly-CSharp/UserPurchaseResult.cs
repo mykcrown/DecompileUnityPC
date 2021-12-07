@@ -1,0 +1,18 @@
+﻿using System;
+
+// Token: 0x02000A1A RID: 2586
+public enum UserPurchaseResult
+{
+	// Token: 0x04003166 RID: 12646
+	SUCCESS,
+	// Token: 0x04003167 RID: 12647
+	DESYNC,
+	// Token: 0x04003168 RID: 12648
+	DESYNC_USER_CURRENCY,
+	// Token: 0x04003169 RID: 12649
+	NOT_LOGGED_IN,
+	// Token: 0x0400316A RID: 12650
+	USER_CANCELLED,
+	// Token: 0x0400316B RID: 12651
+	FAILURE
+}

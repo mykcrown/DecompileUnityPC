@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "vfxm_Hologram 1"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ITERATIONS_X8
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: 
+  disabledShaderPasses: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: b62ad3eb0aa74ca1860c0b0f0365e9b1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DeformationNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlitchMap:
+        m_Texture: {fileID: 2800000, guid: fc2d79a6c0a543daa0a01077ca1858e7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PatternMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _tex4coord2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - TEST: 0.22
+    - _A: 0.01
+    - _BackgroundProgress: 1
+    - _BaclgroundOpacity: 0.326
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DeformationTiling: 1
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EdgeLength: 16.5
+    - _Fill: 0.6
+    - _Float0: 1
+    - _Float1: 0.185
+    - _Frequency: 22.01
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Iterations: 2
+    - _MaskBlend: 0
+    - _MaskProgress: 0
+    - _Metallic: 0
+    - _Mode: 0
+    - _NormalScale: -1.09
+    - _NormalStrength: 2
+    - _OcclusionStrength: 1
+    - _Opacity: 0.955
+    - _Parallax: 0.02
+    - _ParralaxOpacity: 1
+    - _Scale: 0.2
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Tiling: 8
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    - _emissiveMult: 0
+    - _metal_pow: 0.5
+    - _outlineWidth: 0.007
+    m_Colors:
+    - _BackgroundColor: {r: 0, g: 0.5849898, b: 0.8235294, a: 0.5}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseTint: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HologramColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightWrapping: {r: 1, g: 0.8761792, b: 0.875, a: 1}
+    - _OverlayColor: {r: 0, g: 0.4816553, b: 0.625, a: 1}
+    - _PatternColor: {r: 0, g: 0.9586205, b: 1, a: 1}
+    - _outlineColor: {r: 0, g: 0, b: 0, a: 1}

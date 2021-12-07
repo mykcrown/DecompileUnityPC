@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  
+  <string name="gameData.stageSelect.Cargo">TERMINUS</string>
+  <string name="gameData.stagePreview.Cargo">Long stage with no platforms</string>
+  <string name="gameData.stageLoading.Cargo1">Kidd was the first of his kind to earn a Bounty Hunter's License from the Yorian authorities.</string>
+  <string name="gameData.stageLoading.Cargo2">The Fero star system is home to many planets, Kidd is from Fero 03.</string>
+  <string name="gameData.stageLoading.Cargo3">Terminus was built by an ancient civilization.</string>
+  
+</resources>

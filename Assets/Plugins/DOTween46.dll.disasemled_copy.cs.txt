@@ -1,0 +1,931 @@
+// Decompile from assembly: DOTween46.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: DOTween46.dll
+
+using System;
+using UnityEngine;
+
+namespace DG.Tweening
+{
+	public static class DOTweenUtils46
+	{
+		public static Vector2 SwitchToRectTransform(RectTransform from, RectTransform to)
+		{
+			Vector2 b = new Vector2(from.rect.width * 0.5f + from.rect.xMin, from.rect.height * 0.5f + from.rect.yMin);
+			Vector2 vector = RectTransformUtility.WorldToScreenPoint(null, from.position);
+			vector += b;
+			Vector2 b2;
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(to, vector, null, out b2);
+			Vector2 b3 = new Vector2(to.rect.width * 0.5f + to.rect.xMin, to.rect.height * 0.5f + to.rect.yMin);
+			return to.anchoredPosition + b2 - b3;
+		}
+	}
+}
+
+// Decompile from assembly: DOTween46.dll
+
+using DG.Tweening.Core;
+using DG.Tweening.Core.Enums;
+using DG.Tweening.Plugins.Options;
+using System;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace DG.Tweening
+{
+	public static class ShortcutExtensions46
+	{
+		private sealed class __c__DisplayClass0_0
+		{
+			public CanvasGroup target;
+
+			internal float _DOFade_b__0()
+			{
+				return this.target.alpha;
+			}
+
+			internal void _DOFade_b__1(float x)
+			{
+				this.target.alpha = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass1_0
+		{
+			public Graphic target;
+
+			internal Color _DOColor_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOColor_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass2_0
+		{
+			public Graphic target;
+
+			internal Color _DOFade_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOFade_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass3_0
+		{
+			public Image target;
+
+			internal Color _DOColor_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOColor_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass4_0
+		{
+			public Image target;
+
+			internal Color _DOFade_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOFade_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass5_0
+		{
+			public Image target;
+
+			internal float _DOFillAmount_b__0()
+			{
+				return this.target.fillAmount;
+			}
+
+			internal void _DOFillAmount_b__1(float x)
+			{
+				this.target.fillAmount = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass7_0
+		{
+			public LayoutElement target;
+
+			internal Vector2 _DOFlexibleSize_b__0()
+			{
+				return new Vector2(this.target.flexibleWidth, this.target.flexibleHeight);
+			}
+
+			internal void _DOFlexibleSize_b__1(Vector2 x)
+			{
+				this.target.flexibleWidth = x.x;
+				this.target.flexibleHeight = x.y;
+			}
+		}
+
+		private sealed class __c__DisplayClass8_0
+		{
+			public LayoutElement target;
+
+			internal Vector2 _DOMinSize_b__0()
+			{
+				return new Vector2(this.target.minWidth, this.target.minHeight);
+			}
+
+			internal void _DOMinSize_b__1(Vector2 x)
+			{
+				this.target.minWidth = x.x;
+				this.target.minHeight = x.y;
+			}
+		}
+
+		private sealed class __c__DisplayClass9_0
+		{
+			public LayoutElement target;
+
+			internal Vector2 _DOPreferredSize_b__0()
+			{
+				return new Vector2(this.target.preferredWidth, this.target.preferredHeight);
+			}
+
+			internal void _DOPreferredSize_b__1(Vector2 x)
+			{
+				this.target.preferredWidth = x.x;
+				this.target.preferredHeight = x.y;
+			}
+		}
+
+		private sealed class __c__DisplayClass10_0
+		{
+			public Outline target;
+
+			internal Color _DOColor_b__0()
+			{
+				return this.target.effectColor;
+			}
+
+			internal void _DOColor_b__1(Color x)
+			{
+				this.target.effectColor = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass11_0
+		{
+			public Outline target;
+
+			internal Color _DOFade_b__0()
+			{
+				return this.target.effectColor;
+			}
+
+			internal void _DOFade_b__1(Color x)
+			{
+				this.target.effectColor = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass12_0
+		{
+			public Outline target;
+
+			internal Vector2 _DOScale_b__0()
+			{
+				return this.target.effectDistance;
+			}
+
+			internal void _DOScale_b__1(Vector2 x)
+			{
+				this.target.effectDistance = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass13_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOAnchorPos_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOAnchorPos_b__1(Vector2 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass14_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOAnchorPosX_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOAnchorPosX_b__1(Vector2 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass15_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOAnchorPosY_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOAnchorPosY_b__1(Vector2 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass16_0
+		{
+			public RectTransform target;
+
+			internal Vector3 _DOAnchorPos3D_b__0()
+			{
+				return this.target.anchoredPosition3D;
+			}
+
+			internal void _DOAnchorPos3D_b__1(Vector3 x)
+			{
+				this.target.anchoredPosition3D = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass17_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOAnchorMax_b__0()
+			{
+				return this.target.anchorMax;
+			}
+
+			internal void _DOAnchorMax_b__1(Vector2 x)
+			{
+				this.target.anchorMax = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass18_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOAnchorMin_b__0()
+			{
+				return this.target.anchorMin;
+			}
+
+			internal void _DOAnchorMin_b__1(Vector2 x)
+			{
+				this.target.anchorMin = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass19_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOPivot_b__0()
+			{
+				return this.target.pivot;
+			}
+
+			internal void _DOPivot_b__1(Vector2 x)
+			{
+				this.target.pivot = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass20_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOPivotX_b__0()
+			{
+				return this.target.pivot;
+			}
+
+			internal void _DOPivotX_b__1(Vector2 x)
+			{
+				this.target.pivot = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass21_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOPivotY_b__0()
+			{
+				return this.target.pivot;
+			}
+
+			internal void _DOPivotY_b__1(Vector2 x)
+			{
+				this.target.pivot = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass22_0
+		{
+			public RectTransform target;
+
+			internal Vector2 _DOSizeDelta_b__0()
+			{
+				return this.target.sizeDelta;
+			}
+
+			internal void _DOSizeDelta_b__1(Vector2 x)
+			{
+				this.target.sizeDelta = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass23_0
+		{
+			public RectTransform target;
+
+			internal Vector3 _DOPunchAnchorPos_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOPunchAnchorPos_b__1(Vector3 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass24_0
+		{
+			public RectTransform target;
+
+			internal Vector3 _DOShakeAnchorPos_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOShakeAnchorPos_b__1(Vector3 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass25_0
+		{
+			public RectTransform target;
+
+			internal Vector3 _DOShakeAnchorPos_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOShakeAnchorPos_b__1(Vector3 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass26_0
+		{
+			public RectTransform target;
+
+			public bool offsetYSet;
+
+			public float offsetY;
+
+			public Sequence s;
+
+			public Vector2 endValue;
+
+			public float startPosY;
+
+			internal Vector2 _DOJumpAnchorPos_b__0()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOJumpAnchorPos_b__1(Vector2 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+
+			internal Vector2 _DOJumpAnchorPos_b__2()
+			{
+				return this.target.anchoredPosition;
+			}
+
+			internal void _DOJumpAnchorPos_b__3(Vector2 x)
+			{
+				this.target.anchoredPosition = x;
+			}
+
+			internal void _DOJumpAnchorPos_b__4()
+			{
+				if (!this.offsetYSet)
+				{
+					this.offsetYSet = true;
+					this.offsetY = (this.s.isRelative ? this.endValue.y : (this.endValue.y - this.startPosY));
+				}
+				Vector2 anchoredPosition = this.target.anchoredPosition;
+				anchoredPosition.y += DOVirtual.EasedValue(0f, this.offsetY, this.s.ElapsedDirectionalPercentage(), Ease.OutQuad);
+				this.target.anchoredPosition = anchoredPosition;
+			}
+		}
+
+		private sealed class __c__DisplayClass27_0
+		{
+			public ScrollRect target;
+
+			internal Vector2 _DONormalizedPos_b__0()
+			{
+				return new Vector2(this.target.horizontalNormalizedPosition, this.target.verticalNormalizedPosition);
+			}
+
+			internal void _DONormalizedPos_b__1(Vector2 x)
+			{
+				this.target.horizontalNormalizedPosition = x.x;
+				this.target.verticalNormalizedPosition = x.y;
+			}
+		}
+
+		private sealed class __c__DisplayClass28_0
+		{
+			public ScrollRect target;
+
+			internal float _DOHorizontalNormalizedPos_b__0()
+			{
+				return this.target.horizontalNormalizedPosition;
+			}
+
+			internal void _DOHorizontalNormalizedPos_b__1(float x)
+			{
+				this.target.horizontalNormalizedPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass29_0
+		{
+			public ScrollRect target;
+
+			internal float _DOVerticalNormalizedPos_b__0()
+			{
+				return this.target.verticalNormalizedPosition;
+			}
+
+			internal void _DOVerticalNormalizedPos_b__1(float x)
+			{
+				this.target.verticalNormalizedPosition = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass30_0
+		{
+			public Slider target;
+
+			internal float _DOValue_b__0()
+			{
+				return this.target.value;
+			}
+
+			internal void _DOValue_b__1(float x)
+			{
+				this.target.value = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass31_0
+		{
+			public Text target;
+
+			internal Color _DOColor_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOColor_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass32_0
+		{
+			public Text target;
+
+			internal Color _DOFade_b__0()
+			{
+				return this.target.color;
+			}
+
+			internal void _DOFade_b__1(Color x)
+			{
+				this.target.color = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass33_0
+		{
+			public Text target;
+
+			internal string _DOText_b__0()
+			{
+				return this.target.text;
+			}
+
+			internal void _DOText_b__1(string x)
+			{
+				this.target.text = x;
+			}
+		}
+
+		private sealed class __c__DisplayClass34_0
+		{
+			public Color to;
+
+			public Graphic target;
+
+			internal Color _DOBlendableColor_b__0()
+			{
+				return this.to;
+			}
+
+			internal void _DOBlendableColor_b__1(Color x)
+			{
+				Color b = x - this.to;
+				this.to = x;
+				this.target.color += b;
+			}
+		}
+
+		private sealed class __c__DisplayClass35_0
+		{
+			public Color to;
+
+			public Image target;
+
+			internal Color _DOBlendableColor_b__0()
+			{
+				return this.to;
+			}
+
+			internal void _DOBlendableColor_b__1(Color x)
+			{
+				Color b = x - this.to;
+				this.to = x;
+				this.target.color += b;
+			}
+		}
+
+		private sealed class __c__DisplayClass36_0
+		{
+			public Color to;
+
+			public Text target;
+
+			internal Color _DOBlendableColor_b__0()
+			{
+				return this.to;
+			}
+
+			internal void _DOBlendableColor_b__1(Color x)
+			{
+				Color b = x - this.to;
+				this.to = x;
+				this.target.color += b;
+			}
+		}
+
+		public static Tweener DOFade(this CanvasGroup target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass0_0 __c__DisplayClass0_ = new ShortcutExtensions46.__c__DisplayClass0_0();
+			__c__DisplayClass0_.target = target;
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass0_._DOFade_b__0), new DOSetter<float>(__c__DisplayClass0_._DOFade_b__1), endValue, duration).SetTarget(__c__DisplayClass0_.target);
+		}
+
+		public static Tweener DOColor(this Graphic target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass1_0 __c__DisplayClass1_ = new ShortcutExtensions46.__c__DisplayClass1_0();
+			__c__DisplayClass1_.target = target;
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass1_._DOColor_b__0), new DOSetter<Color>(__c__DisplayClass1_._DOColor_b__1), endValue, duration).SetTarget(__c__DisplayClass1_.target);
+		}
+
+		public static Tweener DOFade(this Graphic target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass2_0 __c__DisplayClass2_ = new ShortcutExtensions46.__c__DisplayClass2_0();
+			__c__DisplayClass2_.target = target;
+			return DOTween.ToAlpha(new DOGetter<Color>(__c__DisplayClass2_._DOFade_b__0), new DOSetter<Color>(__c__DisplayClass2_._DOFade_b__1), endValue, duration).SetTarget(__c__DisplayClass2_.target);
+		}
+
+		public static Tweener DOColor(this Image target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass3_0 __c__DisplayClass3_ = new ShortcutExtensions46.__c__DisplayClass3_0();
+			__c__DisplayClass3_.target = target;
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass3_._DOColor_b__0), new DOSetter<Color>(__c__DisplayClass3_._DOColor_b__1), endValue, duration).SetTarget(__c__DisplayClass3_.target);
+		}
+
+		public static Tweener DOFade(this Image target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass4_0 __c__DisplayClass4_ = new ShortcutExtensions46.__c__DisplayClass4_0();
+			__c__DisplayClass4_.target = target;
+			return DOTween.ToAlpha(new DOGetter<Color>(__c__DisplayClass4_._DOFade_b__0), new DOSetter<Color>(__c__DisplayClass4_._DOFade_b__1), endValue, duration).SetTarget(__c__DisplayClass4_.target);
+		}
+
+		public static Tweener DOFillAmount(this Image target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass5_0 __c__DisplayClass5_ = new ShortcutExtensions46.__c__DisplayClass5_0();
+			__c__DisplayClass5_.target = target;
+			if (endValue > 1f)
+			{
+				endValue = 1f;
+			}
+			else if (endValue < 0f)
+			{
+				endValue = 0f;
+			}
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass5_._DOFillAmount_b__0), new DOSetter<float>(__c__DisplayClass5_._DOFillAmount_b__1), endValue, duration).SetTarget(__c__DisplayClass5_.target);
+		}
+
+		public static Sequence DOGradientColor(this Image target, Gradient gradient, float duration)
+		{
+			Sequence sequence = DOTween.Sequence();
+			GradientColorKey[] colorKeys = gradient.colorKeys;
+			int num = colorKeys.Length;
+			for (int i = 0; i < num; i++)
+			{
+				GradientColorKey gradientColorKey = colorKeys[i];
+				if (i == 0 && gradientColorKey.time <= 0f)
+				{
+					target.color = gradientColorKey.color;
+				}
+				else
+				{
+					float duration2 = (i == num - 1) ? (duration - sequence.Duration(false)) : (duration * ((i == 0) ? gradientColorKey.time : (gradientColorKey.time - colorKeys[i - 1].time)));
+					sequence.Append(target.DOColor(gradientColorKey.color, duration2).SetEase(Ease.Linear));
+				}
+			}
+			return sequence;
+		}
+
+		public static Tweener DOFlexibleSize(this LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass7_0 __c__DisplayClass7_ = new ShortcutExtensions46.__c__DisplayClass7_0();
+			__c__DisplayClass7_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass7_._DOFlexibleSize_b__0), new DOSetter<Vector2>(__c__DisplayClass7_._DOFlexibleSize_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass7_.target);
+		}
+
+		public static Tweener DOMinSize(this LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass8_0 __c__DisplayClass8_ = new ShortcutExtensions46.__c__DisplayClass8_0();
+			__c__DisplayClass8_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass8_._DOMinSize_b__0), new DOSetter<Vector2>(__c__DisplayClass8_._DOMinSize_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass8_.target);
+		}
+
+		public static Tweener DOPreferredSize(this LayoutElement target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass9_0 __c__DisplayClass9_ = new ShortcutExtensions46.__c__DisplayClass9_0();
+			__c__DisplayClass9_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass9_._DOPreferredSize_b__0), new DOSetter<Vector2>(__c__DisplayClass9_._DOPreferredSize_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass9_.target);
+		}
+
+		public static Tweener DOColor(this Outline target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass10_0 __c__DisplayClass10_ = new ShortcutExtensions46.__c__DisplayClass10_0();
+			__c__DisplayClass10_.target = target;
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass10_._DOColor_b__0), new DOSetter<Color>(__c__DisplayClass10_._DOColor_b__1), endValue, duration).SetTarget(__c__DisplayClass10_.target);
+		}
+
+		public static Tweener DOFade(this Outline target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass11_0 __c__DisplayClass11_ = new ShortcutExtensions46.__c__DisplayClass11_0();
+			__c__DisplayClass11_.target = target;
+			return DOTween.ToAlpha(new DOGetter<Color>(__c__DisplayClass11_._DOFade_b__0), new DOSetter<Color>(__c__DisplayClass11_._DOFade_b__1), endValue, duration).SetTarget(__c__DisplayClass11_.target);
+		}
+
+		public static Tweener DOScale(this Outline target, Vector2 endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass12_0 __c__DisplayClass12_ = new ShortcutExtensions46.__c__DisplayClass12_0();
+			__c__DisplayClass12_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass12_._DOScale_b__0), new DOSetter<Vector2>(__c__DisplayClass12_._DOScale_b__1), endValue, duration).SetTarget(__c__DisplayClass12_.target);
+		}
+
+		public static Tweener DOAnchorPos(this RectTransform target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass13_0 __c__DisplayClass13_ = new ShortcutExtensions46.__c__DisplayClass13_0();
+			__c__DisplayClass13_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass13_._DOAnchorPos_b__0), new DOSetter<Vector2>(__c__DisplayClass13_._DOAnchorPos_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass13_.target);
+		}
+
+		public static Tweener DOAnchorPosX(this RectTransform target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass14_0 __c__DisplayClass14_ = new ShortcutExtensions46.__c__DisplayClass14_0();
+			__c__DisplayClass14_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass14_._DOAnchorPosX_b__0), new DOSetter<Vector2>(__c__DisplayClass14_._DOAnchorPosX_b__1), new Vector2(endValue, 0f), duration).SetOptions(AxisConstraint.X, snapping).SetTarget(__c__DisplayClass14_.target);
+		}
+
+		public static Tweener DOAnchorPosY(this RectTransform target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass15_0 __c__DisplayClass15_ = new ShortcutExtensions46.__c__DisplayClass15_0();
+			__c__DisplayClass15_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass15_._DOAnchorPosY_b__0), new DOSetter<Vector2>(__c__DisplayClass15_._DOAnchorPosY_b__1), new Vector2(0f, endValue), duration).SetOptions(AxisConstraint.Y, snapping).SetTarget(__c__DisplayClass15_.target);
+		}
+
+		public static Tweener DOAnchorPos3D(this RectTransform target, Vector3 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass16_0 __c__DisplayClass16_ = new ShortcutExtensions46.__c__DisplayClass16_0();
+			__c__DisplayClass16_.target = target;
+			return DOTween.To(new DOGetter<Vector3>(__c__DisplayClass16_._DOAnchorPos3D_b__0), new DOSetter<Vector3>(__c__DisplayClass16_._DOAnchorPos3D_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass16_.target);
+		}
+
+		public static Tweener DOAnchorMax(this RectTransform target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass17_0 __c__DisplayClass17_ = new ShortcutExtensions46.__c__DisplayClass17_0();
+			__c__DisplayClass17_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass17_._DOAnchorMax_b__0), new DOSetter<Vector2>(__c__DisplayClass17_._DOAnchorMax_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass17_.target);
+		}
+
+		public static Tweener DOAnchorMin(this RectTransform target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass18_0 __c__DisplayClass18_ = new ShortcutExtensions46.__c__DisplayClass18_0();
+			__c__DisplayClass18_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass18_._DOAnchorMin_b__0), new DOSetter<Vector2>(__c__DisplayClass18_._DOAnchorMin_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass18_.target);
+		}
+
+		public static Tweener DOPivot(this RectTransform target, Vector2 endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass19_0 __c__DisplayClass19_ = new ShortcutExtensions46.__c__DisplayClass19_0();
+			__c__DisplayClass19_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass19_._DOPivot_b__0), new DOSetter<Vector2>(__c__DisplayClass19_._DOPivot_b__1), endValue, duration).SetTarget(__c__DisplayClass19_.target);
+		}
+
+		public static Tweener DOPivotX(this RectTransform target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass20_0 __c__DisplayClass20_ = new ShortcutExtensions46.__c__DisplayClass20_0();
+			__c__DisplayClass20_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass20_._DOPivotX_b__0), new DOSetter<Vector2>(__c__DisplayClass20_._DOPivotX_b__1), new Vector2(endValue, 0f), duration).SetOptions(AxisConstraint.X, false).SetTarget(__c__DisplayClass20_.target);
+		}
+
+		public static Tweener DOPivotY(this RectTransform target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass21_0 __c__DisplayClass21_ = new ShortcutExtensions46.__c__DisplayClass21_0();
+			__c__DisplayClass21_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass21_._DOPivotY_b__0), new DOSetter<Vector2>(__c__DisplayClass21_._DOPivotY_b__1), new Vector2(0f, endValue), duration).SetOptions(AxisConstraint.Y, false).SetTarget(__c__DisplayClass21_.target);
+		}
+
+		public static Tweener DOSizeDelta(this RectTransform target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass22_0 __c__DisplayClass22_ = new ShortcutExtensions46.__c__DisplayClass22_0();
+			__c__DisplayClass22_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass22_._DOSizeDelta_b__0), new DOSetter<Vector2>(__c__DisplayClass22_._DOSizeDelta_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass22_.target);
+		}
+
+		public static Tweener DOPunchAnchorPos(this RectTransform target, Vector2 punch, float duration, int vibrato = 10, float elasticity = 1f, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass23_0 __c__DisplayClass23_ = new ShortcutExtensions46.__c__DisplayClass23_0();
+			__c__DisplayClass23_.target = target;
+			return DOTween.Punch(new DOGetter<Vector3>(__c__DisplayClass23_._DOPunchAnchorPos_b__0), new DOSetter<Vector3>(__c__DisplayClass23_._DOPunchAnchorPos_b__1), punch, duration, vibrato, elasticity).SetTarget(__c__DisplayClass23_.target).SetOptions(snapping);
+		}
+
+		public static Tweener DOShakeAnchorPos(this RectTransform target, float duration, float strength = 100f, int vibrato = 10, float randomness = 90f, bool snapping = false, bool fadeOut = true)
+		{
+			ShortcutExtensions46.__c__DisplayClass24_0 __c__DisplayClass24_ = new ShortcutExtensions46.__c__DisplayClass24_0();
+			__c__DisplayClass24_.target = target;
+			return DOTween.Shake(new DOGetter<Vector3>(__c__DisplayClass24_._DOShakeAnchorPos_b__0), new DOSetter<Vector3>(__c__DisplayClass24_._DOShakeAnchorPos_b__1), duration, strength, vibrato, randomness, true, fadeOut).SetTarget(__c__DisplayClass24_.target).SetSpecialStartupMode(SpecialStartupMode.SetShake).SetOptions(snapping);
+		}
+
+		public static Tweener DOShakeAnchorPos(this RectTransform target, float duration, Vector2 strength, int vibrato = 10, float randomness = 90f, bool snapping = false, bool fadeOut = true)
+		{
+			ShortcutExtensions46.__c__DisplayClass25_0 __c__DisplayClass25_ = new ShortcutExtensions46.__c__DisplayClass25_0();
+			__c__DisplayClass25_.target = target;
+			return DOTween.Shake(new DOGetter<Vector3>(__c__DisplayClass25_._DOShakeAnchorPos_b__0), new DOSetter<Vector3>(__c__DisplayClass25_._DOShakeAnchorPos_b__1), duration, strength, vibrato, randomness, fadeOut).SetTarget(__c__DisplayClass25_.target).SetSpecialStartupMode(SpecialStartupMode.SetShake).SetOptions(snapping);
+		}
+
+		public static Sequence DOJumpAnchorPos(this RectTransform target, Vector2 endValue, float jumpPower, int numJumps, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass26_0 __c__DisplayClass26_ = new ShortcutExtensions46.__c__DisplayClass26_0();
+			__c__DisplayClass26_.target = target;
+			__c__DisplayClass26_.endValue = endValue;
+			if (numJumps < 1)
+			{
+				numJumps = 1;
+			}
+			__c__DisplayClass26_.startPosY = __c__DisplayClass26_.target.anchoredPosition.y;
+			__c__DisplayClass26_.offsetY = -1f;
+			__c__DisplayClass26_.offsetYSet = false;
+			__c__DisplayClass26_.s = DOTween.Sequence().Append(DOTween.To(new DOGetter<Vector2>(__c__DisplayClass26_._DOJumpAnchorPos_b__0), new DOSetter<Vector2>(__c__DisplayClass26_._DOJumpAnchorPos_b__1), new Vector2(__c__DisplayClass26_.endValue.x, 0f), duration).SetOptions(AxisConstraint.X, snapping).SetEase(Ease.Linear)).Join(DOTween.To(new DOGetter<Vector2>(__c__DisplayClass26_._DOJumpAnchorPos_b__2), new DOSetter<Vector2>(__c__DisplayClass26_._DOJumpAnchorPos_b__3), new Vector2(0f, jumpPower), duration / (float)(numJumps * 2)).SetOptions(AxisConstraint.Y, snapping).SetEase(Ease.OutQuad).SetLoops(numJumps * 2, LoopType.Yoyo).SetRelative<Tweener>()).SetTarget(__c__DisplayClass26_.target).SetEase(DOTween.defaultEaseType);
+			__c__DisplayClass26_.s.OnUpdate(new TweenCallback(__c__DisplayClass26_._DOJumpAnchorPos_b__4));
+			return __c__DisplayClass26_.s;
+		}
+
+		public static Tweener DONormalizedPos(this ScrollRect target, Vector2 endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass27_0 __c__DisplayClass27_ = new ShortcutExtensions46.__c__DisplayClass27_0();
+			__c__DisplayClass27_.target = target;
+			return DOTween.To(new DOGetter<Vector2>(__c__DisplayClass27_._DONormalizedPos_b__0), new DOSetter<Vector2>(__c__DisplayClass27_._DONormalizedPos_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass27_.target);
+		}
+
+		public static Tweener DOHorizontalNormalizedPos(this ScrollRect target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass28_0 __c__DisplayClass28_ = new ShortcutExtensions46.__c__DisplayClass28_0();
+			__c__DisplayClass28_.target = target;
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass28_._DOHorizontalNormalizedPos_b__0), new DOSetter<float>(__c__DisplayClass28_._DOHorizontalNormalizedPos_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass28_.target);
+		}
+
+		public static Tweener DOVerticalNormalizedPos(this ScrollRect target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass29_0 __c__DisplayClass29_ = new ShortcutExtensions46.__c__DisplayClass29_0();
+			__c__DisplayClass29_.target = target;
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass29_._DOVerticalNormalizedPos_b__0), new DOSetter<float>(__c__DisplayClass29_._DOVerticalNormalizedPos_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass29_.target);
+		}
+
+		public static Tweener DOValue(this Slider target, float endValue, float duration, bool snapping = false)
+		{
+			ShortcutExtensions46.__c__DisplayClass30_0 __c__DisplayClass30_ = new ShortcutExtensions46.__c__DisplayClass30_0();
+			__c__DisplayClass30_.target = target;
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass30_._DOValue_b__0), new DOSetter<float>(__c__DisplayClass30_._DOValue_b__1), endValue, duration).SetOptions(snapping).SetTarget(__c__DisplayClass30_.target);
+		}
+
+		public static Tweener DOColor(this Text target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass31_0 __c__DisplayClass31_ = new ShortcutExtensions46.__c__DisplayClass31_0();
+			__c__DisplayClass31_.target = target;
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass31_._DOColor_b__0), new DOSetter<Color>(__c__DisplayClass31_._DOColor_b__1), endValue, duration).SetTarget(__c__DisplayClass31_.target);
+		}
+
+		public static Tweener DOFade(this Text target, float endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass32_0 __c__DisplayClass32_ = new ShortcutExtensions46.__c__DisplayClass32_0();
+			__c__DisplayClass32_.target = target;
+			return DOTween.ToAlpha(new DOGetter<Color>(__c__DisplayClass32_._DOFade_b__0), new DOSetter<Color>(__c__DisplayClass32_._DOFade_b__1), endValue, duration).SetTarget(__c__DisplayClass32_.target);
+		}
+
+		public static Tweener DOText(this Text target, string endValue, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)
+		{
+			ShortcutExtensions46.__c__DisplayClass33_0 __c__DisplayClass33_ = new ShortcutExtensions46.__c__DisplayClass33_0();
+			__c__DisplayClass33_.target = target;
+			return DOTween.To(new DOGetter<string>(__c__DisplayClass33_._DOText_b__0), new DOSetter<string>(__c__DisplayClass33_._DOText_b__1), endValue, duration).SetOptions(richTextEnabled, scrambleMode, scrambleChars).SetTarget(__c__DisplayClass33_.target);
+		}
+
+		public static Tweener DOBlendableColor(this Graphic target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass34_0 __c__DisplayClass34_ = new ShortcutExtensions46.__c__DisplayClass34_0();
+			__c__DisplayClass34_.target = target;
+			endValue -= __c__DisplayClass34_.target.color;
+			__c__DisplayClass34_.to = new Color(0f, 0f, 0f, 0f);
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass34_._DOBlendableColor_b__0), new DOSetter<Color>(__c__DisplayClass34_._DOBlendableColor_b__1), endValue, duration).Blendable<Color, Color, ColorOptions>().SetTarget(__c__DisplayClass34_.target);
+		}
+
+		public static Tweener DOBlendableColor(this Image target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass35_0 __c__DisplayClass35_ = new ShortcutExtensions46.__c__DisplayClass35_0();
+			__c__DisplayClass35_.target = target;
+			endValue -= __c__DisplayClass35_.target.color;
+			__c__DisplayClass35_.to = new Color(0f, 0f, 0f, 0f);
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass35_._DOBlendableColor_b__0), new DOSetter<Color>(__c__DisplayClass35_._DOBlendableColor_b__1), endValue, duration).Blendable<Color, Color, ColorOptions>().SetTarget(__c__DisplayClass35_.target);
+		}
+
+		public static Tweener DOBlendableColor(this Text target, Color endValue, float duration)
+		{
+			ShortcutExtensions46.__c__DisplayClass36_0 __c__DisplayClass36_ = new ShortcutExtensions46.__c__DisplayClass36_0();
+			__c__DisplayClass36_.target = target;
+			endValue -= __c__DisplayClass36_.target.color;
+			__c__DisplayClass36_.to = new Color(0f, 0f, 0f, 0f);
+			return DOTween.To(new DOGetter<Color>(__c__DisplayClass36_._DOBlendableColor_b__0), new DOSetter<Color>(__c__DisplayClass36_._DOBlendableColor_b__1), endValue, duration).Blendable<Color, Color, ColorOptions>().SetTarget(__c__DisplayClass36_.target);
+		}
+	}
+}
+

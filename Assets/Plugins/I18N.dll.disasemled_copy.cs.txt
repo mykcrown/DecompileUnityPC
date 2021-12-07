@@ -1,0 +1,1260 @@
+// Decompile from assembly: I18N.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+
+internal static class Consts
+{
+	public const string MonoVersion = "2.6.5.0";
+
+	public const string MonoCompany = "MONO development team";
+
+	public const string MonoProduct = "MONO Common language infrastructure";
+
+	public const string MonoCopyright = "(c) various MONO Authors";
+
+	public const string FxVersion = "2.0.5.0";
+
+	public const string VsVersion = "9.0.0.0";
+
+	public const string FxFileVersion = "3.0.40818.0";
+
+	public const string VsFileVersion = "9.0.50727.42";
+
+	public const string AssemblyI18N = "I18N, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMicrosoft_VisualStudio = "Microsoft.VisualStudio, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMicrosoft_VisualStudio_Web = "Microsoft.VisualStudio.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMicrosoft_VSDesigner = "Microsoft.VSDesigner, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMono_Http = "Mono.Http, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Posix = "Mono.Posix, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Security = "Mono.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Messaging_RabbitMQ = "Mono.Messaging.RabbitMQ, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyCorlib = "mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem = "System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Data = "System.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Design = "System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_DirectoryServices = "System.DirectoryServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Drawing = "System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Drawing_Design = "System.Drawing.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Messaging = "System.Messaging, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Security = "System.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_ServiceProcess = "System.ServiceProcess, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Web = "System.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Windows_Forms = "System.Windows.Forms, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Core = "System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+namespace I18N.Common
+{
+	[Serializable]
+	public abstract class ByteEncoding : MonoEncoding
+	{
+		protected char[] toChars;
+
+		protected string encodingName;
+
+		protected string bodyName;
+
+		protected string headerName;
+
+		protected string webName;
+
+		protected bool isBrowserDisplay;
+
+		protected bool isBrowserSave;
+
+		protected bool isMailNewsDisplay;
+
+		protected bool isMailNewsSave;
+
+		protected int windowsCodePage;
+
+		private static byte[] isNormalized;
+
+		private static byte[] isNormalizedComputed;
+
+		private static byte[] normalization_bytes;
+
+		public override bool IsSingleByte
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override string BodyName
+		{
+			get
+			{
+				return this.bodyName;
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return this.encodingName;
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return this.headerName;
+			}
+		}
+
+		public override bool IsBrowserDisplay
+		{
+			get
+			{
+				return this.isBrowserDisplay;
+			}
+		}
+
+		public override bool IsBrowserSave
+		{
+			get
+			{
+				return this.isBrowserSave;
+			}
+		}
+
+		public override bool IsMailNewsDisplay
+		{
+			get
+			{
+				return this.isMailNewsDisplay;
+			}
+		}
+
+		public override bool IsMailNewsSave
+		{
+			get
+			{
+				return this.isMailNewsSave;
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return this.webName;
+			}
+		}
+
+		public override int WindowsCodePage
+		{
+			get
+			{
+				return this.windowsCodePage;
+			}
+		}
+
+		protected ByteEncoding(int codePage, char[] toChars, string encodingName, string bodyName, string headerName, string webName, bool isBrowserDisplay, bool isBrowserSave, bool isMailNewsDisplay, bool isMailNewsSave, int windowsCodePage) : base(codePage)
+		{
+			if (toChars.Length != 256)
+			{
+				throw new ArgumentException("toChars");
+			}
+			this.toChars = toChars;
+			this.encodingName = encodingName;
+			this.bodyName = bodyName;
+			this.headerName = headerName;
+			this.webName = webName;
+			this.isBrowserDisplay = isBrowserDisplay;
+			this.isBrowserSave = isBrowserSave;
+			this.isMailNewsDisplay = isMailNewsDisplay;
+			this.isMailNewsSave = isMailNewsSave;
+			this.windowsCodePage = windowsCodePage;
+		}
+
+		public override bool IsAlwaysNormalized(NormalizationForm form)
+		{
+			if (form != NormalizationForm.FormC)
+			{
+				return false;
+			}
+			if (ByteEncoding.isNormalized == null)
+			{
+				ByteEncoding.isNormalized = new byte[8192];
+			}
+			if (ByteEncoding.isNormalizedComputed == null)
+			{
+				ByteEncoding.isNormalizedComputed = new byte[8192];
+			}
+			if (ByteEncoding.normalization_bytes == null)
+			{
+				ByteEncoding.normalization_bytes = new byte[256];
+				byte[] obj = ByteEncoding.normalization_bytes;
+				lock (obj)
+				{
+					for (int i = 0; i < 256; i++)
+					{
+						ByteEncoding.normalization_bytes[i] = (byte)i;
+					}
+				}
+			}
+			byte b = (byte)(1 << this.CodePage % 8);
+			if ((ByteEncoding.isNormalizedComputed[this.CodePage / 8] & b) == 0)
+			{
+				Encoding encoding = this.Clone() as Encoding;
+				encoding.DecoderFallback = new DecoderReplacementFallback(string.Empty);
+				string @string = encoding.GetString(ByteEncoding.normalization_bytes);
+				if (@string != @string.Normalize(form))
+				{
+					byte[] expr_FE_cp_0 = ByteEncoding.isNormalized;
+					int expr_FE_cp_1 = this.CodePage / 8;
+					expr_FE_cp_0[expr_FE_cp_1] |= b;
+				}
+				byte[] expr_116_cp_0 = ByteEncoding.isNormalizedComputed;
+				int expr_116_cp_1 = this.CodePage / 8;
+				expr_116_cp_0[expr_116_cp_1] |= b;
+			}
+			return (ByteEncoding.isNormalized[this.CodePage / 8] & b) == 0;
+		}
+
+		public override int GetByteCount(string s)
+		{
+			if (s == null)
+			{
+				throw new ArgumentNullException("s");
+			}
+			return s.Length;
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			return count;
+		}
+
+		protected unsafe abstract void ToBytes(char* chars, int charCount, byte* bytes, int byteCount);
+
+		protected unsafe virtual void ToBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
+		{
+			if (charCount == 0 || bytes.Length == byteIndex)
+			{
+				return;
+			}
+			fixed (char* ptr = (chars != null && chars.Length != 0) ? ref chars[0] : ref *null)
+			{
+				fixed (byte* ptr2 = (bytes != null && bytes.Length != 0) ? ref bytes[0] : ref *null)
+				{
+					this.ToBytes(ptr + charIndex, charCount, ptr2 + byteIndex, bytes.Length - byteIndex);
+				}
+			}
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			this.ToBytes(chars, charCount, bytes, byteCount);
+			return charCount;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (index < 0 || index > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || count > bytes.Length - index)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			return count;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (byteIndex < 0 || byteIndex > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (byteCount < 0 || byteCount > bytes.Length - byteIndex)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_Array"));
+			}
+			if (charIndex < 0 || charIndex > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (chars.Length - charIndex < byteCount)
+			{
+				throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"));
+			}
+			int num = byteCount;
+			char[] array = this.toChars;
+			while (num-- > 0)
+			{
+				chars[charIndex++] = array[(int)bytes[byteIndex++]];
+			}
+			return byteCount;
+		}
+
+		public override int GetMaxByteCount(int charCount)
+		{
+			if (charCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return charCount;
+		}
+
+		public override int GetMaxCharCount(int byteCount)
+		{
+			if (byteCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return byteCount;
+		}
+
+		public unsafe override string GetString(byte[] bytes, int index, int count)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (index < 0 || index > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || count > bytes.Length - index)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			if (count == 0)
+			{
+				return string.Empty;
+			}
+			string text = new string('\0', count);
+			fixed (byte* ptr = (bytes != null && bytes.Length != 0) ? ref bytes[0] : ref *null)
+			{
+				fixed (string text2 = text)
+				{
+					fixed (char* ptr2 = text2 + RuntimeHelpers.OffsetToStringData / 2)
+					{
+						fixed (char* ptr3 = (this.toChars != null && this.toChars.Length != 0) ? ref this.toChars[0] : ref *null)
+						{
+							byte* ptr4 = ptr + index;
+							char* ptr5 = ptr2;
+							while (count-- != 0)
+							{
+								*(ptr5++) = ptr3[(IntPtr)(*(ptr4++)) * 2];
+							}
+						}
+						text2 = null;
+						ptr = null;
+						return text;
+					}
+				}
+			}
+		}
+
+		public override string GetString(byte[] bytes)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			return this.GetString(bytes, 0, bytes.Length);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+using System.Collections;
+
+namespace I18N.Common
+{
+	public sealed class Handlers
+	{
+		public static readonly string[] List = new string[]
+		{
+			"I18N.CJK.CP932",
+			"I18N.CJK.CP936",
+			"I18N.CJK.CP949",
+			"I18N.CJK.CP950",
+			"I18N.CJK.CP50220",
+			"I18N.CJK.CP50221",
+			"I18N.CJK.CP50222",
+			"I18N.CJK.CP51932",
+			"I18N.CJK.CP51949",
+			"I18N.CJK.CP54936",
+			"I18N.CJK.ENCbig5",
+			"I18N.CJK.ENCgb2312",
+			"I18N.CJK.ENCshift_jis",
+			"I18N.CJK.ENCiso_2022_jp",
+			"I18N.CJK.ENCeuc_jp",
+			"I18N.CJK.ENCeuc_kr",
+			"I18N.CJK.ENCuhc",
+			"I18N.CJK.ENCgb18030",
+			"I18N.MidEast.CP1254",
+			"I18N.MidEast.ENCwindows_1254",
+			"I18N.MidEast.CP1255",
+			"I18N.MidEast.ENCwindows_1255",
+			"I18N.MidEast.CP1256",
+			"I18N.MidEast.ENCwindows_1256",
+			"I18N.MidEast.CP28596",
+			"I18N.MidEast.ENCiso_8859_6",
+			"I18N.MidEast.CP28598",
+			"I18N.MidEast.ENCiso_8859_8",
+			"I18N.MidEast.CP28599",
+			"I18N.MidEast.ENCiso_8859_9",
+			"I18N.MidEast.CP38598",
+			"I18N.MidEast.ENCwindows_38598",
+			"I18N.Other.CP1251",
+			"I18N.Other.ENCwindows_1251",
+			"I18N.Other.CP1257",
+			"I18N.Other.ENCwindows_1257",
+			"I18N.Other.CP1258",
+			"I18N.Other.ENCwindows_1258",
+			"I18N.Other.CP20866",
+			"I18N.Other.ENCkoi8_r",
+			"I18N.Other.CP21866",
+			"I18N.Other.ENCkoi8_u",
+			"I18N.Other.CP28594",
+			"I18N.Other.ENCiso_8859_4",
+			"I18N.Other.CP28595",
+			"I18N.Other.ENCiso_8859_5",
+			"I18N.Other.ISCIIEncoding",
+			"I18N.Other.CP57002",
+			"I18N.Other.CP57003",
+			"I18N.Other.CP57004",
+			"I18N.Other.CP57005",
+			"I18N.Other.CP57006",
+			"I18N.Other.CP57007",
+			"I18N.Other.CP57008",
+			"I18N.Other.CP57009",
+			"I18N.Other.CP57010",
+			"I18N.Other.CP57011",
+			"I18N.Other.ENCx_iscii_de",
+			"I18N.Other.ENCx_iscii_be",
+			"I18N.Other.ENCx_iscii_ta",
+			"I18N.Other.ENCx_iscii_te",
+			"I18N.Other.ENCx_iscii_as",
+			"I18N.Other.ENCx_iscii_or",
+			"I18N.Other.ENCx_iscii_ka",
+			"I18N.Other.ENCx_iscii_ma",
+			"I18N.Other.ENCx_iscii_gu",
+			"I18N.Other.ENCx_iscii_pa",
+			"I18N.Other.CP874",
+			"I18N.Other.ENCwindows_874",
+			"I18N.Rare.CP1026",
+			"I18N.Rare.ENCibm1026",
+			"I18N.Rare.CP1047",
+			"I18N.Rare.ENCibm1047",
+			"I18N.Rare.CP1140",
+			"I18N.Rare.ENCibm01140",
+			"I18N.Rare.CP1141",
+			"I18N.Rare.ENCibm01141",
+			"I18N.Rare.CP1142",
+			"I18N.Rare.ENCibm01142",
+			"I18N.Rare.CP1143",
+			"I18N.Rare.ENCibm01143",
+			"I18N.Rare.CP1144",
+			"I18N.Rare.ENCibm1144",
+			"I18N.Rare.CP1145",
+			"I18N.Rare.ENCibm1145",
+			"I18N.Rare.CP1146",
+			"I18N.Rare.ENCibm1146",
+			"I18N.Rare.CP1147",
+			"I18N.Rare.ENCibm1147",
+			"I18N.Rare.CP1148",
+			"I18N.Rare.ENCibm1148",
+			"I18N.Rare.CP1149",
+			"I18N.Rare.ENCibm1149",
+			"I18N.Rare.CP20273",
+			"I18N.Rare.ENCibm273",
+			"I18N.Rare.CP20277",
+			"I18N.Rare.ENCibm277",
+			"I18N.Rare.CP20278",
+			"I18N.Rare.ENCibm278",
+			"I18N.Rare.CP20280",
+			"I18N.Rare.ENCibm280",
+			"I18N.Rare.CP20284",
+			"I18N.Rare.ENCibm284",
+			"I18N.Rare.CP20285",
+			"I18N.Rare.ENCibm285",
+			"I18N.Rare.CP20290",
+			"I18N.Rare.ENCibm290",
+			"I18N.Rare.CP20297",
+			"I18N.Rare.ENCibm297",
+			"I18N.Rare.CP20420",
+			"I18N.Rare.ENCibm420",
+			"I18N.Rare.CP20424",
+			"I18N.Rare.ENCibm424",
+			"I18N.Rare.CP20871",
+			"I18N.Rare.ENCibm871",
+			"I18N.Rare.CP21025",
+			"I18N.Rare.ENCibm1025",
+			"I18N.Rare.CP37",
+			"I18N.Rare.ENCibm037",
+			"I18N.Rare.CP500",
+			"I18N.Rare.ENCibm500",
+			"I18N.Rare.CP708",
+			"I18N.Rare.ENCasmo_708",
+			"I18N.Rare.CP852",
+			"I18N.Rare.ENCibm852",
+			"I18N.Rare.CP855",
+			"I18N.Rare.ENCibm855",
+			"I18N.Rare.CP857",
+			"I18N.Rare.ENCibm857",
+			"I18N.Rare.CP858",
+			"I18N.Rare.ENCibm00858",
+			"I18N.Rare.CP862",
+			"I18N.Rare.ENCibm862",
+			"I18N.Rare.CP864",
+			"I18N.Rare.ENCibm864",
+			"I18N.Rare.CP866",
+			"I18N.Rare.ENCibm866",
+			"I18N.Rare.CP869",
+			"I18N.Rare.ENCibm869",
+			"I18N.Rare.CP870",
+			"I18N.Rare.ENCibm870",
+			"I18N.Rare.CP875",
+			"I18N.Rare.ENCibm875",
+			"I18N.West.CP10000",
+			"I18N.West.ENCmacintosh",
+			"I18N.West.CP10079",
+			"I18N.West.ENCx_mac_icelandic",
+			"I18N.West.CP1250",
+			"I18N.West.ENCwindows_1250",
+			"I18N.West.CP1252",
+			"I18N.West.ENCwindows_1252",
+			"I18N.West.CP1253",
+			"I18N.West.ENCwindows_1253",
+			"I18N.West.CP28592",
+			"I18N.West.ENCiso_8859_2",
+			"I18N.West.CP28593",
+			"I18N.West.ENCiso_8859_3",
+			"I18N.West.CP28597",
+			"I18N.West.ENCiso_8859_7",
+			"I18N.West.CP28605",
+			"I18N.West.ENCiso_8859_15",
+			"I18N.West.CP437",
+			"I18N.West.ENCibm437",
+			"I18N.West.CP850",
+			"I18N.West.ENCibm850",
+			"I18N.West.CP860",
+			"I18N.West.ENCibm860",
+			"I18N.West.CP861",
+			"I18N.West.ENCibm861",
+			"I18N.West.CP863",
+			"I18N.West.ENCibm863",
+			"I18N.West.CP865",
+			"I18N.West.ENCibm865"
+		};
+
+		private static Hashtable aliases;
+
+		public static string GetAlias(string name)
+		{
+			if (Handlers.aliases == null)
+			{
+				Handlers.BuildHash();
+			}
+			return Handlers.aliases[name] as string;
+		}
+
+		private static void BuildHash()
+		{
+			Handlers.aliases = new Hashtable(new CaseInsensitiveHashCodeProvider(), new CaseInsensitiveComparer());
+			Handlers.aliases.Add("arabic", "iso_8859_6");
+			Handlers.aliases.Add("csISOLatinArabic", "iso_8859_6");
+			Handlers.aliases.Add("ECMA_114", "iso_8859_6");
+			Handlers.aliases.Add("ISO_8859_6:1987", "iso_8859_6");
+			Handlers.aliases.Add("iso_ir_127", "iso_8859_6");
+			Handlers.aliases.Add("cp1256", "windows_1256");
+			Handlers.aliases.Add("csISOLatin4", "iso_8859_4");
+			Handlers.aliases.Add("ISO_8859_4:1988", "iso_8859_4");
+			Handlers.aliases.Add("iso_ir_110", "iso_8859_4");
+			Handlers.aliases.Add("l4", "iso_8859_4");
+			Handlers.aliases.Add("latin4", "iso_8859_4");
+			Handlers.aliases.Add("cp852", "ibm852");
+			Handlers.aliases.Add("csISOLatin2", "iso_8859_2");
+			Handlers.aliases.Add("iso_8859_2:1987", "iso_8859_2");
+			Handlers.aliases.Add("iso8859_2", "iso_8859_2");
+			Handlers.aliases.Add("iso_ir_101", "iso_8859_2");
+			Handlers.aliases.Add("l2", "iso_8859_2");
+			Handlers.aliases.Add("latin2", "iso_8859_2");
+			Handlers.aliases.Add("x-cp1250", "windows_1250");
+			Handlers.aliases.Add("chinese", "gb2312");
+			Handlers.aliases.Add("CN-GB", "gb2312");
+			Handlers.aliases.Add("csGB2312", "gb2312");
+			Handlers.aliases.Add("csGB231280", "gb2312");
+			Handlers.aliases.Add("csISO58GB231280", "gb2312");
+			Handlers.aliases.Add("GB_2312_80", "gb2312");
+			Handlers.aliases.Add("GB231280", "gb2312");
+			Handlers.aliases.Add("GB2312_80", "gb2312");
+			Handlers.aliases.Add("GBK", "gb2312");
+			Handlers.aliases.Add("iso_ir_58", "gb2312");
+			Handlers.aliases.Add("cn-big5", "big5");
+			Handlers.aliases.Add("csbig5", "big5");
+			Handlers.aliases.Add("x-x-big5", "big5");
+			Handlers.aliases.Add("cp866", "ibm866");
+			Handlers.aliases.Add("csISOLatin5", "iso_8859_5");
+			Handlers.aliases.Add("csISOLatinCyrillic", "iso_8859_5");
+			Handlers.aliases.Add("cyrillic", "iso_8859_5");
+			Handlers.aliases.Add("ISO_8859_5:1988", "iso_8859_5");
+			Handlers.aliases.Add("iso_ir_144", "iso_8859_5");
+			Handlers.aliases.Add("l5", "iso_8859_5");
+			Handlers.aliases.Add("csKOI8R", "koi8_r");
+			Handlers.aliases.Add("koi", "koi8_r");
+			Handlers.aliases.Add("koi8", "koi8_r");
+			Handlers.aliases.Add("koi8r", "koi8_r");
+			Handlers.aliases.Add("koi8ru", "koi8_u");
+			Handlers.aliases.Add("x-cp1251", "windows_1251");
+			Handlers.aliases.Add("csISOLatinGreek", "iso_8859_7");
+			Handlers.aliases.Add("ECMA_118", "iso_8859_7");
+			Handlers.aliases.Add("ELOT_928", "iso_8859_7");
+			Handlers.aliases.Add("greek", "iso_8859_7");
+			Handlers.aliases.Add("greek8", "iso_8859_7");
+			Handlers.aliases.Add("ISO_8859_7:1987", "iso_8859_7");
+			Handlers.aliases.Add("iso_ir_126", "iso_8859_7");
+			Handlers.aliases.Add("csISOLatinHebrew", "iso_8859_8");
+			Handlers.aliases.Add("hebrew", "iso_8859_8");
+			Handlers.aliases.Add("ISO_8859_8:1988", "iso_8859_8");
+			Handlers.aliases.Add("iso_ir_138", "iso_8859_8");
+			Handlers.aliases.Add("csShiftJIS", "shift_jis");
+			Handlers.aliases.Add("csWindows31J", "shift_jis");
+			Handlers.aliases.Add("ms_Kanji", "shift_jis");
+			Handlers.aliases.Add("shift-jis", "shift_jis");
+			Handlers.aliases.Add("x-ms-cp932", "shift_jis");
+			Handlers.aliases.Add("x-sjis", "shift_jis");
+			Handlers.aliases.Add("csISOLatin3", "iso_8859_3");
+			Handlers.aliases.Add("ISO_8859_3:1988", "iso_8859_3");
+			Handlers.aliases.Add("iso_ir_109", "iso_8859_3");
+			Handlers.aliases.Add("l3", "iso_8859_3");
+			Handlers.aliases.Add("latin3", "iso_8859_3");
+			Handlers.aliases.Add("csISOLatin9", "iso_8859_15");
+			Handlers.aliases.Add("l9", "iso_8859_15");
+			Handlers.aliases.Add("latin9", "iso_8859_15");
+			Handlers.aliases.Add("cp437", "ibm437");
+			Handlers.aliases.Add("csPC8", "ibm437");
+			Handlers.aliases.Add("CodePage437", "ibm437");
+			Handlers.aliases.Add("DOS_874", "windows_874");
+			Handlers.aliases.Add("iso_8859_11", "windows_874");
+			Handlers.aliases.Add("TIS_620", "windows_874");
+		}
+	}
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+using System.Collections;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Security;
+using System.Text;
+
+namespace I18N.Common
+{
+	public class Manager
+	{
+		private const string hex = "0123456789abcdef";
+
+		private static Manager manager;
+
+		private Hashtable handlers;
+
+		private Hashtable active;
+
+		private Hashtable assemblies;
+
+		private static readonly object lockobj = new object();
+
+		public static Manager PrimaryManager
+		{
+			get
+			{
+				object obj = Manager.lockobj;
+				Manager result;
+				lock (obj)
+				{
+					if (Manager.manager == null)
+					{
+						Manager.manager = new Manager();
+					}
+					result = Manager.manager;
+				}
+				return result;
+			}
+		}
+
+		private Manager()
+		{
+			this.handlers = new Hashtable(CaseInsensitiveHashCodeProvider.Default, CaseInsensitiveComparer.Default);
+			this.active = new Hashtable(16);
+			this.assemblies = new Hashtable(8);
+			this.LoadClassList();
+		}
+
+		private static string Normalize(string name)
+		{
+			return name.ToLower(CultureInfo.InvariantCulture).Replace('-', '_');
+		}
+
+		public Encoding GetEncoding(int codePage)
+		{
+			return this.Instantiate("CP" + codePage.ToString()) as Encoding;
+		}
+
+		public Encoding GetEncoding(string name)
+		{
+			if (name == null)
+			{
+				return null;
+			}
+			string text = name;
+			name = Manager.Normalize(name);
+			Encoding encoding = this.Instantiate("ENC" + name) as Encoding;
+			if (encoding == null)
+			{
+				encoding = (this.Instantiate(name) as Encoding);
+			}
+			if (encoding == null)
+			{
+				string alias = Handlers.GetAlias(name);
+				if (alias != null)
+				{
+					encoding = (this.Instantiate("ENC" + alias) as Encoding);
+					if (encoding == null)
+					{
+						encoding = (this.Instantiate(alias) as Encoding);
+					}
+				}
+			}
+			if (encoding == null)
+			{
+				return null;
+			}
+			if (text.IndexOf('_') > 0 && encoding.WebName.IndexOf('-') > 0)
+			{
+				return null;
+			}
+			if (text.IndexOf('-') > 0 && encoding.WebName.IndexOf('_') > 0)
+			{
+				return null;
+			}
+			return encoding;
+		}
+
+		public CultureInfo GetCulture(int culture, bool useUserOverride)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.Append("0123456789abcdef"[culture >> 12 & 15]);
+			stringBuilder.Append("0123456789abcdef"[culture >> 8 & 15]);
+			stringBuilder.Append("0123456789abcdef"[culture >> 4 & 15]);
+			stringBuilder.Append("0123456789abcdef"[culture & 15]);
+			string str = stringBuilder.ToString();
+			if (useUserOverride)
+			{
+				object obj = this.Instantiate("CIDO" + str);
+				if (obj != null)
+				{
+					return obj as CultureInfo;
+				}
+			}
+			return this.Instantiate("CID" + str) as CultureInfo;
+		}
+
+		public CultureInfo GetCulture(string name, bool useUserOverride)
+		{
+			if (name == null)
+			{
+				return null;
+			}
+			name = Manager.Normalize(name);
+			if (useUserOverride)
+			{
+				object obj = this.Instantiate("CNO" + name.ToString());
+				if (obj != null)
+				{
+					return obj as CultureInfo;
+				}
+			}
+			return this.Instantiate("CN" + name.ToString()) as CultureInfo;
+		}
+
+		internal object Instantiate(string name)
+		{
+			object result;
+			lock (this)
+			{
+				object obj = this.active[name];
+				if (obj != null)
+				{
+					result = obj;
+				}
+				else
+				{
+					string text = (string)this.handlers[name];
+					if (text == null)
+					{
+						result = null;
+					}
+					else
+					{
+						Assembly assembly = (Assembly)this.assemblies[text];
+						if (assembly == null)
+						{
+							try
+							{
+								AssemblyName name2 = typeof(Manager).Assembly.GetName();
+								name2.Name = text;
+								assembly = Assembly.Load(name2);
+							}
+							catch (SystemException)
+							{
+								assembly = null;
+							}
+							if (assembly == null)
+							{
+								result = null;
+								return result;
+							}
+							this.assemblies[text] = assembly;
+						}
+						Type type = assembly.GetType(text + "." + name, false, true);
+						if (type == null)
+						{
+							result = null;
+						}
+						else
+						{
+							try
+							{
+								obj = type.InvokeMember(string.Empty, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.CreateInstance, null, null, null, null, null, null);
+							}
+							catch (MissingMethodException)
+							{
+								result = null;
+								return result;
+							}
+							catch (SecurityException)
+							{
+								result = null;
+								return result;
+							}
+							this.active.Add(name, obj);
+							result = obj;
+						}
+					}
+				}
+			}
+			return result;
+		}
+
+		private void LoadClassList()
+		{
+			FileStream file;
+			try
+			{
+				file = Assembly.GetExecutingAssembly().GetFile("I18N-handlers.def");
+				if (file == null)
+				{
+					this.LoadInternalClasses();
+					return;
+				}
+			}
+			catch (FileLoadException)
+			{
+				this.LoadInternalClasses();
+				return;
+			}
+			StreamReader streamReader = new StreamReader(file);
+			string text;
+			while ((text = streamReader.ReadLine()) != null)
+			{
+				if (text.Length != 0 && text[0] != '#')
+				{
+					int num = text.LastIndexOf('.');
+					if (num != -1)
+					{
+						string key = text.Substring(num + 1);
+						if (!this.handlers.Contains(key))
+						{
+							this.handlers.Add(key, text.Substring(0, num));
+						}
+					}
+				}
+			}
+			streamReader.Close();
+		}
+
+		private void LoadInternalClasses()
+		{
+			string[] list = Handlers.List;
+			for (int i = 0; i < list.Length; i++)
+			{
+				string text = list[i];
+				int num = text.LastIndexOf('.');
+				if (num != -1)
+				{
+					string key = text.Substring(num + 1);
+					if (!this.handlers.Contains(key))
+					{
+						this.handlers.Add(key, text.Substring(0, num));
+					}
+				}
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+namespace I18N.Common
+{
+	[Serializable]
+	public abstract class MonoEncoding : Encoding
+	{
+		private readonly int win_code_page;
+
+		public override int WindowsCodePage
+		{
+			get
+			{
+				return (this.win_code_page == 0) ? base.WindowsCodePage : this.win_code_page;
+			}
+		}
+
+		public MonoEncoding(int codePage) : this(codePage, 0)
+		{
+		}
+
+		public MonoEncoding(int codePage, int windowsCodePage) : base(codePage)
+		{
+			this.win_code_page = windowsCodePage;
+		}
+
+		public unsafe void HandleFallback(ref EncoderFallbackBuffer buffer, char* chars, ref int charIndex, ref int charCount, byte* bytes, ref int byteIndex, ref int byteCount)
+		{
+			if (buffer == null)
+			{
+				buffer = base.EncoderFallback.CreateFallbackBuffer();
+			}
+			if (char.IsSurrogate(chars[charIndex]) && charCount > 0 && char.IsSurrogate(chars[charIndex + 1]))
+			{
+				buffer.Fallback(chars[charIndex], chars[charIndex + 1], charIndex);
+				charIndex++;
+				charCount--;
+			}
+			else
+			{
+				buffer.Fallback(chars[charIndex], charIndex);
+			}
+			char[] array = new char[buffer.Remaining];
+			int num = 0;
+			while (buffer.Remaining > 0)
+			{
+				array[num++] = buffer.GetNextChar();
+			}
+			fixed (char* chars2 = (array != null && array.Length != 0) ? ref array[0] : ref *null)
+			{
+				byteIndex += this.GetBytes(chars2, array.Length, bytes + byteIndex, byteCount);
+			}
+		}
+
+		public unsafe override int GetByteCount(char[] chars, int index, int count)
+		{
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (index < 0 || index > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || count > chars.Length - index)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			if (count == 0)
+			{
+				return 0;
+			}
+			fixed (char* ptr = (chars != null && chars.Length != 0) ? ref chars[0] : ref *null)
+			{
+				return this.GetByteCountImpl(ptr + index, count);
+			}
+		}
+
+		public unsafe override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
+		{
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (charIndex < 0 || charIndex > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (charCount < 0 || charCount > chars.Length - charIndex)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_Array"));
+			}
+			if (byteIndex < 0 || byteIndex > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (bytes.Length - byteIndex < charCount)
+			{
+				throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+			}
+			if (charCount == 0)
+			{
+				return 0;
+			}
+			fixed (char* ptr = (chars != null && chars.Length != 0) ? ref chars[0] : ref *null)
+			{
+				fixed (byte* ptr2 = (bytes != null && bytes.Length != 0) ? ref bytes[0] : ref *null)
+				{
+					return this.GetBytesImpl(ptr + charIndex, charCount, ptr2 + byteIndex, bytes.Length - byteIndex);
+				}
+			}
+		}
+
+		public unsafe override int GetBytes(string s, int charIndex, int charCount, byte[] bytes, int byteIndex)
+		{
+			if (s == null)
+			{
+				throw new ArgumentNullException("s");
+			}
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (charIndex < 0 || charIndex > s.Length)
+			{
+				throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_StringIndex"));
+			}
+			if (charCount < 0 || charCount > s.Length - charIndex)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_StringRange"));
+			}
+			if (byteIndex < 0 || byteIndex > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (bytes.Length - byteIndex < charCount)
+			{
+				throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+			}
+			if (charCount == 0 || bytes.Length == byteIndex)
+			{
+				return 0;
+			}
+			fixed (char* ptr = s + RuntimeHelpers.OffsetToStringData / 2)
+			{
+				fixed (byte* ptr2 = (bytes != null && bytes.Length != 0) ? ref bytes[0] : ref *null)
+				{
+					return this.GetBytesImpl(ptr + charIndex, charCount, ptr2 + byteIndex, bytes.Length - byteIndex);
+				}
+			}
+		}
+
+		public unsafe override int GetByteCount(char* chars, int count)
+		{
+			return this.GetByteCountImpl(chars, count);
+		}
+
+		public unsafe override int GetBytes(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			return this.GetBytesImpl(chars, charCount, bytes, byteCount);
+		}
+
+		public unsafe abstract int GetByteCountImpl(char* chars, int charCount);
+
+		public unsafe abstract int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount);
+	}
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+using System.Text;
+
+namespace I18N.Common
+{
+	public abstract class MonoEncoder : Encoder
+	{
+		private MonoEncoding encoding;
+
+		public MonoEncoder(MonoEncoding encoding)
+		{
+			this.encoding = encoding;
+		}
+
+		public unsafe override int GetByteCount(char[] chars, int index, int count, bool refresh)
+		{
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (index < 0 || index > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || count > chars.Length - index)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			if (count == 0)
+			{
+				return 0;
+			}
+			fixed (char* ptr = (chars != null && chars.Length != 0) ? ref chars[0] : ref *null)
+			{
+				return this.GetByteCountImpl(ptr + index, count, refresh);
+			}
+		}
+
+		public unsafe override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex, bool flush)
+		{
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (charIndex < 0 || charIndex > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (charCount < 0 || charCount > chars.Length - charIndex)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_Array"));
+			}
+			if (byteIndex < 0 || byteIndex > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (bytes.Length - byteIndex < charCount)
+			{
+				throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+			}
+			if (charCount == 0)
+			{
+				return 0;
+			}
+			fixed (char* ptr = (chars != null && chars.Length != 0) ? ref chars[0] : ref *null)
+			{
+				fixed (byte* ptr2 = (bytes != null && bytes.Length != 0) ? ref bytes[0] : ref *null)
+				{
+					return this.GetBytesImpl(ptr + charIndex, charCount, ptr2 + byteIndex, bytes.Length - byteIndex, flush);
+				}
+			}
+		}
+
+		public unsafe abstract int GetByteCountImpl(char* chars, int charCount, bool refresh);
+
+		public unsafe abstract int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount, bool refresh);
+
+		public unsafe override int GetBytes(char* chars, int charCount, byte* bytes, int byteCount, bool flush)
+		{
+			return this.GetBytesImpl(chars, charCount, bytes, byteCount, flush);
+		}
+
+		public unsafe void HandleFallback(char* chars, ref int charIndex, ref int charCount, byte* bytes, ref int byteIndex, ref int byteCount)
+		{
+			EncoderFallbackBuffer fallbackBuffer = base.FallbackBuffer;
+			this.encoding.HandleFallback(ref fallbackBuffer, chars, ref charIndex, ref charCount, bytes, ref byteIndex, ref byteCount);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.dll
+
+using System;
+
+namespace I18N.Common
+{
+	public sealed class Strings
+	{
+		public static string GetString(string tag)
+		{
+			switch (tag)
+			{
+			case "ArgRange_Array":
+				return "Argument index is out of array range.";
+			case "Arg_InsufficientSpace":
+				return "Insufficient space in the argument array.";
+			case "ArgRange_NonNegative":
+				return "Non-negative value is expected.";
+			case "NotSupp_MissingCodeTable":
+				return "This encoding is not supported. Code table is missing.";
+			case "ArgRange_StringIndex":
+				return "String index is out of range.";
+			case "ArgRange_StringRange":
+				return "String length is out of range.";
+			}
+			throw new ArgumentException(string.Format("Unexpected error tag name:  {0}", tag));
+		}
+	}
+}
+

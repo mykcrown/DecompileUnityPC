@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "Skybox_Mist"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _ALPHABLEND_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: 
+  disabledShaderPasses: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DistortTexture:
+        m_Texture: {fileID: 2800000, guid: 3f792c4c3ad34d3c828a4a083e660f7e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture01:
+        m_Texture: {fileID: 2800000, guid: 689a45970fd74cfaa1c2b7f110149e83, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture02:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Clouds_Opacity: 1
+    - _Cutoff: 0.5
+    - _DepthFadeAdjust: 0.1
+    - _DetailNormalMapScale: 1
+    - _Distortion: 0
+    - _DistortionAmount: 0.1452992
+    - _Distortion_USpeed: 0.01
+    - _Distortion_VSpeed: 0
+    - _DstBlend: 10
+    - _EmissiveStrength: 1
+    - _FresnelScale: 0.75
+    - _Gamma: 2
+    - _GerstnerIntensity: 1
+    - _Global_Opacity: 0.248
+    - _Gloss: 0.83
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 2
+    - _OcclusionStrength: 1
+    - _Offset: 0
+    - _Opacity: 1
+    - _OpacityAdjust: 1
+    - _OpacityBlend: 0
+    - _Parallax: 0.02
+    - _RefractionMask: 1
+    - _Shininess: 200
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 5
+    - _Tex01USpeed: 0
+    - _Tex01VSpeed: 0
+    - _Tex02USpeed: 0
+    - _Tex02VSpeed: 0
+    - _TimeParam01: 1
+    - _TimeParam02: 1
+    - _TimeParam03: 1
+    - _TimeToggle01: 0
+    - _TimeToggle02: 0
+    - _TimeToggle03: 0
+    - _Tint: 0
+    - _UPan_01: 0
+    - _UPan_02: 0
+    - _UPand_03: 0
+    - _USpeed_01: 1
+    - _USpeed_02: 1
+    - _UVDistortIntensity: 0.044
+    - _UVSec: 0
+    - _UseFakeTime: 0
+    - _VPan_01: 0
+    - _VPan_02: 0
+    - _VPan_03: -0.5985409
+    - _VSpeed_01: 0
+    - _VSpeed_02: 0
+    - _ZWrite: 0
+    - __dirty: 1
+    - _node_8238: 3.17
+    m_Colors:
+    - _AnimationDirection: {r: 1, g: 1, b: 1, a: 1}
+    - _AnimationTiling: {r: 2.2, g: 2.2, b: -1.1, a: -1.1}
+    - _BaseColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
+    - _BumpDirection: {r: 1, g: 1, b: -1, a: 1}
+    - _BumpTiling: {r: 1, g: 1, b: -2, a: 3}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DistortParams: {r: 1, g: 1, b: 2, a: 1.15}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FakeTime: {r: 0, g: 0, b: 0, a: 0}
+    - _Foam: {r: 0.1, g: 0.375, b: 0, a: 0}
+    - _FogColorAlpha: {r: 0.134, g: 0.134, b: 0.134, a: 0}
+    - _GAmplitude: {r: 0.3, g: 0.35, b: 0.25, a: 0.25}
+    - _GDirectionAB: {r: 0.3, g: 0.85, b: 0.85, a: 0.25}
+    - _GDirectionCD: {r: 0.1, g: 0.9, b: 0.5, a: 0.5}
+    - _GFrequency: {r: 1.3, g: 1.35, b: 1.25, a: 1.25}
+    - _GSpeed: {r: 1.2, g: 1.375, b: 1.1, a: 1.5}
+    - _GSteepness: {r: 1, g: 1, b: 1, a: 1}
+    - _InvFadeParemeter: {r: 0.15, g: 0.15, b: 0.5, a: 1}
+    - _ReflectionColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Specular: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecularColor: {r: 0.72, g: 0.72, b: 0.72, a: 1}
+    - _TintColor: {r: 0, g: 0.6689658, b: 1, a: 1}
+    - _WorldLightDir: {r: 0, g: 0.1, b: -0.5, a: 0}
+    - _node_5539: {r: 0.5, g: 0.5, b: 0.5, a: 1}

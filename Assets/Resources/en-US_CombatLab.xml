@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  
+  <string name="gameData.stageSelect.CombatLab">COMBAT LAB</string>
+  <string name="gameData.stagePreview.CombatLab">Two large platforms on opposite edges of the stage</string>
+  <string name="gameData.stageLoading.CombatLab1">Ashani perfected her power suit technology training inside Combat Lab.</string>
+  <string name="gameData.stageLoading.CombatLab2">Combat Lab is located in Ashani's hometown of Oakland, California.</string>
+  <string name="gameData.stageLoading.CombatLab3">Ashani's pet black lab is named Johns and can be unlocked as a charm in the gallery.</string>
+  <string name="gameData.stageLoading.CombatLab4">Ashani was the first Icon to join the league from Earth.</string>
+  <string name="gameData.stageLoading.CombatLab5">Ashani was built by an ancient civilization.</string>
+  
+</resources>

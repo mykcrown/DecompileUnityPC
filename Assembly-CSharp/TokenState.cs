@@ -1,0 +1,14 @@
+﻿using System;
+
+// Token: 0x020008FA RID: 2298
+public enum TokenState
+{
+	// Token: 0x040028ED RID: 10477
+	TRANSITION_TO_ATTACHED,
+	// Token: 0x040028EE RID: 10478
+	ATTACHED,
+	// Token: 0x040028EF RID: 10479
+	TRANSITION_TO_STATIC,
+	// Token: 0x040028F0 RID: 10480
+	STATIC
+}

@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "vfxm_LootBoxPortal_Left"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: 2600
+  stringTagMap: 
+  disabledShaderPasses: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BackgroundMap:
+        m_Texture: {fileID: 2800000, guid: 8e8a8d24a271474790ef429042eade0f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionNormalMap:
+        m_Texture: {fileID: 2800000, guid: ff2d35360b174fcbba3a96ded4b8c349, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _R1Mask:
+        m_Texture: {fileID: 2800000, guid: 4000e8ab5dd0496d87dd9037fab3ba27, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _R2Mask:
+        m_Texture: {fileID: 2800000, guid: 1741d5029bf9477185dab0c91aa367e3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RingMap:
+        m_Texture: {fileID: 2800000, guid: 650d9aaba8dc4124bd78537ca90c127b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AbsorptionStrength: 4.76
+    - _BackgroundDistance: 1000
+    - _BackgroundPanSpeed: -0.1
+    - _BackgroundScale: 0.175
+    - _BlendDistortion: 0.94
+    - _Blending: 0
+    - _BorderSpeed: 2
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DistortAmplitude: 0.5
+    - _DistortBackgroundBlend: 0.79
+    - _DistortBlend: 0.79
+    - _DistortFrequency: 0
+    - _DistortMotionSpeed: 2.5
+    - _DistortOffset: 0.121
+    - _DistortOpacity: 0.856
+    - _DistortRippleSpeed: 0.816
+    - _DistortSpaceBlend: 0.618
+    - _DistortSpeed: 0.25
+    - _DistortStrength: 0.06
+    - _Distortion: 0.292
+    - _DistortionScale: 1.75
+    - _DstBlend: 0
+    - _Float0: 0.1
+    - _Float1: -0.2
+    - _Float2: 24
+    - _Float3: -0.5
+    - _Float4: 2.5
+    - _Float5: 0.9
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _HDRMultiplier: 11.3
+    - _Height: 3
+    - _Keyword0: 0
+    - _Keyword1: 0
+    - _MB: 0.25
+    - _Metallic: 0
+    - _Mode: 0
+    - _MultiplierAlpha: 0.25
+    - _MultiplierRedGreen: 2.5
+    - _NoisePanSpeed01: 0
+    - _NoisePanSpeed02: 0
+    - _NoisePanSpeedU: 0.127
+    - _OcclusionStrength: 1
+    - _Opacity: 1
+    - _Parallax: 0.02
+    - _R1Strength: 4
+    - _R2Strength: 1.8
+    - _RSA: 1.5
+    - _RSB: 0.5
+    - _RSG1: 0.35
+    - _RSG2: -0.25
+    - _RippleScale: 3
+    - _RippleSpeed: 5.1
+    - _RotationSpeed: -9.8
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UIMaskDarkness: 0
+    - _UIMaskOffset: 3
+    - _UIMaskSize: 0.71
+    - _UIMaskSmoothness: 0.8
+    - _UVSec: 0
+    - _UseBorderAlpha: 0
+    - _UseNoiseAlpha01: 0
+    - _UseNoiseAlpha02: 0
+    - _UseTextureAlpha: 0
+    - _UseTextureAlpha01: 0
+    - _UseTextureAlpha02: 0
+    - _UseTextureAlpha03: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _AbsorptionScale: {r: 0.63, g: 1, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.5686275, b: 0.9058824, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HDRColor: {r: 0, g: 0.5686275, b: 0.9058824, a: 1}
+    - _R1ATS: {r: 0.5, g: 1, b: 0, a: 0.25}
+    - _R1BTS: {r: 0.1, g: 1, b: -0.25, a: 0.75}
+    - _R1GTS: {r: 0.25, g: 1, b: 0, a: 1}
+    - _R1RTS: {r: 1, g: 1, b: 0, a: 0}
+    - _R2BTS: {r: 1, g: 1, b: -0.25, a: 0}
+    - _R2GTS: {r: 1, g: 1, b: -0.25, a: 0.25}
+    - _R2RTS: {r: 1, g: 1, b: 0, a: 0}
+    - _RingLayer1AlphaTilingSpeed: {r: 0.15, g: 1, b: 0, a: 0.25}
+    - _TSR: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector0: {r: 7.54, g: 8.13, b: 0, a: 0}
+    - _Vector1: {r: 1, g: 1, b: 0.1, a: -0.25}
+    - _Vector2: {r: 1, g: 1, b: 0, a: 0}
+    - _Vector3: {r: 0.75, g: 1, b: 0, a: 0.25}

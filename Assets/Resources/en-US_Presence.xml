@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="discord.details.inGame">In Game</string>
+	<string name="discord.state.Playing">Playing (#*)</string>
+	<string name="discord.state.CustomizingCharacter">Customizing Icons</string>
+	<string name="discord.state.InCustomLobby">In a Custom Lobby</string>
+	<string name="discord.state.InCharacterSelect">Selecting a character</string>
+	<string name="discord.state.Loading">Loading into a match</string>
+	<string name="discord.state.InStageSelect">Selecting a stage</string>
+	<string name="discord.state.Idle">Idle</string>
+	<string name="discord.state.InQueue">In Queue(#*)</string>
+	<string name="discord.presence.1v1">1v1</string>
+	<string name="discord.presence.FFA">Free For All</string>
+	<string name="discord.presence.CustomLobby">Custom Lobby</string>
+	<string name="discord.presence.Local">Offline</string>
+	<string name="discord.presence.Training">Training</string>
+	<string name="discord.presence.Playing.portrait">portrait-#*</string>
+	<string name="discord.presence.Playing.portraitCaption">#* Level #*</string>
+
+	<string name="steam.state.Playing">Playing (#*)</string>
+	<string name="steam.state.InCustomLobby">In a Custom Lobby</string>
+	<string name="steam.state.CustomizingCharacter">Customizing Icons</string>
+	<string name="steam.state.InCharacterSelect">Selecting a character</string>
+	<string name="steam.state.InStageSelect">Selecting a stage</string>
+	<string name="steam.state.Loading">Loading into a match</string>
+	<string name="steam.state.Idle">Idle</string>
+	<string name="steam.state.InQueue">In Queue(#*)</string>
+	<string name="steam.presence.1v1">1v1</string>
+	<string name="steam.presence.FFA">Free For All</string>
+	<string name="steam.presence.CustomLobby">Custom Lobby</string>
+	<string name="steam.presence.Local">Offline</string>
+</resources>

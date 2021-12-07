@@ -1,0 +1,4018 @@
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+internal static class Consts
+{
+	public const string MonoVersion = "2.6.5.0";
+
+	public const string MonoCompany = "MONO development team";
+
+	public const string MonoProduct = "MONO Common language infrastructure";
+
+	public const string MonoCopyright = "(c) various MONO Authors";
+
+	public const string FxVersion = "2.0.5.0";
+
+	public const string VsVersion = "9.0.0.0";
+
+	public const string FxFileVersion = "3.0.40818.0";
+
+	public const string VsFileVersion = "9.0.50727.42";
+
+	public const string AssemblyI18N = "I18N, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMicrosoft_VisualStudio = "Microsoft.VisualStudio, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMicrosoft_VisualStudio_Web = "Microsoft.VisualStudio.Web, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMicrosoft_VSDesigner = "Microsoft.VSDesigner, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblyMono_Http = "Mono.Http, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Posix = "Mono.Posix, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Security = "Mono.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyMono_Messaging_RabbitMQ = "Mono.Messaging.RabbitMQ, Version=2.0.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756";
+
+	public const string AssemblyCorlib = "mscorlib, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem = "System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Data = "System.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Design = "System.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_DirectoryServices = "System.DirectoryServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Drawing = "System.Drawing, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Drawing_Design = "System.Drawing.Design, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Messaging = "System.Messaging, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Security = "System.Security, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_ServiceProcess = "System.ServiceProcess, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Web = "System.Web, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+
+	public const string AssemblySystem_Windows_Forms = "System.Windows.Forms, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+
+	public const string AssemblySystem_Core = "System.Core, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089";
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class CP932 : MonoEncoding
+	{
+		private const int SHIFTJIS_CODE_PAGE = 932;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "iso-2022-jp";
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return "Japanese (Shift-JIS)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "iso-2022-jp";
+			}
+		}
+
+		public override bool IsBrowserDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsBrowserSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "shift_jis";
+			}
+		}
+
+		public override int WindowsCodePage
+		{
+			get
+			{
+				return 932;
+			}
+		}
+
+		public CP932() : base(932)
+		{
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			int num = 0;
+			int num2 = 0;
+			byte[] cjkToJis = JISConvert.Convert.cjkToJis;
+			byte[] extraToJis = JISConvert.Convert.extraToJis;
+			while (count > 0)
+			{
+				int num3 = (int)chars[num++];
+				count--;
+				num2++;
+				if (num3 >= 128)
+				{
+					if (num3 < 256)
+					{
+						if (num3 == 162 || num3 == 163 || num3 == 167 || num3 == 168 || num3 == 172 || num3 == 176 || num3 == 177 || num3 == 180 || num3 == 182 || num3 == 215 || num3 == 247)
+						{
+							num2++;
+						}
+					}
+					else if (num3 >= 913 && num3 <= 1105)
+					{
+						num2++;
+					}
+					else if (num3 >= 8208 && num3 <= 40869)
+					{
+						int num4 = (num3 - 8208) * 2;
+						num4 = ((int)cjkToJis[num4] | (int)cjkToJis[num4 + 1] << 8);
+						if (num4 >= 256)
+						{
+							num2++;
+						}
+					}
+					else if (num3 >= 57344 && num3 <= 59223)
+					{
+						num2++;
+					}
+					else if (num3 >= 65281 && num3 <= 65519)
+					{
+						int num4 = (num3 - 65281) * 2;
+						num4 = ((int)extraToJis[num4] | (int)extraToJis[num4 + 1] << 8);
+						if (num4 >= 256)
+						{
+							num2++;
+						}
+					}
+				}
+			}
+			return num2;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			int num3 = num2;
+			int num4 = byteCount;
+			byte[] cjkToJis = JISConvert.Convert.cjkToJis;
+			byte[] greekToJis = JISConvert.Convert.greekToJis;
+			byte[] extraToJis = JISConvert.Convert.extraToJis;
+			while (charCount > 0)
+			{
+				int num5 = (int)chars[num++];
+				charCount--;
+				if (num3 >= num4)
+				{
+					throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+				}
+				if (num5 < 128)
+				{
+					bytes[num3++] = (byte)num5;
+				}
+				else if (num5 < 256)
+				{
+					if (num5 == 162 || num5 == 163 || num5 == 167 || num5 == 168 || num5 == 172 || num5 == 176 || num5 == 177 || num5 == 180 || num5 == 182 || num5 == 215 || num5 == 247)
+					{
+						if (num3 + 1 >= num4)
+						{
+							throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+						}
+						int num6 = num5;
+						switch (num6)
+						{
+						case 162:
+							bytes[num3++] = 129;
+							bytes[num3++] = 145;
+							continue;
+						case 163:
+							bytes[num3++] = 129;
+							bytes[num3++] = 146;
+							continue;
+						case 164:
+						case 165:
+						case 166:
+							IL_15B:
+							switch (num6)
+							{
+							case 176:
+								bytes[num3++] = 129;
+								bytes[num3++] = 139;
+								continue;
+							case 177:
+								bytes[num3++] = 129;
+								bytes[num3++] = 125;
+								continue;
+							case 178:
+							case 179:
+							case 181:
+								IL_184:
+								if (num6 == 172)
+								{
+									bytes[num3++] = 129;
+									bytes[num3++] = 202;
+									continue;
+								}
+								if (num6 == 215)
+								{
+									bytes[num3++] = 129;
+									bytes[num3++] = 126;
+									continue;
+								}
+								if (num6 != 247)
+								{
+									continue;
+								}
+								bytes[num3++] = 129;
+								bytes[num3++] = 128;
+								continue;
+							case 180:
+								bytes[num3++] = 129;
+								bytes[num3++] = 76;
+								continue;
+							case 182:
+								bytes[num3++] = 129;
+								bytes[num3++] = 247;
+								continue;
+							}
+							goto IL_184;
+						case 167:
+							bytes[num3++] = 129;
+							bytes[num3++] = 152;
+							continue;
+						case 168:
+							bytes[num3++] = 129;
+							bytes[num3++] = 78;
+							continue;
+						}
+						goto IL_15B;
+					}
+					else if (num5 == 165)
+					{
+						bytes[num3++] = 92;
+					}
+					else
+					{
+						base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num3, ref byteCount);
+					}
+				}
+				else
+				{
+					int num7;
+					if (num5 >= 913 && num5 <= 1105)
+					{
+						num7 = (num5 - 913) * 2;
+						num7 = ((int)greekToJis[num7] | (int)greekToJis[num7 + 1] << 8);
+					}
+					else if (num5 >= 8208 && num5 <= 40869)
+					{
+						num7 = (num5 - 8208) * 2;
+						num7 = ((int)cjkToJis[num7] | (int)cjkToJis[num7 + 1] << 8);
+					}
+					else if (num5 >= 57344 && num5 <= 59223)
+					{
+						int num8 = num5 - 57344;
+						num7 = (num8 / 188 << 8) + num8 % 188 + 61504;
+						if (num7 % 256 >= 127)
+						{
+							num7++;
+						}
+					}
+					else if (num5 >= 65281 && num5 <= 65376)
+					{
+						num7 = (num5 - 65281) * 2;
+						num7 = ((int)extraToJis[num7] | (int)extraToJis[num7 + 1] << 8);
+					}
+					else if (num5 >= 65376 && num5 <= 65440)
+					{
+						num7 = num5 - 65376 + 160;
+					}
+					else
+					{
+						num7 = 0;
+					}
+					if (num7 == 0)
+					{
+						base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num3, ref byteCount);
+					}
+					else if (num7 < 256)
+					{
+						bytes[num3++] = (byte)num7;
+					}
+					else
+					{
+						if (num3 + 1 >= num4)
+						{
+							throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+						}
+						if (num7 < 32768)
+						{
+							num7 -= 256;
+							num5 = num7 / 188;
+							num7 = num7 % 188 + 64;
+							if (num7 >= 127)
+							{
+								num7++;
+							}
+							if (num5 < 31)
+							{
+								bytes[num3++] = (byte)(num5 + 129);
+							}
+							else
+							{
+								bytes[num3++] = (byte)(num5 - 31 + 224);
+							}
+							bytes[num3++] = (byte)num7;
+						}
+						else if (num7 >= 61504 && num7 <= 63996)
+						{
+							bytes[num3++] = (byte)(num7 / 256);
+							bytes[num3++] = (byte)(num7 % 256);
+						}
+						else
+						{
+							bytes[num3++] = 63;
+							bytes[num3++] = 63;
+						}
+					}
+				}
+			}
+			return num3 - num2;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return new CP932Decoder(JISConvert.Convert).GetCharCount(bytes, index, count, true);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return new CP932Decoder(JISConvert.Convert).GetChars(bytes, byteIndex, byteCount, chars, charIndex, true);
+		}
+
+		public override int GetMaxByteCount(int charCount)
+		{
+			if (charCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return charCount * 2;
+		}
+
+		public override int GetMaxCharCount(int byteCount)
+		{
+			if (byteCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return byteCount;
+		}
+
+		public override Decoder GetDecoder()
+		{
+			return new CP932Decoder(JISConvert.Convert);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+
+namespace I18N.CJK
+{
+	internal sealed class CP932Decoder : DbcsEncoding.DbcsDecoder
+	{
+		private new JISConvert convert;
+
+		private int last_byte_count;
+
+		private int last_byte_chars;
+
+		public CP932Decoder(JISConvert convert) : base(null)
+		{
+			this.convert = convert;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return this.GetCharCount(bytes, index, count, false);
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count, bool refresh)
+		{
+			base.CheckRange(bytes, index, count);
+			int num = 0;
+			int num2 = this.last_byte_count;
+			while (count > 0)
+			{
+				int num3 = (int)bytes[index++];
+				count--;
+				if (num2 == 0)
+				{
+					if ((num3 >= 129 && num3 <= 159) || (num3 >= 224 && num3 <= 239))
+					{
+						num2 = num3;
+					}
+					num++;
+				}
+				else
+				{
+					num2 = 0;
+				}
+			}
+			if (refresh)
+			{
+				if (num2 != 0)
+				{
+					num++;
+				}
+				this.last_byte_count = 0;
+			}
+			else
+			{
+				this.last_byte_count = num2;
+			}
+			return num;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return this.GetChars(bytes, byteIndex, byteCount, chars, charIndex, false);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, bool refresh)
+		{
+			base.CheckRange(bytes, byteIndex, byteCount, chars, charIndex);
+			int num = charIndex;
+			int num2 = chars.Length;
+			int num3 = this.last_byte_chars;
+			byte[] jisx0208ToUnicode = this.convert.jisx0208ToUnicode;
+			while (byteCount > 0)
+			{
+				int num4 = (int)bytes[byteIndex++];
+				byteCount--;
+				if (num3 == 0)
+				{
+					if (num >= num2)
+					{
+						throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "chars");
+					}
+					if ((num4 >= 129 && num4 <= 159) || (num4 >= 224 && num4 <= 239))
+					{
+						num3 = num4;
+					}
+					else if (num4 < 128)
+					{
+						chars[num++] = (char)num4;
+					}
+					else if (num4 >= 161 && num4 <= 223)
+					{
+						chars[num++] = (char)(num4 - 161 + 65377);
+					}
+					else
+					{
+						chars[num++] = '?';
+					}
+				}
+				else
+				{
+					int num5;
+					if (num3 >= 129 && num3 <= 159)
+					{
+						num5 = (num3 - 129) * 188;
+					}
+					else if (num3 >= 240 && num3 <= 252 && num4 <= 252)
+					{
+						num5 = 57344 + (num3 - 240) * 188 + num4;
+						if (num4 > 127)
+						{
+							num5--;
+						}
+					}
+					else
+					{
+						num5 = (num3 - 224 + 31) * 188;
+					}
+					num3 = 0;
+					if (num4 >= 64 && num4 <= 126)
+					{
+						num5 += num4 - 64;
+					}
+					else
+					{
+						if (num4 < 128 || num4 > 252)
+						{
+							chars[num++] = '?';
+							continue;
+						}
+						num5 += num4 - 128 + 63;
+					}
+					num5 *= 2;
+					num5 = ((int)jisx0208ToUnicode[num5] | (int)jisx0208ToUnicode[num5 + 1] << 8);
+					if (num5 != 0)
+					{
+						chars[num++] = (char)num5;
+					}
+					else
+					{
+						chars[num++] = '?';
+					}
+				}
+			}
+			if (refresh)
+			{
+				if (num3 != 0)
+				{
+					chars[num++] = '・';
+				}
+				this.last_byte_chars = 0;
+			}
+			else
+			{
+				this.last_byte_chars = num3;
+			}
+			return num - charIndex;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class ENCshift_jis : CP932
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class CP50220 : ISO2022JPEncoding
+	{
+		public override string EncodingName
+		{
+			get
+			{
+				return "Japanese (JIS)";
+			}
+		}
+
+		public CP50220() : base(50220, false, false)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class CP50221 : ISO2022JPEncoding
+	{
+		public override string EncodingName
+		{
+			get
+			{
+				return "Japanese (JIS-Allow 1 byte Kana)";
+			}
+		}
+
+		public CP50221() : base(50221, true, false)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class CP50222 : ISO2022JPEncoding
+	{
+		public override string EncodingName
+		{
+			get
+			{
+				return "Japanese (JIS-Allow 1 byte Kana - SO/SI)";
+			}
+		}
+
+		public CP50222() : base(50222, true, true)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class ISO2022JPEncoding : MonoEncoding
+	{
+		private readonly bool allow_1byte_kana;
+
+		private readonly bool allow_shift_io;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "iso-2022-jp";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "iso-2022-jp";
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "csISO2022JP";
+			}
+		}
+
+		public ISO2022JPEncoding(int codePage, bool allow1ByteKana, bool allowShiftIO) : base(codePage, 932)
+		{
+			this.allow_1byte_kana = allow1ByteKana;
+			this.allow_shift_io = allowShiftIO;
+		}
+
+		public override int GetMaxByteCount(int charCount)
+		{
+			return charCount / 2 * 5 + 4;
+		}
+
+		public override int GetMaxCharCount(int byteCount)
+		{
+			return byteCount;
+		}
+
+		public override int GetByteCount(char[] chars, int charIndex, int charCount)
+		{
+			return new ISO2022JPEncoder(this, this.allow_1byte_kana, this.allow_shift_io).GetByteCount(chars, charIndex, charCount, true);
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			return new ISO2022JPEncoder(this, this.allow_1byte_kana, this.allow_shift_io).GetByteCountImpl(chars, count, true);
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			return new ISO2022JPEncoder(this, this.allow_1byte_kana, this.allow_shift_io).GetBytesImpl(chars, charCount, bytes, byteCount, true);
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return new ISO2022JPDecoder(this.allow_1byte_kana, this.allow_shift_io).GetCharCount(bytes, index, count);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return new ISO2022JPDecoder(this.allow_1byte_kana, this.allow_shift_io).GetChars(bytes, byteIndex, byteCount, chars, charIndex);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	internal enum ISO2022JPMode
+	{
+		ASCII,
+		JISX0208,
+		JISX0201
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+
+namespace I18N.CJK
+{
+	internal class ISO2022JPEncoder : MonoEncoder
+	{
+		private static JISConvert convert = JISConvert.Convert;
+
+		private readonly bool allow_1byte_kana;
+
+		private readonly bool allow_shift_io;
+
+		private ISO2022JPMode m;
+
+		private bool shifted_in_count;
+
+		private bool shifted_in_conv;
+
+		private static readonly char[] full_width_map = new char[]
+		{
+			'\0',
+			'。',
+			'「',
+			'」',
+			'、',
+			'・',
+			'ヲ',
+			'ァ',
+			'ィ',
+			'ゥ',
+			'ェ',
+			'ォ',
+			'ャ',
+			'ュ',
+			'ョ',
+			'ッ',
+			'ー',
+			'ア',
+			'イ',
+			'ウ',
+			'エ',
+			'オ',
+			'カ',
+			'キ',
+			'ク',
+			'ケ',
+			'コ',
+			'サ',
+			'シ',
+			'ス',
+			'セ',
+			'ソ',
+			'タ',
+			'チ',
+			'ツ',
+			'テ',
+			'ト',
+			'ド',
+			'ナ',
+			'ニ',
+			'ヌ',
+			'ネ',
+			'ハ',
+			'ヒ',
+			'フ',
+			'ヘ',
+			'ホ',
+			'マ',
+			'ミ',
+			'ム',
+			'メ',
+			'モ',
+			'ヤ',
+			'ユ',
+			'ヨ',
+			'ラ',
+			'リ',
+			'ル',
+			'レ',
+			'ロ',
+			'ワ',
+			'ヱ',
+			'ン',
+			'゛',
+			'゜'
+		};
+
+		public ISO2022JPEncoder(MonoEncoding owner, bool allow1ByteKana, bool allowShiftIO) : base(owner)
+		{
+			this.allow_1byte_kana = allow1ByteKana;
+			this.allow_shift_io = allowShiftIO;
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int charCount, bool flush)
+		{
+			int num = 0;
+			int num2 = 0;
+			int i = num;
+			while (i < charCount)
+			{
+				char c = chars[i];
+				if (!this.allow_1byte_kana && c >= '｠' && c <= 'ﾠ')
+				{
+					c = ISO2022JPEncoder.full_width_map[(int)(c - '｠')];
+				}
+				int num3;
+				if (c >= '‐' && c <= '龥')
+				{
+					if (this.shifted_in_count)
+					{
+						this.shifted_in_count = false;
+						num2++;
+					}
+					if (this.m != ISO2022JPMode.JISX0208)
+					{
+						num2 += 3;
+					}
+					this.m = ISO2022JPMode.JISX0208;
+					num3 = (int)((c - '‐') * '\u0002');
+					num3 = ((int)ISO2022JPEncoder.convert.cjkToJis[num3] | (int)ISO2022JPEncoder.convert.cjkToJis[num3 + 1] << 8);
+					goto IL_1DE;
+				}
+				if (c >= '！' && c <= '｠')
+				{
+					if (this.shifted_in_count)
+					{
+						this.shifted_in_count = false;
+						num2++;
+					}
+					if (this.m != ISO2022JPMode.JISX0208)
+					{
+						num2 += 3;
+					}
+					this.m = ISO2022JPMode.JISX0208;
+					num3 = (int)((c - '！') * '\u0002');
+					num3 = ((int)ISO2022JPEncoder.convert.extraToJis[num3] | (int)ISO2022JPEncoder.convert.extraToJis[num3 + 1] << 8);
+					goto IL_1DE;
+				}
+				if (c >= '｠' && c <= 'ﾠ')
+				{
+					if (this.allow_shift_io)
+					{
+						if (!this.shifted_in_count)
+						{
+							num2++;
+							this.shifted_in_count = true;
+						}
+					}
+					else if (this.m != ISO2022JPMode.JISX0201)
+					{
+						num2 += 3;
+						this.m = ISO2022JPMode.JISX0201;
+					}
+					num3 = (int)(c - '｠' + '\u00a0');
+					goto IL_1DE;
+				}
+				if (c < '\u0080')
+				{
+					if (this.shifted_in_count)
+					{
+						this.shifted_in_count = false;
+						num2++;
+					}
+					if (this.m != ISO2022JPMode.ASCII)
+					{
+						num2 += 3;
+					}
+					this.m = ISO2022JPMode.ASCII;
+					num3 = (int)c;
+					goto IL_1DE;
+				}
+				IL_1F6:
+				i++;
+				continue;
+				IL_1DE:
+				if (num3 > 256)
+				{
+					num2 += 2;
+					goto IL_1F6;
+				}
+				num2++;
+				goto IL_1F6;
+			}
+			if (flush)
+			{
+				if (this.shifted_in_count)
+				{
+					this.shifted_in_count = false;
+					num2++;
+				}
+				if (this.m != ISO2022JPMode.ASCII)
+				{
+					num2 += 3;
+				}
+				this.m = ISO2022JPMode.ASCII;
+			}
+			return num2;
+		}
+
+		private unsafe void SwitchMode(byte* bytes, ref int byteIndex, ref int byteCount, ref ISO2022JPMode cur, ISO2022JPMode next)
+		{
+			if (cur == next)
+			{
+				return;
+			}
+			if (byteCount <= 3)
+			{
+				throw new ArgumentOutOfRangeException("Insufficient byte buffer.");
+			}
+			bytes[byteIndex++] = 27;
+			if (next != ISO2022JPMode.JISX0208)
+			{
+				if (next != ISO2022JPMode.JISX0201)
+				{
+					bytes[byteIndex++] = 40;
+					bytes[byteIndex++] = 66;
+				}
+				else
+				{
+					bytes[byteIndex++] = 40;
+					bytes[byteIndex++] = 73;
+				}
+			}
+			else
+			{
+				bytes[byteIndex++] = 36;
+				bytes[byteIndex++] = 66;
+			}
+			cur = next;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount, bool flush)
+		{
+			int num = 0;
+			int num2 = 0;
+			int num3 = num2;
+			int num4 = num + charCount;
+			int i = num;
+			while (i < num4)
+			{
+				char c = chars[i];
+				if (!this.allow_1byte_kana && c >= '｠' && c <= 'ﾠ')
+				{
+					c = ISO2022JPEncoder.full_width_map[(int)(c - '｠')];
+				}
+				int num5;
+				if (c >= '‐' && c <= '龥')
+				{
+					if (this.shifted_in_conv)
+					{
+						bytes[num2++] = 15;
+						this.shifted_in_conv = false;
+						byteCount--;
+					}
+					ISO2022JPMode iSO2022JPMode = this.m;
+					if (iSO2022JPMode != ISO2022JPMode.JISX0208)
+					{
+						this.SwitchMode(bytes, ref num2, ref byteCount, ref this.m, ISO2022JPMode.JISX0208);
+					}
+					num5 = (int)((c - '‐') * '\u0002');
+					num5 = ((int)ISO2022JPEncoder.convert.cjkToJis[num5] | (int)ISO2022JPEncoder.convert.cjkToJis[num5 + 1] << 8);
+					goto IL_270;
+				}
+				if (c >= '！' && c <= '｠')
+				{
+					if (this.shifted_in_conv)
+					{
+						bytes[num2++] = 15;
+						this.shifted_in_conv = false;
+						byteCount--;
+					}
+					ISO2022JPMode iSO2022JPMode = this.m;
+					if (iSO2022JPMode != ISO2022JPMode.JISX0208)
+					{
+						this.SwitchMode(bytes, ref num2, ref byteCount, ref this.m, ISO2022JPMode.JISX0208);
+					}
+					num5 = (int)((c - '！') * '\u0002');
+					num5 = ((int)ISO2022JPEncoder.convert.extraToJis[num5] | (int)ISO2022JPEncoder.convert.extraToJis[num5 + 1] << 8);
+					goto IL_270;
+				}
+				if (c >= '｠' && c <= 'ﾠ')
+				{
+					if (this.allow_shift_io)
+					{
+						if (!this.shifted_in_conv)
+						{
+							bytes[num2++] = 14;
+							this.shifted_in_conv = true;
+							byteCount--;
+						}
+					}
+					else
+					{
+						ISO2022JPMode iSO2022JPMode = this.m;
+						if (iSO2022JPMode != ISO2022JPMode.JISX0201)
+						{
+							this.SwitchMode(bytes, ref num2, ref byteCount, ref this.m, ISO2022JPMode.JISX0201);
+						}
+					}
+					num5 = (int)(c - '｀');
+					goto IL_270;
+				}
+				if (c < '\u0080')
+				{
+					if (this.shifted_in_conv)
+					{
+						bytes[num2++] = 15;
+						this.shifted_in_conv = false;
+						byteCount--;
+					}
+					this.SwitchMode(bytes, ref num2, ref byteCount, ref this.m, ISO2022JPMode.ASCII);
+					num5 = (int)c;
+					goto IL_270;
+				}
+				base.HandleFallback(chars, ref i, ref charCount, bytes, ref num2, ref byteCount);
+				IL_2C4:
+				i++;
+				charCount--;
+				continue;
+				IL_270:
+				if (num5 > 256)
+				{
+					num5 -= 256;
+					bytes[num2++] = (byte)(num5 / 94 + 33);
+					bytes[num2++] = (byte)(num5 % 94 + 33);
+					byteCount -= 2;
+					goto IL_2C4;
+				}
+				bytes[num2++] = (byte)num5;
+				byteCount--;
+				goto IL_2C4;
+			}
+			if (flush)
+			{
+				if (this.shifted_in_conv)
+				{
+					bytes[num2++] = 15;
+					this.shifted_in_conv = false;
+					byteCount--;
+				}
+				if (this.m != ISO2022JPMode.ASCII)
+				{
+					this.SwitchMode(bytes, ref num2, ref byteCount, ref this.m, ISO2022JPMode.ASCII);
+				}
+			}
+			return num2 - num3;
+		}
+
+		public override void Reset()
+		{
+			this.m = ISO2022JPMode.ASCII;
+			this.shifted_in_conv = (this.shifted_in_count = false);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	internal class ISO2022JPDecoder : Decoder
+	{
+		private static JISConvert convert = JISConvert.Convert;
+
+		private readonly bool allow_shift_io;
+
+		private ISO2022JPMode m;
+
+		private bool shifted_in_conv;
+
+		private bool shifted_in_count;
+
+		public ISO2022JPDecoder(bool allow1ByteKana, bool allowShiftIO)
+		{
+			this.allow_shift_io = allowShiftIO;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			int num = 0;
+			int num2 = index + count;
+			int i = index;
+			while (i < num2)
+			{
+				if (!this.allow_shift_io)
+				{
+					goto IL_4C;
+				}
+				byte b = bytes[i];
+				if (b != 14)
+				{
+					if (b != 15)
+					{
+						goto IL_4C;
+					}
+					this.shifted_in_count = false;
+				}
+				else
+				{
+					this.shifted_in_count = true;
+				}
+				IL_126:
+				i++;
+				continue;
+				IL_4C:
+				if (bytes[i] != 27)
+				{
+					if (!this.shifted_in_count && this.m == ISO2022JPMode.JISX0208)
+					{
+						if (i + 1 == num2)
+						{
+							break;
+						}
+						num++;
+						i++;
+					}
+					else
+					{
+						num++;
+					}
+					goto IL_126;
+				}
+				if (i + 2 >= num2)
+				{
+					break;
+				}
+				i++;
+				bool flag;
+				if (bytes[i] == 36)
+				{
+					flag = true;
+				}
+				else
+				{
+					if (bytes[i] != 40)
+					{
+						num += 2;
+						goto IL_126;
+					}
+					flag = false;
+				}
+				i++;
+				if (bytes[i] == 66)
+				{
+					this.m = ((!flag) ? ISO2022JPMode.ASCII : ISO2022JPMode.JISX0208);
+					goto IL_126;
+				}
+				if (bytes[i] == 74)
+				{
+					this.m = ISO2022JPMode.ASCII;
+					goto IL_126;
+				}
+				if (bytes[i] == 73)
+				{
+					this.m = ISO2022JPMode.JISX0201;
+					goto IL_126;
+				}
+				num += 3;
+				goto IL_126;
+			}
+			return num;
+		}
+
+		private int ToChar(int value)
+		{
+			value <<= 1;
+			return (value + 1 < ISO2022JPDecoder.convert.jisx0208ToUnicode.Length && value >= 0) ? ((int)ISO2022JPDecoder.convert.jisx0208ToUnicode[value] | (int)ISO2022JPDecoder.convert.jisx0208ToUnicode[value + 1] << 8) : (-1);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			int num = charIndex;
+			int num2 = byteIndex + byteCount;
+			int num3 = byteIndex;
+			while (num3 < num2 && charIndex < chars.Length)
+			{
+				if (!this.allow_shift_io)
+				{
+					goto IL_4D;
+				}
+				byte b = bytes[num3];
+				if (b != 14)
+				{
+					if (b != 15)
+					{
+						goto IL_4D;
+					}
+					this.shifted_in_conv = false;
+				}
+				else
+				{
+					this.shifted_in_conv = true;
+				}
+				IL_269:
+				num3++;
+				continue;
+				IL_4D:
+				if (bytes[num3] != 27)
+				{
+					if (this.shifted_in_conv || this.m == ISO2022JPMode.JISX0201)
+					{
+						if (bytes[num3] < 96)
+						{
+							chars[charIndex++] = (char)((int)bytes[num3] + 65344);
+						}
+						else
+						{
+							chars[charIndex++] = '?';
+						}
+					}
+					else if (this.m == ISO2022JPMode.JISX0208)
+					{
+						if (num3 + 1 == num2)
+						{
+							break;
+						}
+						int num4 = (bytes[num3] - 1 >> 1) + ((bytes[num3] > 94) ? 177 : 113);
+						int num5 = (int)(bytes[num3 + 1] + (((bytes[num3] & 1) == 0) ? 126 : 32));
+						int num6 = (num4 - 129) * 188;
+						num6 += num5 - 65;
+						int num7 = this.ToChar(num6);
+						if (num7 < 0)
+						{
+							chars[charIndex++] = '?';
+						}
+						else
+						{
+							chars[charIndex++] = (char)num7;
+						}
+						num3++;
+					}
+					else if (bytes[num3] > 160 && bytes[num3] < 224)
+					{
+						chars[charIndex++] = (char)((int)(bytes[num3] - 160) + 65376);
+					}
+					else
+					{
+						chars[charIndex++] = (char)bytes[num3];
+					}
+					goto IL_269;
+				}
+				if (num3 + 2 >= num2)
+				{
+					break;
+				}
+				num3++;
+				bool flag;
+				if (bytes[num3] == 36)
+				{
+					flag = true;
+				}
+				else
+				{
+					if (bytes[num3] != 40)
+					{
+						chars[charIndex++] = '\u001b';
+						chars[charIndex++] = (char)bytes[num3];
+						goto IL_269;
+					}
+					flag = false;
+				}
+				num3++;
+				if (bytes[num3] == 66)
+				{
+					this.m = ((!flag) ? ISO2022JPMode.ASCII : ISO2022JPMode.JISX0208);
+					goto IL_269;
+				}
+				if (bytes[num3] == 74)
+				{
+					this.m = ISO2022JPMode.ASCII;
+					goto IL_269;
+				}
+				if (bytes[num3] == 73)
+				{
+					this.m = ISO2022JPMode.JISX0201;
+					goto IL_269;
+				}
+				chars[charIndex++] = '\u001b';
+				chars[charIndex++] = (char)bytes[num3 - 1];
+				chars[charIndex++] = (char)bytes[num3];
+				goto IL_269;
+			}
+			return charIndex - num;
+		}
+
+		public override void Reset()
+		{
+			this.m = ISO2022JPMode.ASCII;
+			this.shifted_in_count = (this.shifted_in_conv = false);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class ENCiso_2022_jp : CP50220
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class CP51932 : MonoEncoding
+	{
+		private const int EUC_JP_CODE_PAGE = 51932;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "euc-jp";
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return "Japanese (EUC)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "euc-jp";
+			}
+		}
+
+		public override bool IsBrowserDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsBrowserSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "euc-jp";
+			}
+		}
+
+		public CP51932() : base(51932, 932)
+		{
+		}
+
+		public override int GetByteCount(char[] chars, int index, int length)
+		{
+			return new CP51932Encoder(this).GetByteCount(chars, index, length, true);
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			return new CP51932Encoder(this).GetByteCountImpl(chars, count, true);
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			return new CP51932Encoder(this).GetBytesImpl(chars, charCount, bytes, byteCount, true);
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return new CP51932Decoder().GetCharCount(bytes, index, count, true);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return new CP51932Decoder().GetChars(bytes, byteIndex, byteCount, chars, charIndex, true);
+		}
+
+		public override int GetMaxByteCount(int charCount)
+		{
+			if (charCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return charCount * 3;
+		}
+
+		public override int GetMaxCharCount(int byteCount)
+		{
+			if (byteCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return byteCount;
+		}
+
+		public override Encoder GetEncoder()
+		{
+			return new CP51932Encoder(this);
+		}
+
+		public override Decoder GetDecoder()
+		{
+			return new CP51932Decoder();
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+
+namespace I18N.CJK
+{
+	public class CP51932Encoder : MonoEncoder
+	{
+		public CP51932Encoder(MonoEncoding encoding) : base(encoding)
+		{
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count, bool refresh)
+		{
+			int num = 0;
+			int num2 = 0;
+			byte[] cjkToJis = JISConvert.Convert.cjkToJis;
+			byte[] extraToJis = JISConvert.Convert.extraToJis;
+			while (count > 0)
+			{
+				int num3 = (int)chars[num++];
+				count--;
+				num2++;
+				if (num3 >= 128)
+				{
+					if (num3 < 256)
+					{
+						if (num3 == 162 || num3 == 163 || num3 == 167 || num3 == 168 || num3 == 172 || num3 == 176 || num3 == 177 || num3 == 180 || num3 == 182 || num3 == 215 || num3 == 247)
+						{
+							num2++;
+						}
+					}
+					else if (num3 >= 913 && num3 <= 1105)
+					{
+						num2++;
+					}
+					else if (num3 >= 8208 && num3 <= 40869)
+					{
+						int num4 = (num3 - 8208) * 2;
+						num4 = ((int)cjkToJis[num4] | (int)cjkToJis[num4 + 1] << 8);
+						if (num4 >= 256)
+						{
+							num2++;
+						}
+					}
+					else if (num3 >= 65281 && num3 < 65376)
+					{
+						int num4 = (num3 - 65281) * 2;
+						num4 = ((int)extraToJis[num4] | (int)extraToJis[num4 + 1] << 8);
+						if (num4 >= 256)
+						{
+							num2++;
+						}
+					}
+					else if (num3 >= 65376 && num3 <= 65440)
+					{
+						num2++;
+					}
+				}
+			}
+			return num2;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount, bool refresh)
+		{
+			int num = 0;
+			int num2 = 0;
+			int num3 = num2;
+			int num4 = byteCount;
+			byte[] cjkToJis = JISConvert.Convert.cjkToJis;
+			byte[] greekToJis = JISConvert.Convert.greekToJis;
+			byte[] extraToJis = JISConvert.Convert.extraToJis;
+			while (charCount > 0)
+			{
+				int num5 = (int)chars[num];
+				if (num3 >= num4)
+				{
+					throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+				}
+				if (num5 < 128)
+				{
+					bytes[num3++] = (byte)num5;
+				}
+				else
+				{
+					int num6;
+					if (num5 >= 913 && num5 <= 1105)
+					{
+						num6 = (num5 - 913) * 2;
+						num6 = ((int)greekToJis[num6] | (int)greekToJis[num6 + 1] << 8);
+					}
+					else if (num5 >= 8208 && num5 <= 40869)
+					{
+						num6 = (num5 - 8208) * 2;
+						num6 = ((int)cjkToJis[num6] | (int)cjkToJis[num6 + 1] << 8);
+					}
+					else if (num5 >= 65281 && num5 <= 65376)
+					{
+						num6 = (num5 - 65281) * 2;
+						num6 = ((int)extraToJis[num6] | (int)extraToJis[num6 + 1] << 8);
+					}
+					else if (num5 >= 65376 && num5 <= 65440)
+					{
+						num6 = num5 - 65376 + 36512;
+					}
+					else
+					{
+						num6 = 0;
+					}
+					if (num6 == 0)
+					{
+						base.HandleFallback(chars, ref num, ref charCount, bytes, ref num3, ref byteCount);
+					}
+					else if (num6 < 256)
+					{
+						bytes[num3++] = (byte)num6;
+					}
+					else
+					{
+						if (num3 + 1 >= num4)
+						{
+							throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "bytes");
+						}
+						if (num6 < 32768)
+						{
+							num6 -= 256;
+							bytes[num3++] = (byte)(num6 / 94 + 161);
+							bytes[num3++] = (byte)(num6 % 94 + 161);
+						}
+						else
+						{
+							bytes[num3++] = 142;
+							bytes[num3++] = (byte)(num6 - 36352);
+						}
+					}
+				}
+				num++;
+				charCount--;
+			}
+			return num3 - num2;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+
+namespace I18N.CJK
+{
+	internal class CP51932Decoder : DbcsEncoding.DbcsDecoder
+	{
+		private int last_count;
+
+		private int last_bytes;
+
+		public CP51932Decoder() : base(null)
+		{
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return this.GetCharCount(bytes, index, count, false);
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count, bool refresh)
+		{
+			base.CheckRange(bytes, index, count);
+			byte[] jisx0208ToUnicode = JISConvert.Convert.jisx0208ToUnicode;
+			byte[] jisx0212ToUnicode = JISConvert.Convert.jisx0212ToUnicode;
+			int num = 0;
+			int num2 = this.last_count;
+			while (count > 0)
+			{
+				int num3 = (int)bytes[index++];
+				count--;
+				if (num2 == 0)
+				{
+					if (num3 == 143)
+					{
+						if (num3 != 0)
+						{
+							num2 = 0;
+							num++;
+						}
+						else
+						{
+							num2 = num3;
+						}
+					}
+					else if (num3 <= 127)
+					{
+						num++;
+					}
+					else if (num3 == 142)
+					{
+						num2 = num3;
+					}
+					else if (num3 >= 161 && num3 <= 254)
+					{
+						num2 = num3;
+					}
+					else
+					{
+						num++;
+					}
+				}
+				else if (num2 == 142)
+				{
+					if (num3 >= 161 && num3 <= 223)
+					{
+						int num4 = num3 - 64 | num2 + 113 << 8;
+						num++;
+					}
+					else
+					{
+						num++;
+					}
+					num2 = 0;
+				}
+				else if (num2 == 143)
+				{
+					num2 = num3;
+				}
+				else
+				{
+					int num4 = (num2 - 161) * 94;
+					num2 = 0;
+					if (num3 >= 161 && num3 <= 254)
+					{
+						num4 += num3 - 161;
+						num4 *= 2;
+						num4 = ((int)jisx0208ToUnicode[num4] | (int)jisx0208ToUnicode[num4 + 1] << 8);
+						if (num4 == 0)
+						{
+							num4 = ((int)jisx0212ToUnicode[num4] | (int)jisx0212ToUnicode[num4 + 1] << 8);
+						}
+						if (num4 != 0)
+						{
+							num++;
+						}
+						else
+						{
+							num++;
+						}
+					}
+					else
+					{
+						num2 = 0;
+						num++;
+					}
+				}
+			}
+			if (refresh && num2 != 0)
+			{
+				num++;
+			}
+			else
+			{
+				this.last_count = num2;
+			}
+			return num;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return this.GetChars(bytes, byteIndex, byteCount, chars, charIndex, false);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, bool refresh)
+		{
+			base.CheckRange(bytes, byteIndex, byteCount, chars, charIndex);
+			int num = charIndex;
+			int num2 = chars.Length;
+			int num3 = this.last_bytes;
+			byte[] jisx0208ToUnicode = JISConvert.Convert.jisx0208ToUnicode;
+			byte[] jisx0212ToUnicode = JISConvert.Convert.jisx0212ToUnicode;
+			while (byteCount > 0)
+			{
+				int num4 = (int)bytes[byteIndex++];
+				byteCount--;
+				if (num3 == 0)
+				{
+					if (num4 == 143)
+					{
+						if (num4 != 0)
+						{
+							num3 = 0;
+							if (num >= num2)
+							{
+								throw this.Insufficient();
+							}
+							chars[num++] = '・';
+						}
+						else
+						{
+							num3 = num4;
+						}
+					}
+					else if (num4 <= 127)
+					{
+						if (num >= num2)
+						{
+							throw this.Insufficient();
+						}
+						chars[num++] = (char)num4;
+					}
+					else if (num4 == 142)
+					{
+						num3 = num4;
+					}
+					else if (num4 >= 161 && num4 <= 254)
+					{
+						num3 = num4;
+					}
+					else
+					{
+						if (num >= num2)
+						{
+							throw this.Insufficient();
+						}
+						chars[num++] = '・';
+					}
+				}
+				else if (num3 == 142)
+				{
+					if (num4 >= 161 && num4 <= 223)
+					{
+						int num5 = num4 - 64 | num3 + 113 << 8;
+						if (num >= num2)
+						{
+							throw this.Insufficient();
+						}
+						chars[num++] = (char)num5;
+					}
+					else
+					{
+						if (num >= num2)
+						{
+							throw this.Insufficient();
+						}
+						chars[num++] = '・';
+					}
+					num3 = 0;
+				}
+				else if (num3 == 143)
+				{
+					num3 = num4;
+				}
+				else
+				{
+					int num5 = (num3 - 161) * 94;
+					num3 = 0;
+					if (num4 >= 161 && num4 <= 254)
+					{
+						num5 += num4 - 161;
+						num5 *= 2;
+						num5 = ((int)jisx0208ToUnicode[num5] | (int)jisx0208ToUnicode[num5 + 1] << 8);
+						if (num5 == 0)
+						{
+							num5 = ((int)jisx0212ToUnicode[num5] | (int)jisx0212ToUnicode[num5 + 1] << 8);
+						}
+						if (num >= num2)
+						{
+							throw this.Insufficient();
+						}
+						if (num5 != 0)
+						{
+							chars[num++] = (char)num5;
+						}
+						else
+						{
+							chars[num++] = '・';
+						}
+					}
+					else
+					{
+						num3 = 0;
+						if (num >= num2)
+						{
+							throw this.Insufficient();
+						}
+						chars[num++] = '・';
+					}
+				}
+			}
+			if (refresh && num3 != 0)
+			{
+				if (num >= num2)
+				{
+					throw this.Insufficient();
+				}
+				chars[num++] = '・';
+			}
+			else
+			{
+				this.last_bytes = num3;
+			}
+			return num - charIndex;
+		}
+
+		private Exception Insufficient()
+		{
+			throw new ArgumentException(Strings.GetString("Arg_InsufficientSpace"), "chars");
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class ENCeuc_jp : CP51932
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class CP936 : DbcsEncoding
+	{
+		private const int GB2312_CODE_PAGE = 936;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "gb2312";
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return "Chinese Simplified (GB2312)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "gb2312";
+			}
+		}
+
+		public override bool IsBrowserDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsBrowserSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "gb2312";
+			}
+		}
+
+		public CP936() : base(936)
+		{
+		}
+
+		internal override DbcsConvert GetConvert()
+		{
+			return DbcsConvert.Gb2312;
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			DbcsConvert convert = this.GetConvert();
+			int num = 0;
+			int num2 = 0;
+			while (count-- > 0)
+			{
+				char c = chars[num++];
+				if (c <= '\u0080' || c == 'ÿ')
+				{
+					num2++;
+				}
+				else
+				{
+					byte b = convert.u2n[(int)(c * '\u0002' + '\u0001')];
+					byte b2 = convert.u2n[(int)(c * '\u0002')];
+					if (b != 0 || b2 != 0)
+					{
+						num2 += 2;
+					}
+				}
+			}
+			return num2;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			DbcsConvert convert = this.GetConvert();
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			int num3 = num2;
+			while (charCount-- > 0)
+			{
+				char c = chars[num++];
+				if (c <= '\u0080' || c == 'ÿ')
+				{
+					bytes[num2++] = (byte)c;
+				}
+				else
+				{
+					byte b = convert.u2n[(int)(c * '\u0002' + '\u0001')];
+					byte b2 = convert.u2n[(int)(c * '\u0002')];
+					if (b == 0 && b2 == 0)
+					{
+						base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+					}
+					else
+					{
+						bytes[num2++] = b;
+						bytes[num2++] = b2;
+					}
+				}
+			}
+			return num2 - num3;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return this.GetDecoder().GetCharCount(bytes, index, count);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return this.GetDecoder().GetChars(bytes, byteIndex, byteCount, chars, charIndex);
+		}
+
+		public override Decoder GetDecoder()
+		{
+			return new CP936Decoder(this.GetConvert());
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	internal sealed class CP936Decoder : DbcsEncoding.DbcsDecoder
+	{
+		private int last_byte_count;
+
+		private int last_byte_bytes;
+
+		public CP936Decoder(DbcsConvert convert) : base(convert)
+		{
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return this.GetCharCount(bytes, index, count, false);
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count, bool refresh)
+		{
+			base.CheckRange(bytes, index, count);
+			int num = this.last_byte_count;
+			this.last_byte_count = 0;
+			int num2 = 0;
+			while (count-- > 0)
+			{
+				int num3 = (int)bytes[index++];
+				if (num == 0)
+				{
+					if (num3 <= 128 || num3 == 255)
+					{
+						num2++;
+					}
+					else
+					{
+						num = num3;
+					}
+				}
+				else
+				{
+					num2++;
+					num = 0;
+				}
+			}
+			if (num != 0)
+			{
+				if (refresh)
+				{
+					num2++;
+					this.last_byte_count = 0;
+				}
+				else
+				{
+					this.last_byte_count = num;
+				}
+			}
+			return num2;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return this.GetChars(bytes, byteIndex, byteCount, chars, charIndex, false);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, bool refresh)
+		{
+			base.CheckRange(bytes, byteIndex, byteCount, chars, charIndex);
+			int num = charIndex;
+			int num2 = this.last_byte_bytes;
+			this.last_byte_bytes = 0;
+			while (byteCount-- > 0)
+			{
+				int num3 = (int)bytes[byteIndex++];
+				if (num2 == 0)
+				{
+					if (num3 <= 128 || num3 == 255)
+					{
+						chars[charIndex++] = (char)num3;
+					}
+					else if (num3 >= 129 && num3 < 255)
+					{
+						num2 = num3;
+					}
+				}
+				else
+				{
+					int num4 = ((num2 - 129) * 191 + num3 - 64) * 2;
+					char c = (num4 >= 0 && num4 < this.convert.n2u.Length) ? ((char)((int)this.convert.n2u[num4] + (int)this.convert.n2u[num4 + 1] * 256)) : '\0';
+					if (c == '\0')
+					{
+						chars[charIndex++] = '?';
+					}
+					else
+					{
+						chars[charIndex++] = c;
+					}
+					num2 = 0;
+				}
+			}
+			if (num2 != 0)
+			{
+				if (refresh)
+				{
+					chars[charIndex++] = '?';
+					this.last_byte_bytes = 0;
+				}
+				else
+				{
+					this.last_byte_bytes = num2;
+				}
+			}
+			return charIndex - num;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class ENCgb2312 : CP936
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class CP949 : KoreanEncoding
+	{
+		private const int UHC_CODE_PAGE = 949;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "ks_c_5601-1987";
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return "Korean (UHC)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "ks_c_5601-1987";
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "ks_c_5601-1987";
+			}
+		}
+
+		public CP949() : base(949, true)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class CP51949 : KoreanEncoding
+	{
+		private const int EUCKR_CODE_PAGE = 51949;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "euc-kr";
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return "Korean (EUC)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "euc-kr";
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "euc-kr";
+			}
+		}
+
+		public CP51949() : base(51949, false)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class KoreanEncoding : DbcsEncoding
+	{
+		private sealed class KoreanDecoder : DbcsEncoding.DbcsDecoder
+		{
+			private bool useUHC;
+
+			private int last_byte_count;
+
+			private int last_byte_conv;
+
+			public KoreanDecoder(DbcsConvert convert, bool useUHC) : base(convert)
+			{
+				this.useUHC = useUHC;
+			}
+
+			public override int GetCharCount(byte[] bytes, int index, int count)
+			{
+				return this.GetCharCount(bytes, index, count, false);
+			}
+
+			public override int GetCharCount(byte[] bytes, int index, int count, bool refresh)
+			{
+				base.CheckRange(bytes, index, count);
+				int num = this.last_byte_count;
+				this.last_byte_count = 0;
+				int num2 = 0;
+				while (count-- > 0)
+				{
+					int num3 = (int)bytes[index++];
+					if (num == 0)
+					{
+						if (num3 <= 128 || num3 == 255)
+						{
+							num2++;
+						}
+						else
+						{
+							num = num3;
+						}
+					}
+					else
+					{
+						char c;
+						if (this.useUHC && num < 161)
+						{
+							int num4 = 8836 + (num - 129) * 178;
+							if (num3 >= 65 && num3 <= 90)
+							{
+								num4 += num3 - 65;
+							}
+							else if (num3 >= 97 && num3 <= 122)
+							{
+								num4 += num3 - 97 + 26;
+							}
+							else if (num3 >= 129 && num3 <= 254)
+							{
+								num4 += num3 - 129 + 52;
+							}
+							else
+							{
+								num4 = -1;
+							}
+							if (num4 >= 0 && num4 * 2 <= this.convert.n2u.Length)
+							{
+								c = (char)((int)this.convert.n2u[num4 * 2] + (int)this.convert.n2u[num4 * 2 + 1] * 256);
+							}
+							else
+							{
+								c = '\0';
+							}
+						}
+						else if (this.useUHC && num <= 198 && num3 < 161)
+						{
+							int num5 = 14532 + (num - 161) * 84;
+							if (num3 >= 65 && num3 <= 90)
+							{
+								num5 += num3 - 65;
+							}
+							else if (num3 >= 97 && num3 <= 122)
+							{
+								num5 += num3 - 97 + 26;
+							}
+							else if (num3 >= 129 && num3 <= 160)
+							{
+								num5 += num3 - 129 + 52;
+							}
+							else
+							{
+								num5 = -1;
+							}
+							if (num5 >= 0 && num5 * 2 <= this.convert.n2u.Length)
+							{
+								c = (char)((int)this.convert.n2u[num5 * 2] + (int)this.convert.n2u[num5 * 2 + 1] * 256);
+							}
+							else
+							{
+								c = '\0';
+							}
+						}
+						else if (num3 >= 161 && num3 <= 254)
+						{
+							int num6 = ((num - 161) * 94 + num3 - 161) * 2;
+							c = ((num6 >= 0 && num6 < this.convert.n2u.Length) ? ((char)((int)this.convert.n2u[num6] + (int)this.convert.n2u[num6 + 1] * 256)) : '\0');
+						}
+						else
+						{
+							c = '\0';
+						}
+						if (c == '\0')
+						{
+							num2++;
+						}
+						else
+						{
+							num2++;
+						}
+						num = 0;
+					}
+				}
+				if (num != 0)
+				{
+					if (refresh)
+					{
+						num2++;
+						this.last_byte_count = 0;
+					}
+					else
+					{
+						this.last_byte_count = num;
+					}
+				}
+				return num2;
+			}
+
+			public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+			{
+				return this.GetChars(bytes, byteIndex, byteCount, chars, charIndex, false);
+			}
+
+			public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, bool refresh)
+			{
+				base.CheckRange(bytes, byteIndex, byteCount, chars, charIndex);
+				int num = charIndex;
+				int num2 = this.last_byte_conv;
+				this.last_byte_conv = 0;
+				while (byteCount-- > 0)
+				{
+					int num3 = (int)bytes[byteIndex++];
+					if (num2 == 0)
+					{
+						if (num3 <= 128 || num3 == 255)
+						{
+							chars[charIndex++] = (char)num3;
+						}
+						else
+						{
+							num2 = num3;
+						}
+					}
+					else
+					{
+						char c;
+						if (this.useUHC && num2 < 161)
+						{
+							int num4 = 8836 + (num2 - 129) * 178;
+							if (num3 >= 65 && num3 <= 90)
+							{
+								num4 += num3 - 65;
+							}
+							else if (num3 >= 97 && num3 <= 122)
+							{
+								num4 += num3 - 97 + 26;
+							}
+							else if (num3 >= 129 && num3 <= 254)
+							{
+								num4 += num3 - 129 + 52;
+							}
+							else
+							{
+								num4 = -1;
+							}
+							if (num4 >= 0 && num4 * 2 <= this.convert.n2u.Length)
+							{
+								c = (char)((int)this.convert.n2u[num4 * 2] + (int)this.convert.n2u[num4 * 2 + 1] * 256);
+							}
+							else
+							{
+								c = '\0';
+							}
+						}
+						else if (this.useUHC && num2 <= 198 && num3 < 161)
+						{
+							int num5 = 14532 + (num2 - 161) * 84;
+							if (num3 >= 65 && num3 <= 90)
+							{
+								num5 += num3 - 65;
+							}
+							else if (num3 >= 97 && num3 <= 122)
+							{
+								num5 += num3 - 97 + 26;
+							}
+							else if (num3 >= 129 && num3 <= 160)
+							{
+								num5 += num3 - 129 + 52;
+							}
+							else
+							{
+								num5 = -1;
+							}
+							if (num5 >= 0 && num5 * 2 <= this.convert.n2u.Length)
+							{
+								c = (char)((int)this.convert.n2u[num5 * 2] + (int)this.convert.n2u[num5 * 2 + 1] * 256);
+							}
+							else
+							{
+								c = '\0';
+							}
+						}
+						else if (num3 >= 161 && num3 <= 254)
+						{
+							int num6 = ((num2 - 161) * 94 + num3 - 161) * 2;
+							c = ((num6 >= 0 && num6 < this.convert.n2u.Length) ? ((char)((int)this.convert.n2u[num6] + (int)this.convert.n2u[num6 + 1] * 256)) : '\0');
+						}
+						else
+						{
+							c = '\0';
+						}
+						if (c == '\0')
+						{
+							chars[charIndex++] = '?';
+						}
+						else
+						{
+							chars[charIndex++] = c;
+						}
+						num2 = 0;
+					}
+				}
+				if (num2 != 0)
+				{
+					if (refresh)
+					{
+						chars[charIndex++] = '?';
+						this.last_byte_conv = 0;
+					}
+					else
+					{
+						this.last_byte_conv = num2;
+					}
+				}
+				return charIndex - num;
+			}
+		}
+
+		private bool useUHC;
+
+		public KoreanEncoding(int codepage, bool useUHC) : base(codepage, 949)
+		{
+			this.useUHC = useUHC;
+		}
+
+		internal override DbcsConvert GetConvert()
+		{
+			return DbcsConvert.KS;
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			int num = 0;
+			int num2 = 0;
+			DbcsConvert convert = this.GetConvert();
+			while (count-- > 0)
+			{
+				char c = chars[num++];
+				if (c <= '\u0080' || c == 'ÿ')
+				{
+					num2++;
+				}
+				else
+				{
+					byte b = convert.u2n[(int)(c * '\u0002')];
+					byte b2 = convert.u2n[(int)(c * '\u0002' + '\u0001')];
+					if (b == 0 && b2 == 0)
+					{
+						num2++;
+					}
+					else
+					{
+						num2 += 2;
+					}
+				}
+			}
+			return num2;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			int num = 0;
+			int num2 = 0;
+			DbcsConvert convert = this.GetConvert();
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			int num3 = num2;
+			while (charCount-- > 0)
+			{
+				char c = chars[num++];
+				if (c <= '\u0080' || c == 'ÿ')
+				{
+					bytes[num2++] = (byte)c;
+				}
+				else
+				{
+					byte b = convert.u2n[(int)(c * '\u0002')];
+					byte b2 = convert.u2n[(int)(c * '\u0002' + '\u0001')];
+					if (b == 0 && b2 == 0)
+					{
+						base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+					}
+					else
+					{
+						bytes[num2++] = b;
+						bytes[num2++] = b2;
+					}
+				}
+			}
+			return num2 - num3;
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			return this.GetDecoder().GetCharCount(bytes, index, count);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return this.GetDecoder().GetChars(bytes, byteIndex, byteCount, chars, charIndex);
+		}
+
+		public override Decoder GetDecoder()
+		{
+			return new KoreanEncoding.KoreanDecoder(this.GetConvert(), this.useUHC);
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class ENCuhc : CP949
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class ENCeuc_kr : CP51949
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class CP950 : DbcsEncoding
+	{
+		private sealed class CP950Decoder : DbcsEncoding.DbcsDecoder
+		{
+			private int last_byte_count;
+
+			private int last_byte_conv;
+
+			public CP950Decoder(DbcsConvert convert) : base(convert)
+			{
+			}
+
+			public override int GetCharCount(byte[] bytes, int index, int count)
+			{
+				return this.GetCharCount(bytes, index, count, false);
+			}
+
+			public override int GetCharCount(byte[] bytes, int index, int count, bool refresh)
+			{
+				base.CheckRange(bytes, index, count);
+				int num = this.last_byte_count;
+				this.last_byte_count = 0;
+				int num2 = 0;
+				while (count-- > 0)
+				{
+					int num3 = (int)bytes[index++];
+					if (num == 0)
+					{
+						if (num3 <= 128 || num3 == 255)
+						{
+							num2++;
+						}
+						else if (num3 < 161 || num3 >= 250)
+						{
+							num2++;
+							count--;
+						}
+						else
+						{
+							num = num3;
+						}
+					}
+					else
+					{
+						int num4 = ((num - 161) * 191 + num3 - 64) * 2;
+						if (num4 < 0 || num4 > this.convert.n2u.Length || (ushort)((int)this.convert.n2u[num4] + (int)this.convert.n2u[num4 + 1] * 256) == 0)
+						{
+							num2++;
+						}
+						else
+						{
+							num2++;
+						}
+						num = 0;
+					}
+				}
+				if (num != 0)
+				{
+					if (refresh)
+					{
+						num2++;
+					}
+					else
+					{
+						this.last_byte_count = num;
+					}
+				}
+				return num2;
+			}
+
+			public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+			{
+				return this.GetChars(bytes, byteIndex, byteCount, chars, charIndex, false);
+			}
+
+			public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex, bool refresh)
+			{
+				base.CheckRange(bytes, byteIndex, byteCount, chars, charIndex);
+				int num = charIndex;
+				int num2 = this.last_byte_conv;
+				this.last_byte_conv = 0;
+				while (byteCount-- > 0)
+				{
+					int num3 = (int)bytes[byteIndex++];
+					if (num2 == 0)
+					{
+						if (num3 <= 128 || num3 == 255)
+						{
+							chars[charIndex++] = (char)num3;
+						}
+						else if (num3 < 161 || num3 >= 250)
+						{
+							chars[charIndex++] = '?';
+							byteCount--;
+						}
+						else
+						{
+							num2 = num3;
+						}
+					}
+					else
+					{
+						int num4 = ((num2 - 161) * 191 + num3 - 64) * 2;
+						char c = (num4 >= 0 && num4 <= this.convert.n2u.Length) ? ((char)((int)this.convert.n2u[num4] + (int)this.convert.n2u[num4 + 1] * 256)) : '\0';
+						if (c == '\0')
+						{
+							chars[charIndex++] = '?';
+						}
+						else
+						{
+							chars[charIndex++] = c;
+						}
+						num2 = 0;
+					}
+				}
+				if (num2 != 0)
+				{
+					if (refresh)
+					{
+						chars[charIndex++] = '?';
+					}
+					else
+					{
+						this.last_byte_conv = num2;
+					}
+				}
+				return charIndex - num;
+			}
+		}
+
+		private const int BIG5_CODE_PAGE = 950;
+
+		public override string BodyName
+		{
+			get
+			{
+				return "big5";
+			}
+		}
+
+		public override string EncodingName
+		{
+			get
+			{
+				return "Chinese Traditional (Big5)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "big5";
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "big5";
+			}
+		}
+
+		public CP950() : base(950)
+		{
+		}
+
+		internal override DbcsConvert GetConvert()
+		{
+			return DbcsConvert.Big5;
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			DbcsConvert convert = this.GetConvert();
+			int num = 0;
+			int num2 = 0;
+			while (count-- > 0)
+			{
+				char c = chars[num++];
+				if (c <= '\u0080' || c == 'ÿ')
+				{
+					num2++;
+				}
+				else
+				{
+					byte b = convert.u2n[(int)(c * '\u0002' + '\u0001')];
+					byte b2 = convert.u2n[(int)(c * '\u0002')];
+					if (b == 0 && b2 == 0)
+					{
+						num2++;
+					}
+					else
+					{
+						num2 += 2;
+					}
+				}
+			}
+			return num2;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			DbcsConvert convert = this.GetConvert();
+			int num = 0;
+			int num2 = 0;
+			EncoderFallbackBuffer encoderFallbackBuffer = null;
+			int num3 = num2;
+			while (charCount-- > 0)
+			{
+				char c = chars[num++];
+				if (c <= '\u0080' || c == 'ÿ')
+				{
+					bytes[num2++] = (byte)c;
+				}
+				else
+				{
+					byte b = convert.u2n[(int)(c * '\u0002' + '\u0001')];
+					byte b2 = convert.u2n[(int)(c * '\u0002')];
+					if (b == 0 && b2 == 0)
+					{
+						base.HandleFallback(ref encoderFallbackBuffer, chars, ref num, ref charCount, bytes, ref num2, ref byteCount);
+					}
+					else
+					{
+						bytes[num2++] = b;
+						bytes[num2++] = b2;
+					}
+				}
+			}
+			return num2 - num3;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			return this.GetDecoder().GetChars(bytes, byteIndex, byteCount, chars, charIndex);
+		}
+
+		public override Decoder GetDecoder()
+		{
+			return new CP950.CP950Decoder(this.GetConvert());
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class ENCbig5 : CP950
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+using System.IO;
+using System.Reflection;
+
+namespace I18N.CJK
+{
+	internal sealed class CodeTable : IDisposable
+	{
+		private Stream stream;
+
+		public CodeTable(string name)
+		{
+			this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name);
+			if (this.stream == null)
+			{
+				throw new NotSupportedException(string.Format(Strings.GetString("NotSupp_MissingCodeTable"), name));
+			}
+		}
+
+		public void Dispose()
+		{
+			if (this.stream != null)
+			{
+				this.stream.Close();
+				this.stream = null;
+			}
+		}
+
+		public byte[] GetSection(int num)
+		{
+			if (this.stream == null)
+			{
+				return null;
+			}
+			long num2 = 0L;
+			long length = this.stream.Length;
+			byte[] array = new byte[8];
+			while (num2 + 8L <= length)
+			{
+				this.stream.Position = num2;
+				if (this.stream.Read(array, 0, 8) != 8)
+				{
+					break;
+				}
+				int num3 = (int)array[0] | (int)array[1] << 8 | (int)array[2] << 16 | (int)array[3] << 24;
+				int num4 = (int)array[4] | (int)array[5] << 8 | (int)array[6] << 16 | (int)array[7] << 24;
+				if (num3 == num)
+				{
+					byte[] array2 = new byte[num4];
+					if (this.stream.Read(array2, 0, num4) != num4)
+					{
+						break;
+					}
+					return array2;
+				}
+				else
+				{
+					num2 += (long)(8 + num4);
+				}
+			}
+			return null;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal abstract class DbcsEncoding : MonoEncoding
+	{
+		internal abstract class DbcsDecoder : Decoder
+		{
+			protected DbcsConvert convert;
+
+			public DbcsDecoder(DbcsConvert convert)
+			{
+				this.convert = convert;
+			}
+
+			internal void CheckRange(byte[] bytes, int index, int count)
+			{
+				if (bytes == null)
+				{
+					throw new ArgumentNullException("bytes");
+				}
+				if (index < 0 || index > bytes.Length)
+				{
+					throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+				}
+				if (count < 0 || count > bytes.Length - index)
+				{
+					throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+				}
+			}
+
+			internal void CheckRange(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+			{
+				if (bytes == null)
+				{
+					throw new ArgumentNullException("bytes");
+				}
+				if (chars == null)
+				{
+					throw new ArgumentNullException("chars");
+				}
+				if (byteIndex < 0 || byteIndex > bytes.Length)
+				{
+					throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+				}
+				if (byteCount < 0 || byteIndex + byteCount > bytes.Length)
+				{
+					throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_Array"));
+				}
+				if (charIndex < 0 || charIndex > chars.Length)
+				{
+					throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_Array"));
+				}
+			}
+		}
+
+		public override bool IsBrowserDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsBrowserSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public DbcsEncoding(int codePage) : this(codePage, 0)
+		{
+		}
+
+		public DbcsEncoding(int codePage, int windowsCodePage) : base(codePage, windowsCodePage)
+		{
+		}
+
+		internal abstract DbcsConvert GetConvert();
+
+		public override int GetByteCount(char[] chars, int index, int count)
+		{
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (index < 0 || index > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || index + count > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			byte[] bytes = new byte[count * 2];
+			return this.GetBytes(chars, index, count, bytes, 0);
+		}
+
+		public override int GetCharCount(byte[] bytes, int index, int count)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (index < 0 || index > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("index", Strings.GetString("ArgRange_Array"));
+			}
+			if (count < 0 || index + count > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("count", Strings.GetString("ArgRange_Array"));
+			}
+			char[] chars = new char[count];
+			return this.GetChars(bytes, index, count, chars, 0);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			if (bytes == null)
+			{
+				throw new ArgumentNullException("bytes");
+			}
+			if (chars == null)
+			{
+				throw new ArgumentNullException("chars");
+			}
+			if (byteIndex < 0 || byteIndex > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteIndex", Strings.GetString("ArgRange_Array"));
+			}
+			if (byteCount < 0 || byteIndex + byteCount > bytes.Length)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_Array"));
+			}
+			if (charIndex < 0 || charIndex > chars.Length)
+			{
+				throw new ArgumentOutOfRangeException("charIndex", Strings.GetString("ArgRange_Array"));
+			}
+			return 0;
+		}
+
+		public override int GetMaxByteCount(int charCount)
+		{
+			if (charCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("charCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return charCount * 2;
+		}
+
+		public override int GetMaxCharCount(int byteCount)
+		{
+			if (byteCount < 0)
+			{
+				throw new ArgumentOutOfRangeException("byteCount", Strings.GetString("ArgRange_NonNegative"));
+			}
+			return byteCount;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	internal class DbcsConvert
+	{
+		public byte[] n2u;
+
+		public byte[] u2n;
+
+		internal static readonly DbcsConvert Gb2312 = new DbcsConvert("gb2312.table");
+
+		internal static readonly DbcsConvert Big5 = new DbcsConvert("big5.table");
+
+		internal static readonly DbcsConvert KS = new DbcsConvert("ks.table");
+
+		internal DbcsConvert(string fileName)
+		{
+			using (CodeTable codeTable = new CodeTable(fileName))
+			{
+				this.n2u = codeTable.GetSection(1);
+				this.u2n = codeTable.GetSection(2);
+			}
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	internal class ENCgb18030 : GB18030Encoding
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class CP54936 : GB18030Encoding
+	{
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+using System.Text;
+
+namespace I18N.CJK
+{
+	[Serializable]
+	public class GB18030Encoding : MonoEncoding
+	{
+		public override string EncodingName
+		{
+			get
+			{
+				return "Chinese Simplified (GB18030)";
+			}
+		}
+
+		public override string HeaderName
+		{
+			get
+			{
+				return "GB18030";
+			}
+		}
+
+		public override string BodyName
+		{
+			get
+			{
+				return "GB18030";
+			}
+		}
+
+		public override string WebName
+		{
+			get
+			{
+				return "GB18030";
+			}
+		}
+
+		public override bool IsMailNewsDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsMailNewsSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsBrowserDisplay
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public override bool IsBrowserSave
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public GB18030Encoding() : base(54936, 936)
+		{
+		}
+
+		public override int GetMaxByteCount(int len)
+		{
+			return len * 4;
+		}
+
+		public override int GetMaxCharCount(int len)
+		{
+			return len;
+		}
+
+		public override int GetByteCount(char[] chars, int index, int length)
+		{
+			return new GB18030Encoder(this).GetByteCount(chars, index, length, true);
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count)
+		{
+			return new GB18030Encoder(this).GetByteCountImpl(chars, count, true);
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount)
+		{
+			return new GB18030Encoder(this).GetBytesImpl(chars, charCount, bytes, byteCount, true);
+		}
+
+		public override int GetCharCount(byte[] bytes, int start, int len)
+		{
+			return new GB18030Decoder().GetCharCount(bytes, start, len);
+		}
+
+		public override int GetChars(byte[] bytes, int byteIdx, int srclen, char[] chars, int charIdx)
+		{
+			return new GB18030Decoder().GetChars(bytes, byteIdx, srclen, chars, charIdx);
+		}
+
+		public override Encoder GetEncoder()
+		{
+			return new GB18030Encoder(this);
+		}
+
+		public override Decoder GetDecoder()
+		{
+			return new GB18030Decoder();
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	internal class GB18030Decoder : DbcsEncoding.DbcsDecoder
+	{
+		private static DbcsConvert gb2312 = DbcsConvert.Gb2312;
+
+		public GB18030Decoder() : base(null)
+		{
+		}
+
+		public override int GetCharCount(byte[] bytes, int start, int len)
+		{
+			base.CheckRange(bytes, start, len);
+			int num = start + len;
+			int num2 = 0;
+			while (start < num)
+			{
+				if (bytes[start] < 128)
+				{
+					num2++;
+					start++;
+				}
+				else if (bytes[start] == 128)
+				{
+					num2++;
+					start++;
+				}
+				else if (bytes[start] == 255)
+				{
+					num2++;
+					start++;
+				}
+				else
+				{
+					if (start + 1 >= num)
+					{
+						num2++;
+						break;
+					}
+					byte b = bytes[start + 1];
+					if (b == 127 || b == 255)
+					{
+						num2++;
+						start += 2;
+					}
+					else if (48 <= b && b <= 57)
+					{
+						if (start + 3 >= num)
+						{
+							num2 += ((start + 3 != num) ? 2 : 3);
+							break;
+						}
+						long num3 = GB18030Source.FromGBX(bytes, start);
+						if (num3 < 0L)
+						{
+							num2++;
+							start -= (int)num3;
+						}
+						else if (num3 >= 65536L)
+						{
+							num2 += 2;
+							start += 4;
+						}
+						else
+						{
+							num2++;
+							start += 4;
+						}
+					}
+					else
+					{
+						start += 2;
+						num2++;
+					}
+				}
+			}
+			return num2;
+		}
+
+		public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
+		{
+			base.CheckRange(bytes, byteIndex, byteCount, chars, charIndex);
+			int num = byteIndex + byteCount;
+			int num2 = charIndex;
+			while (byteIndex < num)
+			{
+				if (bytes[byteIndex] < 128)
+				{
+					chars[charIndex++] = (char)bytes[byteIndex++];
+				}
+				else if (bytes[byteIndex] == 128)
+				{
+					chars[charIndex++] = '€';
+					byteIndex++;
+				}
+				else if (bytes[byteIndex] == 255)
+				{
+					chars[charIndex++] = '?';
+					byteIndex++;
+				}
+				else
+				{
+					if (byteIndex + 1 >= num)
+					{
+						break;
+					}
+					byte b = bytes[byteIndex + 1];
+					if (b == 127 || b == 255)
+					{
+						chars[charIndex++] = '?';
+						byteIndex += 2;
+					}
+					else if (48 <= b && b <= 57)
+					{
+						if (byteIndex + 3 >= num)
+						{
+							break;
+						}
+						long num3 = GB18030Source.FromGBX(bytes, byteIndex);
+						if (num3 < 0L)
+						{
+							chars[charIndex++] = '?';
+							byteIndex -= (int)num3;
+						}
+						else if (num3 >= 65536L)
+						{
+							num3 -= 65536L;
+							chars[charIndex++] = (char)(num3 / 1024L + 55296L);
+							chars[charIndex++] = (char)(num3 % 1024L + 56320L);
+							byteIndex += 4;
+						}
+						else
+						{
+							chars[charIndex++] = (char)num3;
+							byteIndex += 4;
+						}
+					}
+					else
+					{
+						byte b2 = bytes[byteIndex];
+						int num4 = (int)(((b2 - 129) * 191 + b - 64) * 2);
+						char c = (num4 >= 0 && num4 < GB18030Decoder.gb2312.n2u.Length) ? ((char)((int)GB18030Decoder.gb2312.n2u[num4] + (int)GB18030Decoder.gb2312.n2u[num4 + 1] * 256)) : '\0';
+						if (c == '\0')
+						{
+							chars[charIndex++] = '?';
+						}
+						else
+						{
+							chars[charIndex++] = c;
+						}
+						byteIndex += 2;
+					}
+				}
+			}
+			return charIndex - num2;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using I18N.Common;
+using System;
+
+namespace I18N.CJK
+{
+	internal class GB18030Encoder : MonoEncoder
+	{
+		private static DbcsConvert gb2312 = DbcsConvert.Gb2312;
+
+		private char incomplete_byte_count;
+
+		private char incomplete_bytes;
+
+		public GB18030Encoder(MonoEncoding owner) : base(owner)
+		{
+		}
+
+		public unsafe override int GetByteCountImpl(char* chars, int count, bool refresh)
+		{
+			int i = 0;
+			int num = 0;
+			while (i < count)
+			{
+				char c = chars[i];
+				if (c < '\u0080')
+				{
+					num++;
+					i++;
+				}
+				else if (char.IsSurrogate(c))
+				{
+					if (i + 1 == count)
+					{
+						this.incomplete_byte_count = c;
+						i++;
+					}
+					else
+					{
+						num += 4;
+						i += 2;
+					}
+				}
+				else if (c < '\u0080' || c == 'ÿ')
+				{
+					num++;
+					i++;
+				}
+				else
+				{
+					byte b = GB18030Encoder.gb2312.u2n[(int)(c * '\u0002' + '\u0001')];
+					byte b2 = GB18030Encoder.gb2312.u2n[(int)(c * '\u0002')];
+					if (b != 0 && b2 != 0)
+					{
+						num += 2;
+						i++;
+					}
+					else
+					{
+						long num2 = GB18030Source.FromUCS((int)c);
+						if (num2 < 0L)
+						{
+							num++;
+						}
+						else
+						{
+							num += 4;
+						}
+						i++;
+					}
+				}
+			}
+			if (refresh)
+			{
+				if (this.incomplete_byte_count != '\0')
+				{
+					num++;
+				}
+				this.incomplete_byte_count = '\0';
+			}
+			return num;
+		}
+
+		public unsafe override int GetBytesImpl(char* chars, int charCount, byte* bytes, int byteCount, bool refresh)
+		{
+			int i = 0;
+			int num = 0;
+			int num2 = i + charCount;
+			int num3 = num;
+			char c = this.incomplete_bytes;
+			while (i < num2)
+			{
+				if (this.incomplete_bytes == '\0')
+				{
+					c = chars[i++];
+				}
+				else
+				{
+					this.incomplete_bytes = '\0';
+				}
+				if (c < '\u0080')
+				{
+					bytes[num++] = (byte)c;
+				}
+				else if (char.IsSurrogate(c))
+				{
+					if (i == num2)
+					{
+						this.incomplete_bytes = c;
+						break;
+					}
+					char c2 = chars[i++];
+					if (!char.IsSurrogate(c2))
+					{
+						base.HandleFallback(chars, ref i, ref charCount, bytes, ref num, ref byteCount);
+					}
+					else
+					{
+						int cp = (int)((c - '\ud800') * 'Ѐ' + c2 - '\udc00');
+						GB18030Source.Unlinear(bytes + num, GB18030Source.FromUCSSurrogate(cp));
+						num += 4;
+					}
+				}
+				else if (c <= '\u0080' || c == 'ÿ')
+				{
+					bytes[num++] = (byte)c;
+				}
+				else
+				{
+					byte b = GB18030Encoder.gb2312.u2n[(int)(c * '\u0002' + '\u0001')];
+					byte b2 = GB18030Encoder.gb2312.u2n[(int)(c * '\u0002')];
+					if (b != 0 && b2 != 0)
+					{
+						bytes[num++] = b;
+						bytes[num++] = b2;
+					}
+					else
+					{
+						long num4 = GB18030Source.FromUCS((int)c);
+						if (num4 < 0L)
+						{
+							bytes[num++] = 63;
+						}
+						else
+						{
+							GB18030Source.Unlinear(bytes + num, num4);
+							num += 4;
+						}
+					}
+				}
+			}
+			if (refresh)
+			{
+				if (this.incomplete_bytes != '\0')
+				{
+					bytes[num++] = 63;
+				}
+				this.incomplete_bytes = '\0';
+			}
+			return num - num3;
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+using System.Reflection;
+
+namespace I18N.CJK
+{
+	internal class GB18030Source
+	{
+		private class GB18030Map
+		{
+			public readonly int UStart;
+
+			public readonly int UEnd;
+
+			public readonly long GStart;
+
+			public readonly long GEnd;
+
+			public readonly bool Dummy;
+
+			public GB18030Map(int ustart, int uend, long gstart, long gend, bool dummy)
+			{
+				this.UStart = ustart;
+				this.UEnd = uend;
+				this.GStart = gstart;
+				this.GEnd = gend;
+				this.Dummy = dummy;
+			}
+		}
+
+		private unsafe static readonly byte* gbx2uni;
+
+		private unsafe static readonly byte* uni2gbx;
+
+		private static readonly int gbx2uniSize;
+
+		private static readonly int uni2gbxSize;
+
+		private static readonly long gbxBase;
+
+		private static readonly long gbxSuppBase;
+
+		private static readonly GB18030Source.GB18030Map[] ranges;
+
+		private GB18030Source()
+		{
+		}
+
+		unsafe static GB18030Source()
+		{
+			GB18030Source.gbxBase = GB18030Source.FromGBXRaw(129, 48, 129, 48, false);
+			GB18030Source.gbxSuppBase = GB18030Source.FromGBXRaw(144, 48, 129, 48, false);
+			GB18030Source.ranges = new GB18030Source.GB18030Map[]
+			{
+				new GB18030Source.GB18030Map(1106, 8207, GB18030Source.FromGBXRaw(129, 48, 211, 48, false), GB18030Source.FromGBXRaw(129, 54, 165, 49, false), false),
+				new GB18030Source.GB18030Map(9795, 11904, GB18030Source.FromGBXRaw(129, 55, 168, 57, false), GB18030Source.FromGBXRaw(129, 56, 253, 56, false), false),
+				new GB18030Source.GB18030Map(13851, 14615, GB18030Source.FromGBXRaw(130, 48, 166, 51, false), GB18030Source.FromGBXRaw(130, 48, 242, 55, false), false),
+				new GB18030Source.GB18030Map(15585, 16469, GB18030Source.FromGBXRaw(130, 49, 212, 56, false), GB18030Source.FromGBXRaw(130, 50, 175, 50, false), false),
+				new GB18030Source.GB18030Map(16736, 17206, GB18030Source.FromGBXRaw(130, 50, 201, 55, false), GB18030Source.FromGBXRaw(130, 50, 248, 55, false), false),
+				new GB18030Source.GB18030Map(17623, 17995, GB18030Source.FromGBXRaw(130, 51, 163, 57, false), GB18030Source.FromGBXRaw(130, 51, 201, 49, false), false),
+				new GB18030Source.GB18030Map(18318, 18758, GB18030Source.FromGBXRaw(130, 51, 232, 56, false), GB18030Source.FromGBXRaw(130, 52, 150, 56, false), false),
+				new GB18030Source.GB18030Map(18872, 19574, GB18030Source.FromGBXRaw(130, 52, 161, 49, false), GB18030Source.FromGBXRaw(130, 52, 231, 51, false), false),
+				new GB18030Source.GB18030Map(19968, 40869, 0L, 0L, true),
+				new GB18030Source.GB18030Map(40870, 55295, GB18030Source.FromGBXRaw(130, 53, 143, 51, false), GB18030Source.FromGBXRaw(131, 54, 199, 56, false), false),
+				new GB18030Source.GB18030Map(55296, 59243, 0L, 0L, true),
+				new GB18030Source.GB18030Map(59493, 63787, GB18030Source.FromGBXRaw(131, 54, 208, 48, false), GB18030Source.FromGBXRaw(132, 48, 133, 52, false), false),
+				new GB18030Source.GB18030Map(64042, 65071, GB18030Source.FromGBXRaw(132, 48, 156, 56, false), GB18030Source.FromGBXRaw(132, 49, 133, 55, false), false),
+				new GB18030Source.GB18030Map(65510, 65535, GB18030Source.FromGBXRaw(132, 49, 162, 52, false), GB18030Source.FromGBXRaw(132, 49, 164, 57, false), false)
+			};
+			MethodInfo method = typeof(Assembly).GetMethod("GetManifestResourceInternal", BindingFlags.Instance | BindingFlags.NonPublic);
+			int num = 0;
+			Module module = null;
+			IntPtr intPtr = (IntPtr)method.Invoke(Assembly.GetExecutingAssembly(), new object[]
+			{
+				"gb18030.table",
+				num,
+				module
+			});
+			if (intPtr != IntPtr.Zero)
+			{
+				GB18030Source.gbx2uni = (byte*)(void*)intPtr;
+				GB18030Source.gbx2uniSize = ((int)(*GB18030Source.gbx2uni) << 24) + ((int)GB18030Source.gbx2uni[1] << 16) + ((int)GB18030Source.gbx2uni[2] << 8) + (int)GB18030Source.gbx2uni[3];
+				GB18030Source.gbx2uni += 4;
+				GB18030Source.uni2gbx = GB18030Source.gbx2uni + GB18030Source.gbx2uniSize;
+				GB18030Source.uni2gbxSize = ((int)(*GB18030Source.uni2gbx) << 24) + ((int)GB18030Source.uni2gbx[1] << 16) + ((int)GB18030Source.uni2gbx[2] << 8) + (int)GB18030Source.uni2gbx[3];
+				GB18030Source.uni2gbx += 4;
+			}
+		}
+
+		public unsafe static void Unlinear(byte[] bytes, int start, long gbx)
+		{
+			fixed (byte* ptr = (bytes != null && bytes.Length != 0) ? ref bytes[0] : ref *null)
+			{
+				GB18030Source.Unlinear(ptr + start, gbx);
+			}
+		}
+
+		public unsafe static void Unlinear(byte* bytes, long gbx)
+		{
+			bytes[3] = (byte)(gbx % 10L + 48L);
+			gbx /= 10L;
+			bytes[2] = (byte)(gbx % 126L + 129L);
+			gbx /= 126L;
+			bytes[1] = (byte)(gbx % 10L + 48L);
+			gbx /= 10L;
+			*bytes = (byte)(gbx + 129L);
+		}
+
+		public static long FromGBX(byte[] bytes, int start)
+		{
+			byte b = bytes[start];
+			byte b2 = bytes[start + 1];
+			byte b3 = bytes[start + 2];
+			byte b4 = bytes[start + 3];
+			if (b < 129 || b == 255)
+			{
+				return -1L;
+			}
+			if (b2 < 48 || b2 > 57)
+			{
+				return -2L;
+			}
+			if (b3 < 129 || b3 == 255)
+			{
+				return -3L;
+			}
+			if (b4 < 48 || b4 > 57)
+			{
+				return -4L;
+			}
+			if (b >= 144)
+			{
+				return GB18030Source.FromGBXRaw(b, b2, b3, b4, true);
+			}
+			long num = GB18030Source.FromGBXRaw(b, b2, b3, b4, false);
+			long num2 = 0L;
+			long num3 = 0L;
+			for (int i = 0; i < GB18030Source.ranges.Length; i++)
+			{
+				GB18030Source.GB18030Map gB18030Map = GB18030Source.ranges[i];
+				if (num < gB18030Map.GStart)
+				{
+					return (long)GB18030Source.ToUcsRaw((int)(num - num3 + num2));
+				}
+				if (num <= gB18030Map.GEnd)
+				{
+					return num - GB18030Source.gbxBase - gB18030Map.GStart + (long)gB18030Map.UStart;
+				}
+				if (gB18030Map.GStart != 0L)
+				{
+					num2 += gB18030Map.GStart - num3;
+					num3 = gB18030Map.GEnd + 1L;
+				}
+			}
+			throw new SystemException(string.Format("GB18030 INTERNAL ERROR (should not happen): GBX {0:x02} {1:x02} {2:x02} {3:x02}", new object[]
+			{
+				b,
+				b2,
+				b3,
+				b4
+			}));
+		}
+
+		public static long FromUCSSurrogate(int cp)
+		{
+			return (long)cp + GB18030Source.gbxSuppBase;
+		}
+
+		public static long FromUCS(int cp)
+		{
+			long num = 0L;
+			long num2 = 128L;
+			for (int i = 0; i < GB18030Source.ranges.Length; i++)
+			{
+				GB18030Source.GB18030Map gB18030Map = GB18030Source.ranges[i];
+				if (cp < gB18030Map.UStart)
+				{
+					return GB18030Source.ToGbxRaw((int)((long)cp - num2 + num));
+				}
+				if (cp <= gB18030Map.UEnd)
+				{
+					return (long)(cp - gB18030Map.UStart) + gB18030Map.GStart;
+				}
+				if (gB18030Map.GStart != 0L)
+				{
+					num += (long)gB18030Map.UStart - num2;
+					num2 = (long)(gB18030Map.UEnd + 1);
+				}
+			}
+			throw new SystemException(string.Format("GB18030 INTERNAL ERROR (should not happen): UCS {0:x06}", cp));
+		}
+
+		private static long FromGBXRaw(byte b1, byte b2, byte b3, byte b4, bool supp)
+		{
+			return (long)((int)((((b1 - ((!supp) ? 129 : 144)) * 10 + (b2 - 48)) * 126 + (b3 - 129)) * 10 + b4 - 48) + ((!supp) ? 0 : 65536));
+		}
+
+		private unsafe static int ToUcsRaw(int idx)
+		{
+			return (int)GB18030Source.gbx2uni[idx * 2] * 256 + (int)GB18030Source.gbx2uni[idx * 2 + 1];
+		}
+
+		private unsafe static long ToGbxRaw(int idx)
+		{
+			if (idx < 0 || idx * 2 + 1 >= GB18030Source.uni2gbxSize)
+			{
+				return -1L;
+			}
+			return GB18030Source.gbxBase + (long)((int)GB18030Source.uni2gbx[idx * 2] * 256) + (long)GB18030Source.uni2gbx[idx * 2 + 1];
+		}
+	}
+}
+
+// Decompile from assembly: I18N.CJK.dll
+
+using System;
+
+namespace I18N.CJK
+{
+	internal sealed class JISConvert
+	{
+		private const int JISX0208_To_Unicode = 1;
+
+		private const int JISX0212_To_Unicode = 2;
+
+		private const int CJK_To_JIS = 3;
+
+		private const int Greek_To_JIS = 4;
+
+		private const int Extra_To_JIS = 5;
+
+		public byte[] jisx0208ToUnicode;
+
+		public byte[] jisx0212ToUnicode;
+
+		public byte[] cjkToJis;
+
+		public byte[] greekToJis;
+
+		public byte[] extraToJis;
+
+		private static JISConvert convert;
+
+		private static readonly object lockobj = new object();
+
+		public static JISConvert Convert
+		{
+			get
+			{
+				object obj = JISConvert.lockobj;
+				JISConvert result;
+				lock (obj)
+				{
+					if (JISConvert.convert != null)
+					{
+						result = JISConvert.convert;
+					}
+					else
+					{
+						JISConvert.convert = new JISConvert();
+						result = JISConvert.convert;
+					}
+				}
+				return result;
+			}
+		}
+
+		private JISConvert()
+		{
+			CodeTable codeTable = new CodeTable("jis.table");
+			this.jisx0208ToUnicode = codeTable.GetSection(1);
+			this.jisx0212ToUnicode = codeTable.GetSection(2);
+			this.cjkToJis = codeTable.GetSection(3);
+			this.greekToJis = codeTable.GetSection(4);
+			this.extraToJis = codeTable.GetSection(5);
+			codeTable.Dispose();
+		}
+	}
+}
+

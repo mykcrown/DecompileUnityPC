@@ -1,0 +1,1825 @@
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+
+namespace SickDev.CommandSystem
+{
+	internal class ArgumentsParser
+	{
+		private Dictionary<Type, MethodInfo> parsers;
+
+		public ArgumentsParser()
+		{
+			this.Load();
+		}
+
+		private void Load()
+		{
+			this.parsers = new Dictionary<Type, MethodInfo>();
+			Type[] array = ReflectionFinder.LoadUserClassesAndStructs(null, false);
+			for (int i = 0; i < array.Length; i++)
+			{
+				MethodInfo[] methods = array[i].GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+				for (int j = 0; j < methods.Length; j++)
+				{
+					object[] customAttributes = methods[j].GetCustomAttributes(typeof(ParserAttribute), false);
+					bool flag = customAttributes.Length != 0;
+					if (flag)
+					{
+						ParserAttribute parserAttribute = (ParserAttribute)customAttributes[0];
+						bool flag2 = !this.parsers.ContainsKey(parserAttribute.type);
+						if (flag2)
+						{
+							this.parsers.Add(parserAttribute.type, methods[j]);
+						}
+						else
+						{
+							CommandsManager.SendException(new DuplicatedParserException(parserAttribute));
+						}
+					}
+				}
+			}
+		}
+
+		private bool HasParserForType(Type type)
+		{
+			return this.parsers.ContainsKey(type);
+		}
+
+		public object Parse(string value, Type type)
+		{
+			bool flag = this.HasParserForType(type);
+			if (flag)
+			{
+				return this.parsers[type].Invoke(null, new object[]
+				{
+					value
+				});
+			}
+			throw new NoValidParserFoundException(type);
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+	public class CommandAttribute : Attribute
+	{
+		public string description
+		{
+			get;
+			set;
+		}
+
+		public string alias
+		{
+			get;
+			set;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+
+namespace SickDev.CommandSystem
+{
+	internal class CommandAttributeLoader
+	{
+		private List<CommandBase> commands = new List<CommandBase>();
+
+		private Type[] types;
+
+		private CommandTypeInfo[] commandTypes;
+
+		public CommandAttributeLoader(Config config)
+		{
+			this.types = ReflectionFinder.LoadUserClassesAndStructs(config.assembliesWithCommands, false);
+			this.commandTypes = CommandAttributeLoader.FilterCommandTypes(this.types);
+		}
+
+		private static CommandTypeInfo[] FilterCommandTypes(Type[] types)
+		{
+			List<CommandTypeInfo> list = new List<CommandTypeInfo>();
+			for (int i = 0; i < types.Length; i++)
+			{
+				bool flag = types[i].IsSubclassOf(typeof(CommandBase));
+				if (flag)
+				{
+					list.Add(new CommandTypeInfo(types[i]));
+				}
+			}
+			return list.ToArray();
+		}
+
+		public CommandBase[] LoadCommands()
+		{
+			for (int i = 0; i < this.types.Length; i++)
+			{
+				this.commands.AddRange(this.LoadCommandsInType(this.types[i]));
+			}
+			return this.commands.ToArray();
+		}
+
+		private CommandBase[] LoadCommandsInType(Type type)
+		{
+			List<CommandBase> list = new List<CommandBase>();
+			MethodInfo[] methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+			for (int i = 0; i < methods.Length; i++)
+			{
+				try
+				{
+					CommandAttributeVerifier commandAttributeVerifier = new CommandAttributeVerifier(methods[i]);
+					bool hasCommandAttribute = commandAttributeVerifier.hasCommandAttribute;
+					if (hasCommandAttribute)
+					{
+						CommandBase commandBase = commandAttributeVerifier.ExtractCommand(this.commandTypes);
+						bool flag = commandBase != null;
+						if (flag)
+						{
+							list.Add(commandBase);
+						}
+					}
+				}
+				catch (CommandSystemException exception)
+				{
+					CommandsManager.SendException(exception);
+				}
+			}
+			return list.ToArray();
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Linq;
+using System.Reflection;
+
+namespace SickDev.CommandSystem
+{
+	internal class CommandAttributeVerifier
+	{
+		private MethodInfo method;
+
+		private CommandAttribute attribute;
+
+		private CommandTypeInfo commandType;
+
+		public bool hasCommandAttribute
+		{
+			get
+			{
+				return this.attribute != null;
+			}
+		}
+
+		public CommandAttributeVerifier(MethodInfo method)
+		{
+			this.method = method;
+			this.attribute = (Attribute.GetCustomAttribute(method, typeof(CommandAttribute)) as CommandAttribute);
+		}
+
+		public CommandBase ExtractCommand(CommandTypeInfo[] commandTypes)
+		{
+			bool flag = this.IsDeclarationSupported();
+			if (!flag)
+			{
+				throw new UnsupportedCommandDeclarationException(this.method);
+			}
+			this.CheckCommandTypeMatch(commandTypes);
+			bool flag2 = this.commandType == null;
+			if (flag2)
+			{
+				throw new NoSuitableCommandFoundException(this.method);
+			}
+			return (CommandBase)Activator.CreateInstance(this.commandType.type, new object[]
+			{
+				Delegate.CreateDelegate(this.commandType.firstParameter.ParameterType, this.method),
+				this.attribute.description,
+				this.attribute.alias
+			});
+		}
+
+		private bool IsDeclarationSupported()
+		{
+			return this.method.IsStatic && !this.method.IsGenericMethod && !this.method.IsGenericMethodDefinition;
+		}
+
+		private void CheckCommandTypeMatch(CommandTypeInfo[] commandTypes)
+		{
+			ParameterInfo[] parameters = this.method.GetParameters();
+			Type[] array = new Type[parameters.Length];
+			for (int i = 0; i < parameters.Length; i++)
+			{
+				array[i] = parameters[i].ParameterType;
+			}
+			for (int j = 0; j < commandTypes.Length; j++)
+			{
+				bool flag = parameters.Length == commandTypes[j].parametersLength;
+				if (flag)
+				{
+					bool flag2 = CommandAttributeVerifier.BothAreAction(this.method, commandTypes[j]);
+					if (flag2)
+					{
+						bool isGeneric = commandTypes[j].isGeneric;
+						if (isGeneric)
+						{
+							this.commandType = commandTypes[j].MakeGeneric(array);
+						}
+						else
+						{
+							this.commandType = commandTypes[j];
+						}
+						break;
+					}
+					bool flag3 = CommandAttributeVerifier.BothAreFunc(this.method, commandTypes[j]);
+					if (flag3)
+					{
+						bool isGeneric2 = commandTypes[j].isGeneric;
+						if (isGeneric2)
+						{
+							this.commandType = commandTypes[j].MakeGeneric(array.Concat(new Type[]
+							{
+								this.method.ReturnType
+							}).ToArray<Type>());
+						}
+						else
+						{
+							this.commandType = commandTypes[j];
+						}
+						break;
+					}
+				}
+			}
+		}
+
+		private static bool BothAreAction(MethodInfo method, CommandTypeInfo commandType)
+		{
+			return method.ReturnType == typeof(void) && !commandType.isFunc;
+		}
+
+		private static bool BothAreFunc(MethodInfo method, CommandTypeInfo commandType)
+		{
+			return method.ReturnType != typeof(void) && commandType.isFunc;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Runtime.CompilerServices;
+
+namespace SickDev.CommandSystem
+{
+	public abstract class CommandBase
+	{
+		internal Delegate method;
+
+		public readonly string alias;
+
+		public readonly string name;
+
+		public readonly string description;
+
+		public readonly Signature signature;
+
+		public readonly bool isAnonymous;
+
+		public bool isFunc
+		{
+			get
+			{
+				return this.method.Method.ReturnType != typeof(void);
+			}
+		}
+
+		protected CommandBase(Delegate _delegate, string alias = null, string description = null)
+		{
+			this.method = _delegate;
+			this.isAnonymous = (this.method.Method.GetCustomAttributes(typeof(CompilerGeneratedAttribute), false).Length != 0);
+			this.description = (description ?? string.Empty);
+			this.alias = (alias ?? string.Empty);
+			this.name = (string.IsNullOrEmpty(this.alias.Trim()) ? _delegate.Method.Name : this.alias);
+			this.signature = new Signature(this);
+		}
+
+		public bool IsOverloadOf(ParsedCommand parsedCommand)
+		{
+			return string.Equals(this.name, parsedCommand.command, StringComparison.OrdinalIgnoreCase);
+		}
+
+		public object Execute(object[] args)
+		{
+			return this.method.DynamicInvoke(args);
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace SickDev.CommandSystem
+{
+	public class CommandExecuter
+	{
+		private readonly List<CommandBase> commands;
+
+		private readonly ParsedCommand parsedCommand;
+
+		private List<CommandBase> overloads = new List<CommandBase>();
+
+		private Dictionary<CommandBase, object[]> matches = new Dictionary<CommandBase, object[]>();
+
+		internal CommandExecuter(List<CommandBase> commands, ParsedCommand parsedCommand)
+		{
+			this.commands = commands;
+			this.parsedCommand = parsedCommand;
+			this.FilterOverloads();
+			this.FilterMatches();
+		}
+
+		private void FilterOverloads()
+		{
+			for (int i = 0; i < this.commands.Count; i++)
+			{
+				bool flag = this.commands[i].IsOverloadOf(this.parsedCommand);
+				if (flag)
+				{
+					this.overloads.Add(this.commands[i]);
+				}
+			}
+		}
+
+		private void FilterMatches()
+		{
+			for (int i = 0; i < this.overloads.Count; i++)
+			{
+				try
+				{
+					bool flag = this.overloads[i].signature.Matches(this.parsedCommand.args);
+					if (flag)
+					{
+						object[] value = this.overloads[i].signature.Convert(this.parsedCommand.args);
+						this.matches.Add(this.overloads[i], value);
+					}
+				}
+				catch (CommandSystemException exception)
+				{
+					CommandsManager.SendException(exception);
+				}
+			}
+		}
+
+		public bool IsValidCommand()
+		{
+			return this.overloads.Count >= 1;
+		}
+
+		public bool HasReturnType()
+		{
+			return this.matches.Count > 0 && this.matches.Keys.ToArray<CommandBase>()[0].isFunc;
+		}
+
+		public object Execute()
+		{
+			bool flag = this.matches.Count > 1;
+			if (flag)
+			{
+				throw new AmbiguousCommandCallException(this.parsedCommand.raw, this.matches.Keys.ToArray<CommandBase>());
+			}
+			bool flag2 = this.matches.Count == 0;
+			if (flag2)
+			{
+				throw new CommandOverloadNotFoundException(this.parsedCommand);
+			}
+			Dictionary<CommandBase, object[]>.Enumerator enumerator = this.matches.GetEnumerator();
+			enumerator.MoveNext();
+			KeyValuePair<CommandBase, object[]> current = enumerator.Current;
+			CommandBase arg_84_0 = current.Key;
+			current = enumerator.Current;
+			return arg_84_0.Execute(current.Value);
+		}
+
+		public CommandBase[] GetOverloads()
+		{
+			return this.overloads.ToArray();
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+
+namespace SickDev.CommandSystem
+{
+	public class CommandsManager
+	{
+		public delegate void OnExceptionThrown(CommandSystemException exception);
+
+		public delegate void OnMessage(string message);
+
+		public delegate void OnCommandAdded(CommandBase command);
+
+		private List<CommandBase> commands;
+
+		private Config config;
+
+		public event CommandsManager.OnCommandAdded onCommandAdded;
+
+		public static event CommandsManager.OnExceptionThrown onExceptionThrown;
+
+		public static event CommandsManager.OnMessage onMessage;
+
+		public CommandsManager()
+		{
+			this.commands = new List<CommandBase>();
+			this.config = new Config();
+		}
+
+		public void Load()
+		{
+			CommandAttributeLoader commandAttributeLoader = new CommandAttributeLoader(this.config);
+			this.Add(commandAttributeLoader.LoadCommands());
+		}
+
+		public void Add(CommandBase[] commands)
+		{
+			for (int i = 0; i < commands.Length; i++)
+			{
+				this.Add(commands[i]);
+			}
+		}
+
+		public void Add(CommandBase command)
+		{
+			bool flag = !this.commands.Contains(command);
+			if (flag)
+			{
+				this.commands.Add(command);
+				bool flag2 = this.onCommandAdded != null;
+				if (flag2)
+				{
+					this.onCommandAdded(command);
+				}
+			}
+		}
+
+		public CommandBase[] GetCommands()
+		{
+			return this.commands.ToArray();
+		}
+
+		public CommandExecuter GetCommandExecuter(string text)
+		{
+			ParsedCommand parsedCommand = new ParsedCommand(text);
+			return this.GetCommandExecuter(parsedCommand);
+		}
+
+		public CommandExecuter GetCommandExecuter(ParsedCommand parsedCommand)
+		{
+			return new CommandExecuter(this.commands, parsedCommand);
+		}
+
+		internal static void SendException(CommandSystemException exception)
+		{
+			bool flag = CommandsManager.onExceptionThrown != null;
+			if (flag)
+			{
+				CommandsManager.onExceptionThrown(exception);
+			}
+		}
+
+		internal static void SendMessage(string message)
+		{
+			bool flag = CommandsManager.onMessage != null;
+			if (flag)
+			{
+				CommandsManager.onMessage(message);
+			}
+		}
+
+		public void AddAssemblyWithCommands(string assemblyName)
+		{
+			this.config.AddAssemblyWithCommands(assemblyName);
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Reflection;
+
+namespace SickDev.CommandSystem
+{
+	internal class CommandTypeInfo
+	{
+		public Type type
+		{
+			get;
+			private set;
+		}
+
+		public bool isGeneric
+		{
+			get;
+			private set;
+		}
+
+		public ConstructorInfo constructor
+		{
+			get;
+			private set;
+		}
+
+		public ParameterInfo firstParameter
+		{
+			get;
+			private set;
+		}
+
+		public bool isFunc
+		{
+			get;
+			private set;
+		}
+
+		public int parametersLength
+		{
+			get;
+			private set;
+		}
+
+		public CommandTypeInfo(Type type)
+		{
+			try
+			{
+				this.type = type;
+				this.isGeneric = (type.IsGenericType && type.IsGenericTypeDefinition);
+				this.SetConstructor();
+				this.SetExtraInfo();
+			}
+			catch (CommandSystemException exception)
+			{
+				CommandsManager.SendException(exception);
+			}
+		}
+
+		private void SetConstructor()
+		{
+			bool flag = false;
+			ConstructorInfo[] constructors = this.type.GetConstructors();
+			for (int i = 0; i < constructors.Length; i++)
+			{
+				bool flag2 = !constructors[i].IsPublic;
+				if (!flag2)
+				{
+					ParameterInfo[] parameters = constructors[i].GetParameters();
+					bool flag3 = parameters.Length >= 3 && parameters[0].ParameterType.IsSubclassOf(typeof(Delegate)) && parameters[1].ParameterType == typeof(string) && parameters[2].ParameterType == typeof(string);
+					if (flag3)
+					{
+						this.constructor = constructors[i];
+						this.firstParameter = parameters[0];
+						flag = true;
+						break;
+					}
+				}
+			}
+			bool flag4 = !flag;
+			if (flag4)
+			{
+				throw new InvalidCommandTypeConstructorException(this.type);
+			}
+		}
+
+		private void SetExtraInfo()
+		{
+			MethodInfo method = this.firstParameter.ParameterType.GetMethod("Invoke");
+			this.isFunc = (method.ReturnType != typeof(void));
+			this.parametersLength = method.GetParameters().Length;
+		}
+
+		public CommandTypeInfo MakeGeneric(Type[] paramTypes)
+		{
+			Type type = this.type.MakeGenericType(paramTypes);
+			return new CommandTypeInfo(type);
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class ActionCommand : CommandBase
+	{
+		public ActionCommand(Action method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class ActionCommand<T1> : CommandBase
+	{
+		public ActionCommand(Action<T1> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class ActionCommand<T1, T2> : CommandBase
+	{
+		public ActionCommand(Action<T1, T2> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class ActionCommand<T1, T2, T3> : CommandBase
+	{
+		public ActionCommand(Action<T1, T2, T3> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class ActionCommand<T1, T2, T3, T4> : CommandBase
+	{
+		public ActionCommand(Action<T1, T2, T3, T4> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class FuncCommand<TResult> : CommandBase
+	{
+		public FuncCommand(Func<TResult> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class FuncCommand<T1, TResult> : CommandBase
+	{
+		public FuncCommand(Func<T1, TResult> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class FuncCommand<T1, T2, TResult> : CommandBase
+	{
+		public FuncCommand(Func<T1, T2, TResult> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class FuncCommand<T1, T2, T3, TResult> : CommandBase
+	{
+		public FuncCommand(Func<T1, T2, T3, TResult> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class FuncCommand<T1, T2, T3, T4, TResult> : CommandBase
+	{
+		public FuncCommand(Func<T1, T2, T3, T4, TResult> method, string alias = null, string description = null) : base(method, alias, description)
+		{
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+
+namespace SickDev.CommandSystem
+{
+	internal class Config
+	{
+		private List<string> _assembliesWithCommands = new List<string>
+		{
+			"CommandSystem.dll"
+		};
+
+		public string[] assembliesWithCommands
+		{
+			get
+			{
+				return this._assembliesWithCommands.ToArray();
+			}
+		}
+
+		public void AddAssemblyWithCommands(string assembly)
+		{
+			this._assembliesWithCommands.Add(assembly);
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class CommandSystemException : Exception
+	{
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class InvalidCommandTypeConstructorException : CommandSystemException
+	{
+		private Type type;
+
+		public override string Message
+		{
+			get
+			{
+				return this.type.Name + " does not have a valid constructor. Please, review the docs on how to create new Command types";
+			}
+		}
+
+		public InvalidCommandTypeConstructorException(Type type)
+		{
+			this.type = type;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Reflection;
+
+namespace SickDev.CommandSystem
+{
+	public class UnsupportedCommandDeclarationException : CommandSystemException
+	{
+		private MethodInfo method;
+
+		private string methodPath
+		{
+			get
+			{
+				return this.method.DeclaringType + "." + this.method.Name;
+			}
+		}
+
+		private string header
+		{
+			get
+			{
+				return "The command " + this.methodPath;
+			}
+		}
+
+		private string tail
+		{
+			get
+			{
+				return "Please, review the docs on how to create new Commands";
+			}
+		}
+
+		public override string Message
+		{
+			get
+			{
+				bool flag = !this.method.IsStatic;
+				string result;
+				if (flag)
+				{
+					result = this.header + " is not static. Only static commands are supported. " + this.tail;
+				}
+				else
+				{
+					bool flag2 = this.method.IsGenericMethod || this.method.IsGenericMethodDefinition;
+					if (flag2)
+					{
+						result = this.header + " is generic, which is not yet supported. " + this.tail;
+					}
+					else
+					{
+						result = this.header + " declaration is unsupported. " + this.tail;
+					}
+				}
+				return result;
+			}
+		}
+
+		public UnsupportedCommandDeclarationException(MethodInfo method)
+		{
+			this.method = method;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Reflection;
+
+namespace SickDev.CommandSystem
+{
+	public class NoSuitableCommandFoundException : CommandSystemException
+	{
+		private MethodInfo method;
+
+		public override string Message
+		{
+			get
+			{
+				return string.Concat(new string[]
+				{
+					"No suitable command found for method ",
+					this.method.DeclaringType.Name,
+					".",
+					this.method.Name,
+					". Please, review the docs on how to create new Command types"
+				});
+			}
+		}
+
+		public NoSuitableCommandFoundException(MethodInfo method)
+		{
+			this.method = method;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class InvalidArgumentFormatException<T> : CommandSystemException
+	{
+		private string argument;
+
+		public override string Message
+		{
+			get
+			{
+				return string.Concat(new string[]
+				{
+					"Argument \"",
+					this.argument,
+					"\" cannot be parsed into type ",
+					typeof(T).Name,
+					" because it is not in the correct format"
+				});
+			}
+		}
+
+		public InvalidArgumentFormatException(string argument)
+		{
+			this.argument = argument;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class NoValidParserFoundException : CommandSystemException
+	{
+		private Type type;
+
+		public override string Message
+		{
+			get
+			{
+				return "No valid Parser method found for type " + this.type.Name + ". Please, review the docs on how to create new Parser methods";
+			}
+		}
+
+		public NoValidParserFoundException(Type type)
+		{
+			this.type = type;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Text;
+
+namespace SickDev.CommandSystem
+{
+	public class AmbiguousCommandCallException : CommandSystemException
+	{
+		private string rawCall;
+
+		private CommandBase[] matches;
+
+		public override string Message
+		{
+			get
+			{
+				StringBuilder stringBuilder = new StringBuilder(this.matches[0].name);
+				for (int i = 1; i < this.matches.Length; i++)
+				{
+					stringBuilder.Append("\n" + this.matches[i].name);
+				}
+				return "The command call \"" + this.rawCall + "\" is ambiguous between the following commands:\n" + stringBuilder.ToString();
+			}
+		}
+
+		public AmbiguousCommandCallException(string rawCall, CommandBase[] matches)
+		{
+			this.rawCall = rawCall;
+			this.matches = matches;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class CommandOverloadNotFoundException : CommandSystemException
+	{
+		private ParsedCommand parsedCommand;
+
+		public override string Message
+		{
+			get
+			{
+				return "No overload found for command " + this.parsedCommand.raw;
+			}
+		}
+
+		public CommandOverloadNotFoundException(ParsedCommand parsedCommand)
+		{
+			this.parsedCommand = parsedCommand;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	public class DuplicatedParserException : CommandSystemException
+	{
+		private ParserAttribute parser;
+
+		public override string Message
+		{
+			get
+			{
+				return "More than one Parser was specified for type " + this.parser.type + ".Please, note that most common types already have a built-in Parser";
+			}
+		}
+
+		public DuplicatedParserException(ParserAttribute parser)
+		{
+			this.parser = parser;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+
+namespace SickDev.CommandSystem
+{
+	public class ParsedCommand
+	{
+		private static readonly char[] groupifiers = new char[]
+		{
+			'\'',
+			'"'
+		};
+
+		private const char separator = ' ';
+
+		public string raw
+		{
+			get;
+			private set;
+		}
+
+		public string command
+		{
+			get;
+			private set;
+		}
+
+		public string[] args
+		{
+			get;
+			private set;
+		}
+
+		public ParsedCommand(string raw)
+		{
+			this.raw = raw;
+			this.GetCommand();
+			this.GetArgs();
+		}
+
+		private void GetCommand()
+		{
+			string[] array = this.raw.Split(new char[]
+			{
+				' '
+			});
+			this.command = array[0];
+		}
+
+		private void GetArgs()
+		{
+			string text = this.raw.Substring(this.command.Length).Trim();
+			List<string> list = new List<string>();
+			char? c = null;
+			string text2 = string.Empty;
+			for (int i = 0; i < text.Length; i++)
+			{
+				bool flag = text[i] == ' ' && !c.HasValue;
+				if (flag)
+				{
+					list.Add(text2);
+					text2 = string.Empty;
+				}
+				else
+				{
+					bool flag2 = false;
+					for (int j = 0; j < ParsedCommand.groupifiers.Length; j++)
+					{
+						bool flag3 = text[i] == ParsedCommand.groupifiers[j];
+						if (flag3)
+						{
+							flag2 = true;
+							bool flag4 = !c.HasValue;
+							if (flag4)
+							{
+								c = new char?(ParsedCommand.groupifiers[j]);
+							}
+							else
+							{
+								char? c2 = c;
+								bool flag5 = (c2.HasValue ? new int?((int)c2.GetValueOrDefault()) : null) == (int)text[i];
+								if (flag5)
+								{
+									list.Add(text2);
+									text2 = string.Empty;
+									c = null;
+								}
+							}
+						}
+					}
+					bool flag6 = !flag2;
+					if (flag6)
+					{
+						text2 += text[i].ToString();
+					}
+				}
+			}
+			bool flag7 = text2 != string.Empty;
+			if (flag7)
+			{
+				list.Add(text2);
+			}
+			this.args = list.ToArray();
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+	public class ParserAttribute : Attribute
+	{
+		public readonly Type type;
+
+		public ParserAttribute(Type type)
+		{
+			this.type = type;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+
+namespace SickDev.CommandSystem
+{
+	internal static class Parsers
+	{
+		private const string nullObject = "null";
+
+		[Parser(typeof(string))]
+		private static string ParseString(string value)
+		{
+			return value.Equals("null") ? null : value;
+		}
+
+		[Parser(typeof(bool))]
+		private static bool ParseBool(string value)
+		{
+			bool flag = false;
+			bool flag2 = bool.TryParse(value, out flag);
+			bool result;
+			if (flag2)
+			{
+				result = flag;
+			}
+			else
+			{
+				int num;
+				bool flag3 = int.TryParse(value, out num);
+				if (flag3)
+				{
+					bool flag4 = num == 1;
+					if (flag4)
+					{
+						result = true;
+					}
+					else
+					{
+						bool flag5 = num == 0;
+						if (!flag5)
+						{
+							throw new InvalidArgumentFormatException<bool>(value);
+						}
+						result = false;
+					}
+				}
+				else
+				{
+					bool flag6 = value.Equals("yes") || value.Equals("y") || value.Equals("t");
+					if (flag6)
+					{
+						result = true;
+					}
+					else
+					{
+						bool flag7 = value.Equals("no") || value.Equals("n") || value.Equals("f");
+						if (!flag7)
+						{
+							throw new InvalidArgumentFormatException<bool>(value);
+						}
+						result = false;
+					}
+				}
+			}
+			return result;
+		}
+
+		[Parser(typeof(bool?))]
+		private static bool? ParseNullableBool(string value)
+		{
+			bool? result;
+			try
+			{
+				result = (value.Equals("null") ? null : new bool?(Parsers.ParseBool(value)));
+			}
+			catch (CommandSystemException ex)
+			{
+				throw ex;
+			}
+			return result;
+		}
+
+		[Parser(typeof(int))]
+		private static int ParseInt(string value)
+		{
+			int result;
+			try
+			{
+				result = int.Parse(value.Trim());
+			}
+			catch
+			{
+				throw new InvalidArgumentFormatException<int>(value);
+			}
+			return result;
+		}
+
+		[Parser(typeof(int?))]
+		private static int? ParseNullableInt(string value)
+		{
+			int? result;
+			try
+			{
+				result = (value.Equals("null") ? null : new int?(Parsers.ParseInt(value)));
+			}
+			catch (CommandSystemException ex)
+			{
+				throw ex;
+			}
+			return result;
+		}
+
+		[Parser(typeof(float))]
+		private static float ParseFloat(string value)
+		{
+			float result;
+			try
+			{
+				result = float.Parse(value.Trim());
+			}
+			catch
+			{
+				throw new InvalidArgumentFormatException<float>(value);
+			}
+			return result;
+		}
+
+		[Parser(typeof(float?))]
+		private static float? ParseNullableFloat(string value)
+		{
+			float? result;
+			try
+			{
+				result = (value.Equals("null") ? null : new float?(Parsers.ParseFloat(value)));
+			}
+			catch (CommandSystemException ex)
+			{
+				throw ex;
+			}
+			return result;
+		}
+
+		[Parser(typeof(char))]
+		private static char ParseChar(string value)
+		{
+			char result;
+			try
+			{
+				result = char.Parse(value);
+			}
+			catch
+			{
+				throw new InvalidArgumentFormatException<char>(value);
+			}
+			return result;
+		}
+
+		[Parser(typeof(char?))]
+		private static char? ParseNullableChar(string value)
+		{
+			char? result;
+			try
+			{
+				result = (value.Equals("null") ? null : new char?(Parsers.ParseChar(value)));
+			}
+			catch (CommandSystemException ex)
+			{
+				throw ex;
+			}
+			return result;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace SickDev.CommandSystem
+{
+	internal static class ReflectionFinder
+	{
+		[Serializable]
+		private sealed class __c
+		{
+			public static readonly ReflectionFinder.__c __9 = new ReflectionFinder.__c();
+
+			public static Converter<Assembly, string> __9__1_0;
+
+			public static Func<Type, bool> __9__1_1;
+
+			internal string _LoadUserClassesAndStructs_b__1_0(Assembly x)
+			{
+				return x.ManifestModule.Name;
+			}
+
+			internal bool _LoadUserClassesAndStructs_b__1_1(Type x)
+			{
+				return x.IsClass || (x.IsValueType && !x.IsEnum);
+			}
+		}
+
+		private static Type[] cache;
+
+		public static Type[] LoadUserClassesAndStructs(string[] assembliesWithCommands = null, bool reload = false)
+		{
+			bool flag = reload || ReflectionFinder.cache == null;
+			if (flag)
+			{
+				List<Type> list = new List<Type>();
+				Assembly[] assembliesWithCommands2 = ReflectionFinder.GetAssembliesWithCommands(assembliesWithCommands);
+				string arg_67_0 = "Loading CommandSystem data from: ";
+				string arg_5D_0 = ", ";
+				List<Assembly> arg_53_0 = assembliesWithCommands2.ToList<Assembly>();
+				Converter<Assembly, string> arg_53_1;
+				if ((arg_53_1 = ReflectionFinder.__c.__9__1_0) == null)
+				{
+					arg_53_1 = (ReflectionFinder.__c.__9__1_0 = new Converter<Assembly, string>(ReflectionFinder.__c.__9._LoadUserClassesAndStructs_b__1_0));
+				}
+				CommandsManager.SendMessage(arg_67_0 + string.Join(arg_5D_0, arg_53_0.ConvertAll<string>(arg_53_1).ToArray()) + ".");
+				for (int i = 0; i < assembliesWithCommands2.Length; i++)
+				{
+					list.AddRange(assembliesWithCommands2[i].GetTypes());
+				}
+				IEnumerable<Type> arg_B5_0 = list;
+				Func<Type, bool> arg_B5_1;
+				if ((arg_B5_1 = ReflectionFinder.__c.__9__1_1) == null)
+				{
+					arg_B5_1 = (ReflectionFinder.__c.__9__1_1 = new Func<Type, bool>(ReflectionFinder.__c.__9._LoadUserClassesAndStructs_b__1_1));
+				}
+				ReflectionFinder.cache = arg_B5_0.Where(arg_B5_1).ToArray<Type>();
+			}
+			return ReflectionFinder.cache;
+		}
+
+		private static Assembly[] GetAssembliesWithCommands(string[] assembliesWithCommands)
+		{
+			List<Assembly> list = new List<Assembly>();
+			Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			for (int i = 0; i < assembliesWithCommands.Length; i++)
+			{
+				bool flag = false;
+				for (int j = 0; j < assemblies.Length; j++)
+				{
+					bool flag2 = assemblies[j].ManifestModule.Name == assembliesWithCommands[i];
+					if (flag2)
+					{
+						flag = true;
+						list.Add(assemblies[j]);
+						break;
+					}
+				}
+				bool flag3 = !flag;
+				if (flag3)
+				{
+					CommandsManager.SendMessage("Assembly with name '" + assembliesWithCommands[i] + "' could not be found. Please, make sure the assembly is properly loaded");
+				}
+			}
+			return list.ToArray();
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+namespace SickDev.CommandSystem
+{
+	public class Signature
+	{
+		[Serializable]
+		private sealed class __c
+		{
+			public static readonly Signature.__c __9 = new Signature.__c();
+
+			public static Func<ParameterInfo, bool> __9__12_0;
+
+			internal bool _Matches_b__12_0(ParameterInfo x)
+			{
+				return !x.IsOptional;
+			}
+		}
+
+		private CommandBase command;
+
+		private string _raw;
+
+		private static ArgumentsParser _parser;
+
+		public ParameterInfo[] parameters
+		{
+			get;
+			private set;
+		}
+
+		public string raw
+		{
+			get
+			{
+				bool flag = this._raw == null;
+				if (flag)
+				{
+					this._raw = SignatureBuilder.Build(this.command.method.Method, this.command.name);
+				}
+				return this._raw;
+			}
+		}
+
+		private static ArgumentsParser parser
+		{
+			get
+			{
+				bool flag = Signature._parser == null;
+				if (flag)
+				{
+					Signature._parser = new ArgumentsParser();
+				}
+				return Signature._parser;
+			}
+		}
+
+		internal Signature(CommandBase command)
+		{
+			this.command = command;
+			this.parameters = command.method.Method.GetParameters();
+		}
+
+		internal bool Matches(string[] args)
+		{
+			bool arg_40_0;
+			if (args.Length != this.parameters.Length)
+			{
+				int arg_3B_0 = args.Length;
+				IEnumerable<ParameterInfo> arg_36_0 = this.parameters;
+				Func<ParameterInfo, bool> arg_36_1;
+				if ((arg_36_1 = Signature.__c.__9__12_0) == null)
+				{
+					arg_36_1 = (Signature.__c.__9__12_0 = new Func<ParameterInfo, bool>(Signature.__c.__9._Matches_b__12_0));
+				}
+				arg_40_0 = (arg_3B_0 == arg_36_0.Count(arg_36_1));
+			}
+			else
+			{
+				arg_40_0 = true;
+			}
+			return arg_40_0;
+		}
+
+		internal object[] Convert(string[] args)
+		{
+			return this.GetArguments(args);
+		}
+
+		private object[] GetArguments(string[] args)
+		{
+			object[] array = new object[this.parameters.Length];
+			for (int i = 0; i < array.Length; i++)
+			{
+				bool flag = args.Length > i;
+				if (flag)
+				{
+					array[i] = Signature.parser.Parse(args[i], this.parameters[i].ParameterType);
+				}
+				else
+				{
+					array[i] = this.parameters[i].DefaultValue;
+				}
+			}
+			return array;
+		}
+	}
+}
+
+// Decompile from assembly: CommandSystem.dll
+
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
+
+namespace SickDev.CommandSystem
+{
+	internal static class SignatureBuilder
+	{
+		private static readonly Dictionary<Type, string> aliases = new Dictionary<Type, string>
+		{
+			{
+				typeof(byte),
+				"byte"
+			},
+			{
+				typeof(sbyte),
+				"sbyte"
+			},
+			{
+				typeof(short),
+				"short"
+			},
+			{
+				typeof(ushort),
+				"ushort"
+			},
+			{
+				typeof(int),
+				"int"
+			},
+			{
+				typeof(uint),
+				"uint"
+			},
+			{
+				typeof(long),
+				"long"
+			},
+			{
+				typeof(ulong),
+				"ulong"
+			},
+			{
+				typeof(float),
+				"float"
+			},
+			{
+				typeof(double),
+				"double"
+			},
+			{
+				typeof(decimal),
+				"decimal"
+			},
+			{
+				typeof(object),
+				"object"
+			},
+			{
+				typeof(bool),
+				"bool"
+			},
+			{
+				typeof(char),
+				"char"
+			},
+			{
+				typeof(string),
+				"string"
+			},
+			{
+				typeof(void),
+				"void"
+			},
+			{
+				typeof(byte?),
+				"byte?"
+			},
+			{
+				typeof(sbyte?),
+				"sbyte?"
+			},
+			{
+				typeof(short?),
+				"short?"
+			},
+			{
+				typeof(ushort?),
+				"ushort?"
+			},
+			{
+				typeof(int?),
+				"int?"
+			},
+			{
+				typeof(uint?),
+				"uint?"
+			},
+			{
+				typeof(long?),
+				"long?"
+			},
+			{
+				typeof(ulong?),
+				"ulong?"
+			},
+			{
+				typeof(float?),
+				"float?"
+			},
+			{
+				typeof(double?),
+				"double?"
+			},
+			{
+				typeof(decimal?),
+				"decimal?"
+			},
+			{
+				typeof(bool?),
+				"bool?"
+			},
+			{
+				typeof(char?),
+				"char?"
+			}
+		};
+
+		public static string Build(MethodInfo method, string nameOverride = null)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			string text = SignatureBuilder.TypeToString(method.ReturnType);
+			bool flag = text != SignatureBuilder.aliases[typeof(void)];
+			if (flag)
+			{
+				stringBuilder.Append(text);
+				stringBuilder.Append(" ");
+			}
+			stringBuilder.Append(nameOverride ?? method.Name);
+			ParameterInfo[] parameters = method.GetParameters();
+			bool flag2 = parameters.Length != 0;
+			if (flag2)
+			{
+				SignatureBuilder.AddParameters(stringBuilder, parameters);
+			}
+			return stringBuilder.ToString();
+		}
+
+		private static void AddParameters(StringBuilder signature, ParameterInfo[] parameters)
+		{
+			signature = signature.Append('(');
+			for (int i = 0; i < parameters.Length; i++)
+			{
+				SignatureBuilder.AddParameter(signature, parameters[i]);
+				bool flag = i != parameters.Length - 1;
+				if (flag)
+				{
+					signature = signature.Append(", ");
+				}
+			}
+			signature = signature.Append(')');
+		}
+
+		private static void AddParameter(StringBuilder signature, ParameterInfo parameter)
+		{
+			signature = signature.Append(SignatureBuilder.TypeToString(parameter.ParameterType));
+			signature = signature.Append(" ");
+			signature = signature.Append(parameter.Name);
+			bool isOptional = parameter.IsOptional;
+			if (isOptional)
+			{
+				signature = signature.Append(" = ");
+				bool flag = parameter.DefaultValue is string;
+				if (flag)
+				{
+					signature = signature.AppendFormat("\"{0}\"", parameter.DefaultValue);
+				}
+				else
+				{
+					signature = signature.Append(parameter.DefaultValue);
+				}
+			}
+		}
+
+		private static string TypeToString(Type type)
+		{
+			StringBuilder stringBuilder = new StringBuilder();
+			bool flag = SignatureBuilder.aliases.ContainsKey(type);
+			if (flag)
+			{
+				stringBuilder = stringBuilder.Append(SignatureBuilder.aliases[type]);
+			}
+			else
+			{
+				bool isArray = type.IsArray;
+				if (isArray)
+				{
+					stringBuilder = stringBuilder.Append(SignatureBuilder.TypeToString(type.GetElementType())).Append("[]");
+				}
+				else
+				{
+					bool isGenericType = type.IsGenericType;
+					if (isGenericType)
+					{
+						Type[] genericArguments = type.GetGenericArguments();
+						stringBuilder = stringBuilder.Append(type.Name.Substring(0, type.Name.IndexOf('`'))).Append("<");
+						for (int i = 0; i < genericArguments.Length; i++)
+						{
+							stringBuilder = stringBuilder.Append(SignatureBuilder.TypeToString(genericArguments[i]));
+							bool flag2 = i != genericArguments.Length - 1;
+							if (flag2)
+							{
+								stringBuilder = stringBuilder.Append(", ");
+							}
+						}
+						stringBuilder = stringBuilder.Append(">");
+					}
+					else
+					{
+						stringBuilder = stringBuilder.Append(type.Name);
+					}
+				}
+			}
+			return stringBuilder.ToString();
+		}
+	}
+}
+

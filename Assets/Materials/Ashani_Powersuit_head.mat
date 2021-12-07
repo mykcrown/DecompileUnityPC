@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "Ashani_Powersuit_head"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _NORMALMAP _SPECGLOSSMAP
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: 
+  disabledShaderPasses: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: d73d5547911b410694a13326c753819d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolvePattern:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveRamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveShapeMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionLayer1Map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionLayer2Map:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: aeec8572356e49e1b7c258ee047e24c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: a9590c298e4e43e7973caaf5eca4af65, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimMap:
+        m_Texture: {fileID: 2800000, guid: 89f132951c134dfda408b59ea8dbfa55, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularGlossMap:
+        m_Texture: {fileID: 2800000, guid: 1c6243bdb7194996a827966329edea89, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AmbientContribution: 0.467
+    - _Blend1: 0.595
+    - _BlendMode: 0
+    - _Bright: 0.695
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DRimBoost: 0.6
+    - _DRimPower: 5
+    - _DetailNormalMapScale: 1
+    - _Dissolve: 0
+    - _DissolveAmount: 0
+    - _DissolveShapeMask: 0
+    - _DissolveShapeMaskInvert: 0
+    - _DissolveShapeMaskMaximum: 1
+    - _DissolveShapeMaskMinimum: 0
+    - _DissolveShapeMaskRadius: 0
+    - _DissolveShapeMaskStrength: 1
+    - _DissolveSmoothness: 1
+    - _DitherMode: 0
+    - _DstBlend: 0
+    - _EditMode: 1
+    - _EmissionLayer1PanningX: 0
+    - _EmissionLayer1PanningY: 0
+    - _EmissionLayer2PanningX: 0
+    - _EmissionLayer2PanningY: 0
+    - _FinGamma: 1
+    - _Gloss: 0.543901
+    - _GlossMapScale: 0.834
+    - _GlossPow: 0.28
+    - _Glossiness: 0.684
+    - _GlossyReflections: 1
+    - _Metallic: 0.5
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Outline: 0.007
+    - _OutlineWidth: 0.0005
+    - _Parallax: 0.02
+    - _RimBoost: 0.6
+    - _RimMaximum: 0.6283122
+    - _RimMinimum: 0.4123189
+    - _RimPower: 5
+    - _Saturation: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecPow: 1.8
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Transparency: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 1
+    - _emissiveMult: 1
+    - _metal_pow: 0
+    - _metal_pow_copy: 15.70085
+    - _outlineWidth: 0.005
+    m_Colors:
+    - _Color: {r: 0.8382353, g: 0.7704368, b: 0.7704368, a: 1}
+    - _Color2: {r: 0.8235294, g: 0.5934256, b: 0.5934256, a: 0}
+    - _Color3: {r: 0.463, g: 0.243, b: 0.224, a: 0}
+    - _DRimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseTint: {r: 0.7867647, g: 0.7867647, b: 0.7867647, a: 1}
+    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor2: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionLayer1Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionLayer2Color: {r: 1, g: 1, b: 1, a: 1}
+    - _LightWrapping: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0.9852941, g: 0.7896842, b: 0.7896842, a: 1}
+    - _RimDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _SpecColor: {r: 0.3676471, g: 0.2000432, b: 0.2000432, a: 1}
+    - __EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _outlineColor: {r: 0, g: 0, b: 0, a: 1}

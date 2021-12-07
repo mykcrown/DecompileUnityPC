@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+ 
+  <string name="gameData.stageSelect.MaluMalu">MALUMALU</string>
+  <string name="gameData.stagePreview.MaluMalu">A small stage with stacked platforms</string>
+  <string name="gameData.stageLoading.MaluMalu1">The statues of Malumalu were built by an ancient civilization.</string>
+  <string name="gameData.stageLoading.MaluMalu2">Malumalu is located on Afi &amp; Galu's home planet Avanoa.</string>
+  <string name="gameData.stageLoading.MaluMalu3">Avanoa is an ocean world, dotted with chains of volcanic islands.</string>
+  <string name="gameData.stageLoading.MaluMalu4">The platforms on Malumalu change positions every 12 seconds.</string>
+  <string name="gameData.stageLoading.MaluMalu5">Kidd discovered Afi &amp; Galu while on a mission to their planet.</string>
+  
+</resources>

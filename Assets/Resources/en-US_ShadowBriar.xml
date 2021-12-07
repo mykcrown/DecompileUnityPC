@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+  
+  <string name="gameData.stageSelect.ShadowBriar">SHADOWBRIAR</string>
+  <string name="gameData.stagePreview.ShadowBriar">Two moving platforms create dynamic combat</string>
+  <string name="gameData.stageLoading.ShadowBriar1">Demons and monsters regularly emerge from Shadowbriar's portal.</string>
+  <string name="gameData.stageLoading.ShadowBriar2">Shadowbriar was built by an ancient civilization.</string>
+  
+</resources>

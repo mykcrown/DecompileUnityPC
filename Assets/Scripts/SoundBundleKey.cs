@@ -1,0 +1,46 @@
+// Decompile from assembly: Assembly-CSharp.dll
+
+using System;
+
+public enum SoundBundleKey
+{
+	generic,
+	wavedashArena,
+	cryoStation,
+	combatLab,
+	combatLabAlt,
+	maluMalu,
+	maluMaluAlt,
+	forbiddenShrine,
+	forbiddenShrineAlt,
+	shadowbriar,
+	shadowbriarAlt,
+	cargo,
+	ashaniPostGame,
+	kiddPostGame,
+	xanaPostGame,
+	raymerPostGame,
+	zhurongPostGame,
+	afiPostGame,
+	weishanPostGame,
+	ashaniStore,
+	kiddStore,
+	xanaStore,
+	raymerStore,
+	zhurongStore,
+	afiStore,
+	weishanStore,
+	login,
+	mainMenu,
+	characterSelect,
+	stageSelect,
+	loadingBattle,
+	inGame,
+	victoryScreen,
+	playerProgression,
+	customLobby,
+	settings,
+	store,
+	unboxing,
+	credits
+}

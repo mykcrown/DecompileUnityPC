@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+ <string name="gameData.characters.name.Zhurong">Zhurong</string>
+ <string name="gameData.store.characterDesc.Zhurong">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a pretium ex. Curabitur quis elementum nisi. Aliquam magna mi, laoreet in convallis in, tempor sed libero.</string>
+
+</resources>

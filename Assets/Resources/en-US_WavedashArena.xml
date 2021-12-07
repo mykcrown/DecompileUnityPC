@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+  <string name="gameData.stageSelect.WavedashArena">WAVEDASH ARENA</string>
+  <string name="gameData.stagePreview.WavedashArena">Two small platforms over a large main stage</string>
+  <string name="gameData.stageLoading.WavedashArena1">The Arena is the home stage of the fighting league championships.</string>
+  <string name="gameData.stageLoading.WavedashArena2">Xana is the reigning champion of the Icons Fighting League.</string>
+  <string name="gameData.stageLoading.WavedashArena3">The Icons Fighting League is the most-watched program in the galaxy.</string>
+  <string name="gameData.stageLoading.WavedashArena4">The Yorian system is connected to many other worlds via portals.</string>
+  <string name="gameData.stageLoading.WavedashArena5">Wavedash Arena was built by an ancient civilization.</string>
+  <string name="gameData.stageLoading.Generic1">Press the special attack button while shielding to perform a shield gust.</string>
+  <string name="gameData.stageLoading.Generic2">Shield gust pushes opponents away and reflects projectiles.</string>
+  <string name="gameData.stageLoading.Generic3">Perform a wall jump by pressing away from a wall quickly while against it.</string>
+  <string name="gameData.stageLoading.Generic4">Equip taunts in the gallery to use them during a match.</string>
+  <string name="gameData.stageLoading.Generic5"></string>
+  <string name="gameData.stageLoading.Generic6"></string>
+  <string name="gameData.stageLoading.Generic7">Icons: Legacy was the Wavedash development team's final work before the studio shut down. It was released by the indie developer VONTRE one year later. Wavedash forever!</string>
+  
+</resources>

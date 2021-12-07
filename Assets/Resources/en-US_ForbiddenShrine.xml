@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  
+  <string name="gameData.stageSelect.ForbiddenShrine">FORBIDDEN SHRINE</string>
+  <string name="gameData.stagePreview.ForbiddenShrine">A single large platform over a large main stage</string>
+  <string name="gameData.stageLoading.ForbiddenShrine1">Only the imperial family has access to the shrine's portal.</string>
+  <string name="gameData.stageLoading.ForbiddenShrine2">Forbidden Shrine is located at the heart of Zhurong's Cloud Empire.</string>
+  <string name="gameData.stageLoading.ForbiddenShrine3">Weishan opened the Shrine's portal after his rebellion against Zhurong failed.</string>
+  <string name="gameData.stageLoading.ForbiddenShrine4">The Cloud Empire portal was sealed for hundreds of years.</string>
+  <string name="gameData.stageLoading.ForbiddenShrine5">The Cloud Empire was built by an ancient civilization.</string>
+  
+</resources>

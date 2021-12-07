@@ -1,0 +1,109 @@
+// Decompile from assembly: DOTween50.dll
+
+using System;
+
+internal class <Module>
+{
+}
+
+// Decompile from assembly: DOTween50.dll
+
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using System;
+using System.Runtime.CompilerServices;
+using UnityEngine.Audio;
+
+namespace DG.Tweening
+{
+	public static class ShortcutExtensions50
+	{
+		private sealed class __c__DisplayClass0_0
+		{
+			public AudioMixer target;
+
+			public string floatName;
+
+			internal float _DOSetFloat_b__0()
+			{
+				float result;
+				this.target.GetFloat(this.floatName, out result);
+				return result;
+			}
+
+			internal void _DOSetFloat_b__1(float x)
+			{
+				this.target.SetFloat(this.floatName, x);
+			}
+		}
+
+		public static Tweener DOSetFloat(this AudioMixer target, string floatName, float endValue, float duration)
+		{
+			ShortcutExtensions50.__c__DisplayClass0_0 __c__DisplayClass0_ = new ShortcutExtensions50.__c__DisplayClass0_0();
+			__c__DisplayClass0_.target = target;
+			__c__DisplayClass0_.floatName = floatName;
+			return DOTween.To(new DOGetter<float>(__c__DisplayClass0_._DOSetFloat_b__0), new DOSetter<float>(__c__DisplayClass0_._DOSetFloat_b__1), endValue, duration).SetTarget(__c__DisplayClass0_.target);
+		}
+
+		public static int DOComplete(this AudioMixer target, bool withCallbacks = false)
+		{
+			return DOTween.Complete(target, withCallbacks);
+		}
+
+		public static int DOKill(this AudioMixer target, bool complete = false)
+		{
+			return DOTween.Kill(target, complete);
+		}
+
+		public static int DOFlip(this AudioMixer target)
+		{
+			return DOTween.Flip(target);
+		}
+
+		public static int DOGoto(this AudioMixer target, float to, bool andPlay = false)
+		{
+			return DOTween.Goto(target, to, andPlay);
+		}
+
+		public static int DOPause(this AudioMixer target)
+		{
+			return DOTween.Pause(target);
+		}
+
+		public static int DOPlay(this AudioMixer target)
+		{
+			return DOTween.Play(target);
+		}
+
+		public static int DOPlayBackwards(this AudioMixer target)
+		{
+			return DOTween.PlayBackwards(target);
+		}
+
+		public static int DOPlayForward(this AudioMixer target)
+		{
+			return DOTween.PlayForward(target);
+		}
+
+		public static int DORestart(this AudioMixer target)
+		{
+			return DOTween.Restart(target, true);
+		}
+
+		public static int DORewind(this AudioMixer target)
+		{
+			return DOTween.Rewind(target, true);
+		}
+
+		public static int DOSmoothRewind(this AudioMixer target)
+		{
+			return DOTween.SmoothRewind(target);
+		}
+
+		public static int DOTogglePause(this AudioMixer target)
+		{
+			return DOTween.TogglePause(target);
+		}
+	}
+}
+

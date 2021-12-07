@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: "SpookyTree_Mat"
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _DITHERMODE_OFF _EMISSION _NORMALMAP _SPECGLOSSMAP
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: 
+  disabledShaderPasses: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: ea90921b4a4d409fa31f05b193e80828, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: a05b5985474e4bfbb9c1280da7231896, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 7aa295932a234533af0b8e48717acb19, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: ea4b2c7c7ec94572bcb4c948daec08af, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: 32e797af0bdb432e8aa6210b200f53d9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BlendMode: 0
+    - _BumpScale: 1.5
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _Dissolve: 0
+    - _DissolveAmount: 0
+    - _DissolveShapeMask: 0
+    - _DissolveShapeMaskInvert: 0
+    - _DissolveShapeMaskMaximum: 1
+    - _DissolveShapeMaskMinimum: 0
+    - _DissolveShapeMaskRadius: 0
+    - _DissolveShapeMaskStrength: 1
+    - _DissolveSmoothness: 1
+    - _DitherMode: 0
+    - _DstBlend: 0
+    - _EditMode: 1
+    - _EmissionLayer1PanningX: 0
+    - _EmissionLayer1PanningY: 0
+    - _EmissionLayer2PanningX: 0
+    - _EmissionLayer2PanningY: 0
+    - _GlossMapScale: 0.546
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Outline: 0
+    - _OutlineWidth: 0.5
+    - _Parallax: 0.02
+    - _RimMaximum: 1
+    - _RimMinimum: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Transparency: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1.2, g: 1.2, b: 1.2, a: 1}
+    - _EmissionLayer1Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionLayer2Color: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
+    - _RimColor: {r: 0.2941177, g: 0.1686275, b: 0.2588235, a: 1}
+    - _RimDirection: {r: 0.4512849, g: 0.1294038, b: 0.8829477, a: 0}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
